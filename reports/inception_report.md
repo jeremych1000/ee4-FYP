@@ -4,6 +4,8 @@
 - Use average speed S=D/T to calculate speed
 - Check against speed limit
 - If over by 10%, publish a report online (FB, Twitter, no central reporting system yet)
+
+
 ---
 - Implementation likely on RPi
 - Camera + IR flash (resolution?)
@@ -17,9 +19,13 @@
 - Executable to be run on RPi
 - Demo showing two RPi communicating with each other to detect a speeding car
     - Upload to social media
+
+
 ---
 - Software only simulation also possible (OpenCV is robust)
     - Does not need any custom communication protocol
+
+
 ---
 - Standalone speed detection
     - Have some target zones and track license plate maybe?
@@ -40,6 +46,8 @@
 - Solution
     - Research more into the algorithms and do my own version
     - Or do more pre/post processing
+
+
 ---
 - Not testing in enough cases
     - Need sample video of low light, bright sunlight, glare, complete darkness, etc
