@@ -12,7 +12,8 @@ It is unlikely that the system would be used to issue speeding fines until it ha
 - Implement a number plate recognition system using existing computer vision algorithms on a low-cost, readily available hardware platform. 
 - Set up a peer-to-peer network to share vehicle passing times and detect violations without the need for a central server. 
 - Publish photo evidence of any violations 
-Advanced goals could include: 
+
+#### Advanced goals could include: 
 - Use the changes in the number plate geometry as the vehicle passes to detect the instantaneous speed of a vehicle. This provides a stand-alone mode that will aid adoption in areas where there isn't already an established network. 
 - Implement automatic peer discovery so that each device can find its neighbours and calculate the minimum legal transit time between them using a public mapping database. 
 - Add an encryption layer so that a hacker or rogue peer cannot use the network to track the movements of law-abiding vehicles. 
