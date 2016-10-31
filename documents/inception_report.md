@@ -6,6 +6,7 @@ The system should be distributed (the performance of the system should be propor
 
 Background material and literature reviews will be split across technical (license plate recognition algorithms and networking protocols), business-focused (feasibility study, surveys), and non-technical literature (public records, newspapers). These can include novel ideas such as finding out how a good p2p network looks like, and how we can implement corner cases for emergency vehicles (whitelist).
 
+---
 
 ### Student Summary of project deliverables, fallbacks & extensions (student)
 
@@ -42,6 +43,7 @@ Encryption and privacy concerns can be addressed, first by literature review, th
 
 Lastly, a nice software package should be made on GitHub, maybe a web page or something similar. However this is entirely optional and only serves as flair.
 
+---
 
 ### Summary of Risks (student)
 

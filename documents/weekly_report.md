@@ -1,5 +1,18 @@
 # Weekly Reports
 
+## 2/11/2016
+### What I've done:
+- Inception report
+
+### What I need to do:
+- 
+
+### What I need help with:
+-
+
+---
+
+
 ## 26/10/2016
 ### What I've done:
 - Drafted inception report
@@ -17,15 +30,3 @@
 ### What I need help with:
 - N/A
 
----
-## 2/11/2016
-### What I've done:
-- 
-
-### What I need to do:
-- 
-
-### What I need help with:
--
-
----
