@@ -24,11 +24,12 @@
 - [DTK LPR DSK](http://www.dtksoft.com/dtkanpr.php)
 - [iSpy Connect](https://www.ispyconnect.com/userguide-alpr.aspx)
 - [ARES](http://platesmart.com/)
+
 #### P2P
 - [BitMessage](https://bitmessage.org/wiki/Main_Page)
 
 ### Surveys
-to-do
+- to-do
 
 ## Non-Technical
 ### Privacy
