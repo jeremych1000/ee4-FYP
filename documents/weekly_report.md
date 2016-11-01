@@ -3,6 +3,8 @@
 ## 2/11/2016
 ### What I've done:
 - Inception report
+- Found quite a lot of stuff for literature review
+- Setup OpenALPR, played with some input videos
 
 ### What I need to do:
 - 
