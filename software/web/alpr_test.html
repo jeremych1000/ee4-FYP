@@ -1,0 +1,26 @@
+<html>
+
+<head>
+	<title>Web Image Upload</title>
+	<link rel="icon" type="image/ico" href="favicon.ico">
+</head>
+
+<body>
+
+	<form action="img_upload.php" method="post" enctype="multipart/form-data">
+
+		<input type="file" name="image" /> 
+		<select name="region">
+			<option value="us">US</option>
+			<option value="eu">EU</option>
+		</select>
+		<input type="checkbox" name="run_alpr" value="1" checked>run_alpr<br>
+		<input type="submit" name="submit" value="Upload" /> 
+
+		<br />
+
+	</form>
+
+</body>
+
+</html>
