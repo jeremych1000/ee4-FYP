@@ -1,4 +1,19 @@
-# Weekly Reports
+# Weekly / Daily Reports
+
+## 13/12/2016
+### What I've done:
+- Setup all RPi and web server stuff
+- [Web based image alpr test](http://jeremych.zapto.org/~pi/ee4-FYP/software/web/alpr_test.html)
+
+### What I need to do:
+- Add video input
+- Add URL image get
+- Add way to extract JSON from each video frame to array, sort by no. of occurance
+
+### What I need help with:
+- Learn python maybe?
+
+---
 
 ## 2/11/2016
 ### What I've done:
@@ -13,7 +28,6 @@
 -
 
 ---
-
 
 ## 26/10/2016
 ### What I've done:
