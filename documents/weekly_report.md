@@ -2,7 +2,7 @@
 
 ## 13/12/2016
 ### What I've done:
-- Setup all RPi and web server stuff
+- [Setup all RPi and web server stuff](https://github.com/jeremych1000/ee4-FYP/blob/master/hardware/rpi/provision.sh)
 - [Web based image alpr test](http://jeremych.zapto.org/~pi/ee4-FYP/software/web/alpr_test.html)
 
 ### What I need to do:
