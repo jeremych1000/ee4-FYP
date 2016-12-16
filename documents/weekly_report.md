@@ -1,5 +1,20 @@
 # Weekly / Daily Reports
 
+## 16/12/2016
+### What I've done: 
+- Finish adding video input
+- Extract JSON output of alpr into array
+- Sort by number of occurances and confidence level
+
+### What I need to do: 
+- Port to C++/Python? or continue with web testing?
+- Research prewarp, preskew image
+
+### What I need help with:
+N/A
+
+---
+
 ## 13/12/2016
 ### What I've done:
 - [Setup all RPi and web server stuff](https://github.com/jeremych1000/ee4-FYP/blob/master/hardware/rpi/provision.sh)

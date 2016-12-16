@@ -33,6 +33,9 @@ if(isset($_FILES['image'])){
 		case 'image/jpeg':
 			$file_ext = 'jpg';
 			break;
+		case 'video/mp4':
+			$file_ext = 'mp4';
+			break;
 		default:
 			$file_ext = 'not_allowed'; //http://svn.apache.org/repos/asf/httpd/httpd/trunk/docs/conf/mime.types
 			break;
