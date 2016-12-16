@@ -48,8 +48,8 @@ else{
 	    $exec_array = json_decode($j, true);
 	    if (json_last_error() == 0){
 	    	//rememebr to use decoded json string and not json string itself
-	    	//array ( plate number, count, confidence, avg confidence)
-			foreach ($exec_array['results'] as $k) {
+	    	//array ( plate number, count, confidence, first seen, last seen)
+			foreach ($exec_array['results'] as $k) { 
 				//for each decoded result, search if already exists in array
 				//if so, increment, if not, add
 				//2D array, PLATE / COUNT
@@ -58,10 +58,11 @@ else{
 					$result[$k_search][1] += 1; 
 					$result[$k_search][2] += $k['confidence']; 
 					//$result[$k_search][3] = ($result[$k_search][2] / $result[$k_search][1]); 
+					$result[$k_search][4] = $exec_array['epoch_time'];
 				}
 				else{
 					//append to end of array
-					$result[] = array($k['plate'], 1, $k['confidence']);
+					$result[] = array($k['plate'], 1, $k['confidence'], $exec_array['epoch_time'], $exec_array['epoch_time']);
 				}
 			}
 		}
