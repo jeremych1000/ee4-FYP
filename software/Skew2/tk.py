@@ -2,8 +2,9 @@ import tkinter as tk
 import numpy as np
 import cv2
 from Skew import warp as www
+from alpr import get_plates
 
-img = cv2.imread("zipcar.jpg")
+img = cv2.imread("police.jpg")
 rows,cols,ch = img.shape
 
 
@@ -16,6 +17,8 @@ def task():
     output = www(img, pts)
     #print("slider numbners are %d %d %d %d" % (tl, tr, bl, br))
     cv2.imshow("output", output)
+    cv2.imwrite("tmp_output.jpg", output)
+    get_plates("tmp_output.jpg")
     root.after(update_interval.get(), task)
 
 root = tk.Tk()
@@ -33,6 +36,7 @@ bl = (tk.IntVar(), tk.IntVar())
 br = (tk.IntVar(), tk.IntVar())
 update_interval = tk.IntVar()
 
+#http://effbot.org/tkinterbook/grid.htm
 s1 = tk.Scale(root, orient='horizontal', from_=0, to=cols)
 s1.set(0)
 s1.grid(row=0, column=1)

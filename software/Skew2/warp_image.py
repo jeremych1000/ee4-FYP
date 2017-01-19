@@ -1,7 +1,8 @@
 import cv2
 import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
+
+#from
+#http://www.pyimagesearch.com/2014/08/25/4-point-opencv-getperspective-transform-example/
 
 def order_points(pts):
     # initialzie a list of coordinates that will be ordered

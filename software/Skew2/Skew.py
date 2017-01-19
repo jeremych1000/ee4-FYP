@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 
 from warp_image import four_point_transform
 
+#try and mimic http://doc.openalpr.com/accuracy_improvements.html prewarping
 def warp(img, pts):
 
     print("Entering warp function with parameters %d %d %d %d" % (pts[0][0], pts[0][1], pts[1][0], pts[1][1]))
