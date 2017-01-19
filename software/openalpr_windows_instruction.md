@@ -1,6 +1,7 @@
 1. Use [https://github.com/peters/openalpr-windows](https://github.com/peters/openalpr-windows)
 2. Make sure there is cmake make git
 3. Use git shell to do following commands
+
         ```
         git clone https://github.com/openalpr/openalpr.git
         cd openalpr
@@ -8,8 +9,10 @@
         cd windows
         git submodule update --init --recursive
         ```
-4. Comment out in build.ps1 `#Copy-Item $OpenALPROutputDir\statedetection\$Configuration\statedetection.lib -Force $DestinationDir\statedetection.lib | Out-Null`
-5. Comment out in build.ps1 `#Build-OpenALPRNet	`
+4. Comment out in build.ps1 
+        `#Copy-Item $OpenALPROutputDir\statedetection\$Configuration\statedetection.lib -Force $DestinationDir\statedetection.lib | Out-Null`
+5. Comment out in build.ps1 
+        `#Build-OpenALPRNet	`
 6. Add to build.ps1
         ```
         `Vcxproj-Set $VcxProjectFilename '/rs:Project/rs:PropertyGroup[@Label="Globals"]/rs:OpenALPRVersion' $OpenALPRVersion
