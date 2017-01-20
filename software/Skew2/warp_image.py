@@ -1,9 +1,10 @@
 import cv2
 import numpy as np
+import matplotlib
+import matplotlib.pyplot as plt
 
 #from
 #http://www.pyimagesearch.com/2014/08/25/4-point-opencv-getperspective-transform-example/
-
 def order_points(pts):
     # initialzie a list of coordinates that will be ordered
     # such that the first entry in the list is the top-left,
@@ -27,7 +28,6 @@ def order_points(pts):
     # return the ordered coordinates
     return rect
 
-
 def four_point_transform(image, pts, height, width, use_default_size):
     # obtain a consistent order of the points and unpack them
     # individually
@@ -35,11 +35,11 @@ def four_point_transform(image, pts, height, width, use_default_size):
     (tl, tr, br, bl) = rect
 
     if use_default_size:
-        print("Using default size\n")
+        print("Using default size")
         maxWidth = width
         maxHeight = height
     else:
-        print("Calculating max size as not default\n")
+        print("Calculating max size as not default")
         # compute the width of the new image, which will be the
         # maximum distance between bottom-right and bottom-left
         # x-coordiates or the top-right and top-left x-coordinates
@@ -68,4 +68,21 @@ def four_point_transform(image, pts, height, width, use_default_size):
     warped = cv2.warpPerspective(image, M, (maxWidth, maxHeight))
 
     # return the warped image
+    return warped
+
+#try and mimic http://doc.openalpr.com/accuracy_improvements.html prewarping
+def warp(img, pts):
+
+    print("Entering warp function with parameters %d %d %d %d" % (pts[0][0], pts[0][1], pts[1][0], pts[1][1]))
+    #img = cv2.imread("zipcar.jpg")
+    rows,cols,ch = img.shape
+
+    #cv2.imshow("Original", img)
+
+    #points = "[(892, 395), (1085, 331), (910, 485), (1114, 555)]"
+    #points = "[(96,15), (588, 132), (113, 504), (633, 452)]"
+    pts = np.array(pts, dtype = "float32")
+
+    warped = four_point_transform(img, pts, rows, cols, True)
+
     return warped

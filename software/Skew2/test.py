@@ -5,8 +5,7 @@ parser = ArgumentParser(description='OpenALPR Python Test Program')
 
 parser.add_argument("-c", "--country", dest="country", action="store", default="us",
                   help="License plate Country" )
-
-parser.add_argument("--config", dest="config", action="store", default="C:/Users/Jeremy/Documents/GitHub/openalpr/windows/build/dist/2.2.0/v120/Release/x64/openalpr.conf",
+ tore", default="C:/Users/Jeremy/Documents/GitHub/openalpr/windows/build/dist/2.2.0/v120/Release/x64/openalpr.conf",
                   help="Path to openalpr.conf config file" )
 
 parser.add_argument("--runtime_data", dest="runtime_data", action="store", default="C:/Users/Jeremy/Documents/GitHub/openalpr/windows/build/dist/2.2.0/v120/Release/x64/runtime_data",
