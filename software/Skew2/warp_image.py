@@ -1,7 +1,5 @@
 import cv2
 import numpy as np
-import matplotlib
-import matplotlib.pyplot as plt
 
 #from
 #http://www.pyimagesearch.com/2014/08/25/4-point-opencv-getperspective-transform-example/
@@ -73,7 +71,7 @@ def four_point_transform(image, pts, height, width, use_default_size):
 #try and mimic http://doc.openalpr.com/accuracy_improvements.html prewarping
 def warp(img, pts):
 
-    print("Entering warp function with parameters %d %d %d %d" % (pts[0][0], pts[0][1], pts[1][0], pts[1][1]))
+    #print("Entering warp function with parameters %d %d %d %d" % (pts[0][0], pts[0][1], pts[1][0], pts[1][1]))
     #img = cv2.imread("zipcar.jpg")
     rows,cols,ch = img.shape
 

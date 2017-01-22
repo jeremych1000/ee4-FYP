@@ -1,35 +1,67 @@
 import tkinter as tk
 import numpy as np
 import cv2
+import time
+
 from warp_image import warp
 from alpr import get_plates
 from line_detection import extract_colour
+from motion import detect_motion
 
-img = cv2.imread("g1w.png")
-rows,cols,ch = img.shape
+type = "video" #or video
+
+print("top")
+if type is "image":
+    ret, input_file = cv2.imread("test_files/g1w.png")
+    if not ret:
+        print("Failed to read image")
+    frame = input_file #needed as img is either image or video
+    #need to add check for image successful read or not
+    rows,cols,ch = input_file.shape
+else:
+    #need to add check for image successful read or not
+    input_file = cv2.VideoCapture("test_files/eu_parking.mp4")
+    cols = input_file.get(3)
+    rows = input_file.get(4)
+
+    ret, first_frame = input_file.read()
+    if not ret:
+        print("Failed to read video")
+    cv2.imshow("first frame", first_frame)
+    #frame = first_frame #needed as img is either image or video
 
 
 def task():
+    print("Doing task")
+    #get tkintvar values
     tl = (warp1.get(), warp2.get())
     tr = (warp3.get(), warp4.get())
     bl = (warp5.get(), warp6.get())
     br = (warp7.get(), warp8.get())
     pts = [ (tl[0], tl[1]), (tr[0], tr[1]), (bl[0], bl[1]), (br[0], br[1]) ]
-    output = warp(img, pts)
-    #print("slider numbners are %d %d %d %d" % (tl, tr, bl, br))
-
     HSV_min = np.array([h1.get(), s1.get(), v1.get()], np.uint8)
     HSV_max = np.array([h2.get(), s2.get(), v2.get()], np.uint8)
 
-    hsv = extract_colour(output, HSV_min, HSV_max, 0)
+    if type is "video":
+        ret, frame = input_file.read()
+        cv2.imshow("current frame", frame)
 
-    cv2.imshow("output", hsv)
+    is_motion, motion_frame = detect_motion(first_frame, frame, 10000, int(cols))
+    if is_motion:
+        output = warp(motion_frame, pts)
+        hsv = extract_colour(output, HSV_min, HSV_max, 0)
+        cv2.imwrite("tmp_output.jpg", hsv)
 
-    #ALPR
-    cv2.imwrite("tmp_output.jpg", hsv)
-    get_plates("tmp_output.jpg")
+        cv2.imshow("output", hsv)
+
+        #ALPR
+        get_plates("tmp_output.jpg")
+    else:
+        cv2.imshow("output", frame)
 
     print("---")
+
+    #schedule tasks to run instead of using time.sleep
     root.after(update_interval.get(), task)
 
 root = tk.Tk()

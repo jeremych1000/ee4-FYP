@@ -1,5 +1,4 @@
 import sys
-import cv2
 from openalpr import Alpr
 
 def get_plates(input):
