@@ -1,5 +1,18 @@
 # Weekly / Daily Reports
 
+## 21/01/2017
+### What I've done: 
+- Real time deskewing of image using opencv and python by settings coordinates of affine transform
+- HSV colour extraction
+
+### What I need to do: 
+- Keep researching on how to automatically dewarp
+
+### What I need help with:
+N/A
+
+---
+
 ## 16/12/2016
 ### What I've done: 
 - Finish adding video input
