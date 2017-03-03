@@ -39,22 +39,32 @@ class register(APIView):
         print("DEBUG: ", json_data)
 
         ip_address = json_data["ip_address"]
+
         try:
-            socket.inet_aton(ip_address) # verify if IP address valid
+            socket.inet_aton(ip_address)  # verify if IP address valid
             ip = get_real_ip(request)
             if ip is not None:
                 if ip_address is not ip:
-                    json_ret["ip_address"] = "IP mismatch, using retrieved IP instead of submitted."
+                    json_ret["status"] = "fail"
+                    json_ret["reason"] = "IP mismatch, using retrieved IP instead of submitted."
                     ip_address = ip
             else:
-                json_ret["ip_address"] = "IP not found, using user submitted IP."
+                json_ret["status"] = "fail"
+                json_ret["reason"] = "IP not found, using user submitted IP."
         except socket.error:
-            json_ret["ip_address"] = "IP not valid."
+            json_ret["status"] = "fail"
+            json_ret["reason"] = "IP not valid."
 
         if 'port' not in json_data:
             port = 8000  # default assume port is 8000
         else:
             port = json_data["port"]
+
+        try:
+            int(port)
+        except ValueError:
+            json_ret["status"] = "fail"
+            json_ret["reason"] = "Port not valid."
 
         # needs rethinking about if a peer decides to connect through VPN
         if 'location_lat' not in json_data and 'location_long' not in json_data:
@@ -104,15 +114,50 @@ class register(APIView):
             json_ret["status"] = "fail"
             return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
 
+
 class update(APIView):
-    pass
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        '''
+        Used to update the peer entry.
+        :param request:
+        :return:
+        '''
+        if 'ip_address' in request.POST and 'port' in request.POST:
+            ip_address = request.POST["ip_address"]
+            port = request.POST["port"]
+        token = request.META['HTTP_AUTHORIZATION']
+
+        (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
+        if peer_obj is not None:
+            # TODO
+            pass
+        return ret
+
 
 class deregister(APIView):
-    pass
+    permission_classes = (AllowAny,)
+
+    def post(self, request):
+        '''
+        Used to remove the peer entry from the database. POST, not GET, same as logging out.
+        :param request:
+        :return:
+        '''
+        if 'ip_address' in request.POST and 'port' in request.POST:
+            ip_address = request.POST["ip_address"]
+            port = request.POST["port"]
+        token = request.META['HTTP_AUTHORIZATION']
+
+        (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
+        if peer_obj is not None:
+            peer_obj.delete()
+        return ret
+
 
 class keep_alive(APIView):
     permission_classes = (AllowAny,)
-    # instead of REST token auth use own uuid auth
 
     def post(self, request):
         '''
@@ -121,57 +166,35 @@ class keep_alive(APIView):
         :param request:
         :return:
         '''
-        json_ret = {}
         if 'ip_address' in request.POST and 'port' in request.POST:
             ip_address = request.POST["ip_address"]
             port = request.POST["port"]
+        token = request.META['HTTP_AUTHORIZATION']
 
-            if functions.verify_ip(ip_address) is False:
-                json_ret["status"] = "fail"
-                json_ret["reason"] = "IP invalid."
-                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
-
-            if functions.verify_port(port) is False:
-                json_ret["status"] = "fail"
-                json_ret["reason"] = "Port invalid."
-                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
-
-            #  check token is correct, else fail
-            token = request.META['HTTP_AUTHORIZATION']
-
-            try:
-                peer_obj = models.peer.objects.get(ip_address=ip_address, port=port)
-            except models.peer.DoesNotExist:
-                json_ret["status"] = "fail"
-                json_ret["reason"] = "Combination not found, please register."
-                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
-
-            if functions.verify_uuid4(peer_obj.token_update, token):
-                peer_obj.active = True
-                peer_obj.save()
-                return Response(status=status.HTTP_200_OK)
-            else:
-                json_ret["status"] = "fail"
-                json_ret["reason"] = "Wrong update token."
-                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
-
-        else:
-            json_ret["status"] = "fail"
-            json_ret["reason"] = "No IP/port supplied."
-            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+        (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
+        if peer_obj is not None:
+            peer_obj.active = True
+            peer_obj.save()
+        return ret
 
 
 class get_peers(APIView):
     permission_classes = (AllowAny,)
 
     def get(self, request, distance=None, city=None, country=None):
+        # TODO: Implement parameters to filter the GET request by distance, country, etc?
         '''
         Gets a list of peers from the bootstrapping server.
-        TODO: Implement parameters to filter the GET request by distance, country, etc?
         :param request:
         :return:
         '''
-        data = models.peer.objects.all()
+        json_ret = {}
+        try:
+            data = models.peer.objects.all()
+        except models.peer.DoesNotExist:
+            json_ret["status"] = "fail"
+            json_ret["reason"] = "Combination not found, please register."
+            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
 
         if country is not None:
             data = data.filter(location_country=country)
@@ -180,6 +203,5 @@ class get_peers(APIView):
         if distance is not None:
             pass
 
-        serializer = serializers.peer(data, many=True)
+        serializer = serializers.get_peers(data, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-
