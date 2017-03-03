@@ -18,10 +18,10 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from ipware.ip import get_real_ip
 
-from . import models, serializers
+from . import models, serializers, functions
 
 from datetime import datetime, date, timedelta, timezone
-import json, requests, uuid
+import json, requests, uuid, socket
 
 
 class register(APIView):
@@ -39,15 +39,17 @@ class register(APIView):
         print("DEBUG: ", json_data)
 
         ip_address = json_data["ip_address"]
-
-        ip = get_real_ip(request)
-        if ip is not None:
-            if ip_address != ip:
-                json_ret["ip_address"] = "IP mismatch, using retrieved IP instead of submitted."
-                ip_address = ip
-        else:
-            json_ret["ip_address"] = "IP not found, using user submitted IP."
-
+        try:
+            socket.inet_aton(ip_address) # verify if IP address valid
+            ip = get_real_ip(request)
+            if ip is not None:
+                if ip_address is not ip:
+                    json_ret["ip_address"] = "IP mismatch, using retrieved IP instead of submitted."
+                    ip_address = ip
+            else:
+                json_ret["ip_address"] = "IP not found, using user submitted IP."
+        except socket.error:
+            json_ret["ip_address"] = "IP not valid."
 
         if 'port' not in json_data:
             port = 8000  # default assume port is 8000
@@ -109,7 +111,55 @@ class deregister(APIView):
     pass
 
 class keep_alive(APIView):
-    pass
+    permission_classes = (AllowAny,)
+    # instead of REST token auth use own uuid auth
+
+    def post(self, request):
+        '''
+        Used to refresh database entry of peer to prevent bootstrapping server from marking as inactive.
+        Only sets active, for updating data please use /update/.
+        :param request:
+        :return:
+        '''
+        json_ret = {}
+        if 'ip_address' in request.POST and 'port' in request.POST:
+            ip_address = request.POST["ip_address"]
+            port = request.POST["port"]
+
+            if functions.verify_ip(ip_address) is False:
+                json_ret["status"] = "fail"
+                json_ret["reason"] = "IP invalid."
+                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+            if functions.verify_port(port) is False:
+                json_ret["status"] = "fail"
+                json_ret["reason"] = "Port invalid."
+                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+            #  check token is correct, else fail
+            token = request.META['HTTP_AUTHORIZATION']
+
+            try:
+                peer_obj = models.peer.objects.get(ip_address=ip_address, port=port)
+            except models.peer.DoesNotExist:
+                json_ret["status"] = "fail"
+                json_ret["reason"] = "Combination not found, please register."
+                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+            if functions.verify_uuid4(peer_obj.token_update, token):
+                peer_obj.active = True
+                peer_obj.save()
+                return Response(status=status.HTTP_200_OK)
+            else:
+                json_ret["status"] = "fail"
+                json_ret["reason"] = "Wrong update token."
+                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+            json_ret["status"] = "fail"
+            json_ret["reason"] = "No IP/port supplied."
+            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
 
 class get_peers(APIView):
     permission_classes = (AllowAny,)
