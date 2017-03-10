@@ -21,10 +21,10 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from ipware.ip import get_real_ip
 
-from . import models, serializers, functions, os
+from . import models, serializers, functions
 
 from datetime import datetime, date, timedelta, timezone
-import json, requests, uuid, socket
+import json, requests, uuid, socket, os
 
 @login_required
 def log(request):

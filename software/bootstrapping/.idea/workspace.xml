@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="da3c423c-582a-4fae-8daa-194c507e8107" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/bootstrapping/log.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../peer/client/functions.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../peer/client/management/commands/bootstrap.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../peer/client/serializers.py" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../peer/peer/log.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../peer/db.sqlite3" afterPath="$PROJECT_DIR$/../peer/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrapping/urls.py" afterPath="$PROJECT_DIR$/bootstrapping/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../peer/client/models.py" afterPath="$PROJECT_DIR$/../peer/client/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../peer/client/urls.py" afterPath="$PROJECT_DIR$/../peer/client/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../peer/client/views.py" afterPath="$PROJECT_DIR$/../peer/client/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../peer/peer/settings.py" afterPath="$PROJECT_DIR$/../peer/peer/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../peer/peer/urls.py" afterPath="$PROJECT_DIR$/../peer/peer/urls.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bootstrap/views.py" afterPath="$PROJECT_DIR$/bootstrap/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -69,7 +57,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="bootstrap.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="bootstrap.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../peer/client/management/commands/bootstrap.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="119">
@@ -79,11 +67,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bootstrap/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="138">
-              <caret line="142" column="46" lean-forward="false" selection-start-line="142" selection-start-column="46" selection-end-line="142" selection-end-column="46" />
+            <state relative-caret-position="544">
+              <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -170,7 +158,6 @@
         <option value="$PROJECT_DIR$/bootstrap/serializers.py" />
         <option value="$PROJECT_DIR$/bootstrap/functions.py" />
         <option value="$PROJECT_DIR$/bootstrapping/settings.py" />
-        <option value="$PROJECT_DIR$/bootstrap/views.py" />
         <option value="$PROJECT_DIR$/../peer/client/functions.py" />
         <option value="$PROJECT_DIR$/bootstrapping/log.py" />
         <option value="$PROJECT_DIR$/bootstrapping/urls.py" />
@@ -182,6 +169,7 @@
         <option value="$PROJECT_DIR$/../peer/client/views.py" />
         <option value="$PROJECT_DIR$/../peer/client/models.py" />
         <option value="$PROJECT_DIR$/../peer/client/management/commands/bootstrap.py" />
+        <option value="$PROJECT_DIR$/bootstrap/views.py" />
       </list>
     </option>
   </component>
@@ -1067,16 +1055,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bootstrap/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="138">
-          <caret line="142" column="46" lean-forward="false" selection-start-line="142" selection-start-column="46" selection-end-line="142" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bootstrap/functions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="663">
@@ -1150,6 +1128,16 @@
         <state relative-caret-position="119">
           <caret line="7" column="12" lean-forward="false" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="12" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bootstrap/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
