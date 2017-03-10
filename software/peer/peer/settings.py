@@ -175,4 +175,5 @@ BOOTSTRAP3 = {
 GEOIP_PATH = os.path.join(STATICFILES_DIRS[0], 'geolite2')
 
 ################# others
+BOOTSTRAP_BASE_URL = 'http://jeremych.zapto.org:34571/'
 TRUST_THRESHOLD = 10

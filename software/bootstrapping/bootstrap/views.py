@@ -57,7 +57,7 @@ class register(APIView):
             if ip is not None:
                 if ip_address is not ip:
                     json_ret["status"] = "fail"
-                    json_ret["reason"] = "IP mismatch, using retrieved IP instead of submitted."
+                    json_ret["reason"] = "IP mismatch, using retrieved IP ("+ip+") instead of submitted ("+ip_address+"."
                     ip_address = ip
             else:
                 json_ret["status"] = "fail"
