@@ -55,9 +55,9 @@ class register(APIView):
             socket.inet_aton(ip_address)  # verify if IP address valid
             ip = get_real_ip(request)
             if ip is not None:
-                if ip_address is not ip:
+                if ip_address != ip:
                     json_ret["status"] = "fail"
-                    json_ret["reason"] = "IP mismatch, using retrieved IP ("+ip+") instead of submitted ("+ip_address+"."
+                    json_ret["reason"] = "IP mismatch, using retrieved IP ("+ip+") instead of submitted ("+ip_address+")."
                     ip_address = ip
             else:
                 json_ret["status"] = "fail"
