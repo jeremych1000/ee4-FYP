@@ -37,10 +37,7 @@ INSTALLED_APPS = [
 
     # bootstrap
     'bootstrap3',
-
-    # django cron
-    'django_cron',
-
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
