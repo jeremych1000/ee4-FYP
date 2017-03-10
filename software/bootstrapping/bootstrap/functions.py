@@ -1,6 +1,7 @@
-import uuid, socket
 from rest_framework.response import Response
 from rest_framework import status
+
+import uuid, socket, requests, json
 
 from . import models
 
@@ -48,3 +49,16 @@ def get_peer_entry(ip_address, port, token):
         json_ret["status"] = "fail"
         json_ret["reason"] = "Wrong update token."
         return (None, Response(json_ret, status=status.HTTP_401_UNAUTHORIZED))
+
+def get_local_ip():
+    # http://stackoverflow.com/questions/166506/finding-local-ip-addresses-using-pythons-stdlib?page=1&tab=votes#tab-top
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s.connect(("8.8.8.8", 80))
+    ret = s.getsockname()[0]
+    s.close()
+    return ret
+
+def get_external_ip():
+    r = requests.get('https://api.ipify.org?format=json')
+    ip = json.loads(r.text)
+    return ip["ip"]

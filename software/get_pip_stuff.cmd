@@ -8,4 +8,5 @@ pip install django-docs
 pip install django-ipware
 pip install geopy
 pip install geoip2
+pip install django_cron
 pause

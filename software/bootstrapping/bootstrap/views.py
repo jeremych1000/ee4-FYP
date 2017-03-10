@@ -3,6 +3,9 @@ from django.http import HttpResponse
 from django.contrib import messages
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth.decorators import login_required
+from django.conf import settings
+from django.http import HttpResponse
 
 # location stuff
 from django.contrib.gis.geoip2 import GeoIP2
@@ -18,10 +21,18 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from ipware.ip import get_real_ip
 
-from . import models, serializers, functions
+from . import models, serializers, functions, os
 
 from datetime import datetime, date, timedelta, timezone
 import json, requests, uuid, socket
+
+@login_required
+def log(request):
+    path = os.path.join(settings.STATICFILES_DIRS[0], 'log.log')
+    # print(path)
+    with open(path, 'r') as myfile:
+        data=myfile.read()
+    return HttpResponse(data, content_type='text/plain')
 
 
 class register(APIView):
