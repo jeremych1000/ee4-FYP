@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+from .log import log
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^bootstrap/', include('bootstrap.urls')),
+    url(r'^log/$', log.as_view()),
 ]

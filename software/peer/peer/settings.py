@@ -173,3 +173,6 @@ BOOTSTRAP3 = {
 }
 
 GEOIP_PATH = os.path.join(STATICFILES_DIRS[0], 'geolite2')
+
+################# others
+TRUST_THRESHOLD = 10

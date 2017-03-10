@@ -1,6 +1,13 @@
 from django.db import models
 
 
+class bootstrap(models.Model):
+    token_update = models.CharField(max_length=40)
+    token_peer = models.CharField(max_length=40)
+    time_accepted = models.DateTimeField(auto_now_add=True)
+    last_updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+
+
 class plates(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     plate = models.CharField(max_length=10)
