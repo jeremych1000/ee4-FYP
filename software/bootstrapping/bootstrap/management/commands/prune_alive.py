@@ -24,7 +24,7 @@ class Command(BaseCommand):
         peer_objects = models.peer.objects.all()
 
         for i in peer_objects:
-            t_delta = i.last_seen - i.first_seen
+            t_delta = datetime.datetime.now() - i.last_seen
             hours, minutes, seconds, total_hours, total_minutes = convert_timedelta(t_delta)
             print(hours, " ", minutes, " ", seconds, " ", total_hours, " ", total_minutes)
 
@@ -35,4 +35,3 @@ class Command(BaseCommand):
             if total_hours >= 24:
                 i.delete()
                 print("deleted")
- 
