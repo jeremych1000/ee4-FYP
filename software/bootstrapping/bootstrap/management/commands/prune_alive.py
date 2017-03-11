@@ -1,5 +1,6 @@
 from django.core.management.base import BaseCommand
 from django.conf import settings
+from django.utils import timezone
 
 import requests, json, datetime
 
@@ -24,9 +25,9 @@ class Command(BaseCommand):
         peer_objects = models.peer.objects.all()
 
         for i in peer_objects:
-            t_delta = datetime.datetime.now() - i.last_seen
+            t_delta =  timezone.now() - i.last_seen
             hours, minutes, seconds, total_hours, total_minutes = convert_timedelta(t_delta)
-            print(hours, " ", minutes, " ", seconds, " ", total_hours, " ", total_minutes)
+            # print(hours, " ", minutes, " ", seconds, " ", total_hours, " ", total_minutes)
 
             if total_minutes >= 20:
                 i.active = False
