@@ -2,6 +2,8 @@ from django.core.management.base import BaseCommand
 from django.conf import settings
 from django.utils import timezone
 
+from django_cron import CronJobBase, Schedule
+
 import requests, json, datetime
 
 from bootstrap import models
@@ -17,11 +19,12 @@ def convert_timedelta(duration):
     return hours, minutes, seconds, total_hours, total_minutes
 
 
-class Command(BaseCommand):
-    def add_arguments(self, parser):
-        pass
+class Prune_Alive(CronJobBase):
+    RUN_EVERY_MINS = 1
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'bootstrap.prune_alive'
 
-    def handle(self, *args, **options):
+    def do(self):
         peer_objects = models.peer.objects.all()
 
         for i in peer_objects:
@@ -29,7 +32,7 @@ class Command(BaseCommand):
             hours, minutes, seconds, total_hours, total_minutes = convert_timedelta(t_delta)
             # print(hours, " ", minutes, " ", seconds, " ", total_hours, " ", total_minutes)
 
-            if total_minutes >= 20:
+            if total_minutes >= 10:
                 i.active = False
                 i.save()
                 print("made inactive")

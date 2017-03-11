@@ -35,6 +35,10 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    # django_crons
+    'django_cron',
+
+    
     # bootstrap
     'bootstrap3',
     
@@ -174,3 +178,9 @@ BOOTSTRAP3 = {
 }
 
 GEOIP_PATH = os.path.join(STATICFILES_DIRS[0], 'geolite2')
+
+
+CRON_CLASSES = [
+    'bootstrap.cron.prune_alive.Prune_Alive',
+
+]
