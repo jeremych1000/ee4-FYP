@@ -182,5 +182,5 @@ GEOIP_PATH = os.path.join(STATICFILES_DIRS[0], 'geolite2')
 
 CRON_CLASSES = [
     'bootstrap.cron.prune_alive.Prune_Alive',
-
+    'bootstrap.cron.minutes_connected.Minutes_Connected',
 ]

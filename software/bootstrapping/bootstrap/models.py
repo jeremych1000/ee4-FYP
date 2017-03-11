@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 import uuid
 
 
@@ -17,8 +17,10 @@ class peer(models.Model):
     location_country = models.CharField(max_length=50, blank=True, default=None,
                                         null=True)  # HIDDEN FROM USER, holds rough country from IP geolocation
 
-    first_seen = models.DateTimeField(auto_now_add=True)  # Automatically set the field to now when the object is first created.
-    last_seen = models.DateTimeField(auto_now_add=False, auto_now=True)
+    first_seen = models.DateTimeField(default=timezone.now)  # Automatically set the field to now when the object is first created.
+    last_seen = models.DateTimeField()
+
+    minutes_connected = models.PositiveIntegerField()
 
     # NOT default=uuid.uuid4 as only populate UUID from register view as need to return the value
     token_update = models.UUIDField(default=None,

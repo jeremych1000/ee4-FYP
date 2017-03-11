@@ -6,6 +6,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponse
+from django.utils import timezone
 
 # location stuff
 from django.contrib.gis.geoip2 import GeoIP2
@@ -23,8 +24,7 @@ from ipware.ip import get_real_ip
 
 from . import models, serializers, functions
 
-from datetime import datetime, date, timedelta, timezone
-import json, requests, uuid, socket, os
+import datetime, json, requests, uuid, socket, os
 
 @login_required
 def log(request):
@@ -113,6 +113,7 @@ class register(APIView):
             location_city=location_city,
             location_country=location_country,
             # timestamp is automatic
+            last_seen = timezone.now(),
             token_update=token_update,
             token_peer=token_peer,
             active=True,
@@ -135,9 +136,12 @@ class update(APIView):
         :param request:
         :return:
         '''
-        if 'ip_address' in request.POST and 'port' in request.POST:
-            ip_address = request.POST["ip_address"]
-            port = request.POST["port"]
+        json_data = json.loads(request.body.decode("utf-8"))
+
+        if "ip_address" in json_data:
+            ip_address = json_data["ip_address"]
+        if "port" in json_data:
+            port = json_data["port"]
         token = request.META['HTTP_AUTHORIZATION']
 
         (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
@@ -156,9 +160,12 @@ class deregister(APIView):
         :param request:
         :return:
         '''
-        if 'ip_address' in request.POST and 'port' in request.POST:
-            ip_address = request.POST["ip_address"]
-            port = request.POST["port"]
+        json_data = json.loads(request.body.decode("utf-8"))
+
+        if "ip_address" in json_data:
+            ip_address = json_data["ip_address"]
+        if "port" in json_data:
+            port = json_data["port"]
         token = request.META['HTTP_AUTHORIZATION']
 
         (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
@@ -177,13 +184,17 @@ class keep_alive(APIView):
         :param request:
         :return:
         '''
-        if 'ip_address' in request.POST and 'port' in request.POST:
-            ip_address = request.POST["ip_address"]
-            port = request.POST["port"]
+        json_data = json.loads(request.body.decode("utf-8"))
+
+        if "ip_address" in json_data:
+            ip_address = json_data["ip_address"]
+        if "port" in json_data:
+            port = json_data["port"]
         token = request.META['HTTP_AUTHORIZATION']
 
         (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
         if peer_obj is not None:
+            peer_obj.last_seen = timezone.now()
             peer_obj.active = True
             peer_obj.save()
         return ret
@@ -207,6 +218,9 @@ class get_peers(APIView):
             json_ret["reason"] = "Combination not found, please register."
             return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
 
+        # dont send details of inactive peers?
+        data = data.filter(active=True)
+
         if country is not None:
             data = data.filter(location_country=country)
         if city is not None:
@@ -214,5 +228,8 @@ class get_peers(APIView):
         if distance is not None:
             pass
 
-        serializer = serializers.get_peers(data, many=True)
-        return Response(serializer.data, status=status.HTTP_200_OK)
+        if len(data) != 0:
+            serializer = serializers.get_peers(data, many=True)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        else:
+            return Response(status=status.HTTP_204_NO_CONTENT)
