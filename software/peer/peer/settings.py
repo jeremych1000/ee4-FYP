@@ -35,6 +35,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
 
+    # django_crons
+    'django_cron',
+
     # bootstrap
     'bootstrap3',
 
@@ -175,5 +178,11 @@ BOOTSTRAP3 = {
 GEOIP_PATH = os.path.join(STATICFILES_DIRS[0], 'geolite2')
 
 ################# others
+
+CRON_CLASSES = [
+    'client.cron.register.Register',
+    'client.cron.keep_alive.Keep_Alive',
+]
+
 BOOTSTRAP_BASE_URL = 'http://jeremych.zapto.org:34571/'
 TRUST_THRESHOLD = 10

@@ -1,11 +1,13 @@
 from django.db import models
-
+from django.utils import timezone
 
 class bootstrap(models.Model):
+    # prevent more than one entry
+    ajsdkfjasldkfjasldkfja = models.CharField(max_length=1, default="1", unique=True)
     token_update = models.CharField(max_length=40)
     token_peer = models.CharField(max_length=40)
-    time_accepted = models.DateTimeField(auto_now_add=True)
-    last_updated = models.DateTimeField(auto_now_add=False, auto_now=True)
+    time_accepted = models.DateTimeField(default=timezone.now)
+    last_updated = models.DateTimeField()
 
 
 class plates(models.Model):
@@ -22,9 +24,8 @@ class peer_list(models.Model):
     ip_address = models.GenericIPAddressField(protocol='ipv4')  # reachable IP address
     port = models.PositiveIntegerField()  # port on which server is run on
 
-    first_seen = models.DateTimeField(
-        auto_now_add=True)  # Automatically set the field to now when the object is first created.
-    last_seen = models.DateTimeField(auto_now_add=False, auto_now=True)
+    time_accepted = models.DateTimeField(default=timezone.now)
+    last_updated = models.DateTimeField()
 
     token = models.UUIDField(default=None,
                              editable=False)
@@ -46,8 +47,7 @@ class violations(models.Model):
     unit = models.CharField(default="miles", max_length=5)
     method = models.CharField(default="p2p", max_length=10)  # or itself
 
-    first_seen = models.DateTimeField(
-        auto_now_add=True)  # Automatically set the field to now when the object is first created.
-    last_seen = models.DateTimeField(auto_now_add=False, auto_now=True)
+    time_accepted = models.DateTimeField(default=timezone.now)
+    last_updated = models.DateTimeField()
 
     img_path = models.FilePathField()
