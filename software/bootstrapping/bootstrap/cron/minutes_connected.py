@@ -15,6 +15,6 @@ class Minutes_Connected(CronJobBase):
         peer_objects = models.peer.objects.all()
 
         for i in peer_objects:
-            if i.active = True:
+            if i.active == True:
                 i.minutes_connected += 5
                 i.save()
