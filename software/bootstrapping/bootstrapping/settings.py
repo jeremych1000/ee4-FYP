@@ -184,3 +184,4 @@ CRON_CLASSES = [
     'bootstrap.cron.prune_alive.Prune_Alive',
     'bootstrap.cron.minutes_connected.Minutes_Connected',
 ]
+DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
