@@ -183,6 +183,7 @@ CRON_CLASSES = [
     'client.cron.register.Register',
     'client.cron.keep_alive.Keep_Alive',
 ]
+DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
 BOOTSTRAP_BASE_URL = 'http://jeremych.zapto.org:34571/'
 TRUST_THRESHOLD = 10
