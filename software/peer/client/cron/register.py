@@ -1,5 +1,6 @@
-from django_cron import CronJobBase, Schedule
 from django.conf import settings
+
+from django_cron import CronJobBase, Schedule
 
 import requests, json, datetime
 
@@ -7,8 +8,8 @@ from client import models
 
 
 class Register(CronJobBase):
-    RUN_EVERY_MINS = 0
-    schedule = Schedule(run_at_times=RUN_EVERY_MINS)
+    # RUN_EVERY_MINS = 0
+    # schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'peer.register'
 
     def do(self):

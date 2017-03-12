@@ -1,12 +1,1 @@
-pip install django
-pip install django-bootstrap3
-pip install djangorestframework
-pip install django-sendfile
-pip install Sphinx
-
-pip install django-docs
-pip install django-ipware
-pip install geopy
-pip install geoip2
-pip install django_cron
-pause
+pip install django django-bootstrap3 djangorestframework django-sendfile Sphinx django-docs django-ipware geopy geoip2 django_cron

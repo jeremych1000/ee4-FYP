@@ -1,5 +1,7 @@
-from django_cron import CronJobBase, Schedule
 from django.conf import settings
+from django.utils import timezone
+
+from django_cron import CronJobBase, Schedule
 
 import requests, json, datetime
 
@@ -8,7 +10,7 @@ from client import models
 
 class Keep_Alive(CronJobBase):
     RUN_EVERY_MINS = 1
-    schedule = Schedule(run_at_times=RUN_EVERY_MINS)
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'peer.keep_alive'
 
     def do(self):
@@ -27,3 +29,6 @@ class Keep_Alive(CronJobBase):
 
         r = requests.post(base_url + 'bootstrap/' + 'keep_alive/', data=json.dumps(payload), headers=headers)
         print(r.text)
+
+        bootstrap_server.last_updated = timezone.now()
+        bootstrap_server.save()
