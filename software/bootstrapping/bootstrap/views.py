@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponse
 from django.utils import timezone
+from django.db import IntegrityError
 
 # location stuff
 from django.contrib.gis.geoip2 import GeoIP2
@@ -105,19 +106,25 @@ class register(APIView):
         json_ret["token_update"] = token_update
         json_ret["token_peer"] = token_peer
 
-        ret = models.peer.objects.create(
-            ip_address=ip_address,
-            port=port,
-            location_lat=location_lat,
-            location_long=location_long,
-            location_city=location_city,
-            location_country=location_country,
-            # timestamp is automatic
-            last_seen = timezone.now(),
-            token_update=token_update,
-            token_peer=token_peer,
-            active=True,
-        )
+        try:
+            ret = models.peer.objects.create(
+                ip_address=ip_address,
+                port=port,
+                location_lat=location_lat,
+                location_long=location_long,
+                location_city=location_city,
+                location_country=location_country,
+                # timestamp is automatic
+                last_seen = timezone.now(),
+                minutes_connected=0,
+                token_update=token_update,
+                token_peer=token_peer,
+                active=True,
+            )
+        except IntegrityError:
+            json_ret["status"] = "fail"
+            json_ret["reason"] = "Unique key failed, use keep_alive instead."
+            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
 
         if ret is not None:
             json_ret["status"] = "success"
