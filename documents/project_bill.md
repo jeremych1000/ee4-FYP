@@ -1,3 +1,5 @@
+college billed
+
 | Supplier | Part No    | Quantity | Description                                                             | Price   |
 |----------|------------|----------|-------------------------------------------------------------------------|---------|
 | RS       | 8968660    | 1        | Raspberry Pi Raspberry Pi 3 Model B Computer Board with ARM Cortex-A53  | £29.99 |
@@ -9,3 +11,14 @@
 | RS | 123-7157 | 2 | NewRaspberry Pi 3 Premium Kit | £44.50 |
 | Rapid | 75-0531 | 1 | Raspberry Pi NoIR Camera Board 8 Megapixel Version 2 1080p | £18.99
 |   **TOTAL**       |       | |           |  £225.14 |
+
+
+   
+      
+paid myself 
+
+| Supplier | Part No    | Quantity | Description                                                             | Price   |
+|----------|------------|----------|-------------------------------------------------------------------------|---------|
+| Amazon       | B01CCPKCSK  | 1        | Official Case for Raspberry Pi 3 Model B by Pi Foundation  | £5.70 |
+| Ebay    | 311104808858    | 1        | 48 LED Illuminator Light Lamp for CCTV IR Infrared Security Camera Night Vision | £4.49  |
+|   **TOTAL**       |       | |           |  £10.19 |
