@@ -24,8 +24,8 @@ class Keep_Alive(CronJobBase):
             'Authorization': bootstrap_server.token_update,
         }
         payload = {
-            "ip_address": "86.166.168.90",
-            "port": 34568,
+            "ip_address": "peer1",
+            "port": 34571,
         }
 
         r = requests.post(post_url, data=json.dumps(payload), headers=headers)

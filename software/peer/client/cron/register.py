@@ -19,12 +19,14 @@ class Register(CronJobBase):
         print(post_url)
 
         payload = {
-            "ip_address": "peer1",
-            "port": 34571,
+            "ip_address": "peer2",
+            "port": 34572,
         }
 
         r = requests.post(post_url, data=json.dumps(payload))
         print(r.text)
+     
+        models.bootstrap.objects.first().delete() # delete existing bootstrapped record
 
         models.bootstrap.objects.create(
             token_update=r.json()["token_update"],
