@@ -185,5 +185,5 @@ CRON_CLASSES = [
 ]
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
-BOOTSTRAP_BASE_URL = 'bootstrap:34568/'
+BOOTSTRAP_BASE_URL = 'http://bootstrap:34568/' # must include http or No connection adapters were found for ...
 TRUST_THRESHOLD = 10

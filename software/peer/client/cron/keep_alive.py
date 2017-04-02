@@ -15,6 +15,7 @@ class Keep_Alive(CronJobBase):
 
     def do(self):
         base_url = settings.BOOTSTRAP_BASE_URL
+        post_url = base_url + 'bootstrap/' + 'keep_alive/'
 
         bootstrap_server = models.bootstrap.objects.all().first()
 
@@ -27,7 +28,7 @@ class Keep_Alive(CronJobBase):
             "port": 34568,
         }
 
-        r = requests.post(base_url + 'bootstrap/' + 'keep_alive/', data=json.dumps(payload), headers=headers)
+        r = requests.post(post_url, data=json.dumps(payload), headers=headers)
         print(r.text)
 
         bootstrap_server.last_updated = timezone.now()

@@ -8,19 +8,22 @@ from client import models
 
 
 class Register(CronJobBase):
-    # RUN_EVERY_MINS = 0
-    # schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    RUN_EVERY_MINS = None
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'peer.register'
 
     def do(self):
         base_url = settings.BOOTSTRAP_BASE_URL
+        post_url = base_url + 'bootstrap/' + 'register/'
+
+        print(post_url)
 
         payload = {
-            "ip_address": "86.166.168.90",
-            "port": 34568,
+            "ip_address": "peer1",
+            "port": 34571,
         }
 
-        r = requests.post(base_url + 'bootstrap/' + 'register/', data=json.dumps(payload))
+        r = requests.post(post_url, data=json.dumps(payload))
         print(r.text)
 
         models.bootstrap.objects.create(
