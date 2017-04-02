@@ -10,6 +10,7 @@ from django.utils import timezone
 from django.db import IntegrityError
 
 # location stuff
+import geoip2
 from django.contrib.gis.geoip2 import GeoIP2
 from geopy.geocoders import GoogleV3
 
@@ -81,7 +82,11 @@ class register(APIView):
         # needs rethinking about if a peer decides to connect through VPN
         if 'location_lat' not in json_data and 'location_long' not in json_data:
             g = GeoIP2()
-            (location_lat, location_long) = g.lat_lon(ip_address)
+            try:
+                (location_lat, location_long) = g.lat_lon(ip_address)
+            except geoip2.errors.AddressNotFoundError:
+                location_lat = 0
+                location_long = 0
             json_ret["location_lat"] = location_lat
             json_ret["location_long"] = location_long
             json_ret["location_method"] = "geolocation"
@@ -93,13 +98,16 @@ class register(APIView):
         geolocator = GoogleV3()
         location = geolocator.reverse(query=str(location_lat) + ", " + str(location_long), exactly_one=True)
 
-        for i in location.raw["address_components"]:
-            if "country" in i["types"]:
-                location_country = i["long_name"]
-                json_ret["location_country"] = location_country
-            elif "postal_town" in i["types"]:
-                location_city = i["long_name"]
-                json_ret["location_city"] = location_city
+        location_city = "Empty"
+        location_country = "Empty"
+        if location is not None:
+            for i in location.raw["address_components"]:
+                if "country" in i["types"]:
+                    location_country = i["long_name"]
+                    json_ret["location_country"] = location_country
+                elif "postal_town" in i["types"]:
+                    location_city = i["long_name"]
+                    json_ret["location_city"] = location_city
 
         token_update = uuid.uuid4()
         token_peer = uuid.uuid4()
