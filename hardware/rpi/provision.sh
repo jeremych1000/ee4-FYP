@@ -1,4 +1,8 @@
 sudo apt-get -y update
+
+# remove changelogs
+sudo apt-get remove apt-listchanges
+
 sudo apt-get -y upgrade
 
 sudo apt-get -y install sudo cmake curl dos2unix emacs g++ gedit git git-core java-common java-package make perl python3 python3-pip ssh 
