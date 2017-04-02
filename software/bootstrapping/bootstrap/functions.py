@@ -25,10 +25,10 @@ def verify_port(port):
 def get_peer_entry(ip_address, port, token):
     json_ret = {}
 
-    if verify_ip(ip_address) is False:
-        json_ret["status"] = "fail"
-        json_ret["reason"] = "IP invalid."
-        return (None, Response(json_ret, status=status.HTTP_400_BAD_REQUEST))
+    # if verify_ip(ip_address) is False and check_ip is True:
+    #     json_ret["status"] = "fail"
+    #     json_ret["reason"] = "IP invalid."
+    #     return (None, Response(json_ret, status=status.HTTP_400_BAD_REQUEST))
 
     if verify_port(port) is False:
         json_ret["status"] = "fail"

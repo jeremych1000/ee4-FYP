@@ -7,6 +7,8 @@ import uuid
 class peer(models.Model):
     ip_address = models.GenericIPAddressField(protocol='ipv4')  # reachable IP address
     port = models.PositiveIntegerField()  # port on which server is run on
+    
+    type = models.CharField(max_length=10, default="External")    
 
     location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
                                        null=True)  # rough location to organize peers by proximity

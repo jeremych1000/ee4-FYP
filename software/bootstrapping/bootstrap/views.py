@@ -87,11 +87,14 @@ class register(APIView):
         # needs rethinking about if a peer decides to connect through VPN
         if 'location_lat' not in json_data and 'location_long' not in json_data:
             g = GeoIP2()
+            address_type = "External"
+
             try:
                 (location_lat, location_long) = g.lat_lon(ip_address)
             except geoip2.errors.AddressNotFoundError:
                 location_lat = 0
                 location_long = 0
+                address_type = "Internal"
             if location_lat is not None or location_long is not None:
                 json_ret["location_lat"] = location_lat
                 json_ret["location_long"] = location_long
@@ -124,6 +127,7 @@ class register(APIView):
             ret = models.peer.objects.create(
                 ip_address=ip_address,
                 port=port,
+                type=address_type,
                 location_lat=location_lat,
                 location_long=location_long,
                 location_city=location_city,
@@ -219,7 +223,7 @@ class keep_alive(APIView):
             peer_obj.active = True
             peer_obj.save()
 
-        print(ret)
+        print("keep alive ", ret.data)
         return ret
 
 
