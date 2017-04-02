@@ -24,7 +24,7 @@ SECRET_KEY = '04ky(@*!6#my)+v9%++x7!lvl1h$f4@!ut%vdv$qq0v63+ou=-'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['jeremych.zapto.org', 'sleepify.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100']
+ALLOWED_HOSTS = ['jeremych.zapto.org', 'sleepify.zapto.org', 'localhost', '127.0.0.1', '192.168.1.100', 'peer1', 'peer2', 'raspberrypi']
 
 # Application definition
 
