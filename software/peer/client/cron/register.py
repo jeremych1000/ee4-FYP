@@ -19,8 +19,8 @@ class Register(CronJobBase):
         print(post_url)
 
         payload = {
-            "ip_address": "peer2",
-            "port": 34572,
+            "ip_address": "peer1",
+            "port": 34571,
         }
 
         r = requests.post(post_url, data=json.dumps(payload))
