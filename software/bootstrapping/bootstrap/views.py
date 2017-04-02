@@ -28,12 +28,13 @@ from . import models, serializers, functions
 
 import datetime, json, requests, uuid, socket, os
 
+
 @login_required
 def log(request):
     path = os.path.join(settings.STATICFILES_DIRS[0], 'log.log')
     # print(path)
     with open(path, 'r') as myfile:
-        data=myfile.read()
+        data = myfile.read()
     return HttpResponse(data, content_type='text/plain')
 
 
@@ -48,7 +49,10 @@ class register(APIView):
         :return: HTTP 200 if successful
         '''
         json_data = json.loads(request.body.decode("utf-8"))
+
         json_ret = {}
+        json_ret_fail = {}  # use this dictionary for return fail
+
         print("DEBUG: ", json_data)
 
         ip_address = json_data["ip_address"]
@@ -58,15 +62,16 @@ class register(APIView):
             ip = get_real_ip(request)
             if ip is not None:
                 if ip_address != ip:
-                    json_ret["status"] = "fail"
-                    json_ret["reason"] = "IP mismatch, using retrieved IP ("+ip+") instead of submitted ("+ip_address+")."
+                    json_ret_fail["status"] = "fail"
+                    json_ret_fail[
+                        "reason"] = "IP mismatch, using retrieved IP (" + ip + ") instead of submitted (" + ip_address + ")."
                     ip_address = ip
             else:
-                json_ret["status"] = "fail"
-                json_ret["reason"] = "IP not found, using user submitted IP."
+                json_ret_fail["status"] = "fail"
+                json_ret_fail["reason"] = "IP not found, using user submitted IP."
         except socket.error:
-            json_ret["status"] = "fail"
-            json_ret["reason"] = "IP not valid."
+            json_ret_fail["status"] = "fail"
+            json_ret_fail["reason"] = "IP not valid."
 
         if 'port' not in json_data:
             port = 8000  # default assume port is 8000
@@ -76,8 +81,8 @@ class register(APIView):
         try:
             int(port)
         except ValueError:
-            json_ret["status"] = "fail"
-            json_ret["reason"] = "Port not valid."
+            json_ret_fail["status"] = "fail"
+            json_ret_fail["reason"] = "Port not valid."
 
         # needs rethinking about if a peer decides to connect through VPN
         if 'location_lat' not in json_data and 'location_long' not in json_data:
@@ -87,9 +92,10 @@ class register(APIView):
             except geoip2.errors.AddressNotFoundError:
                 location_lat = 0
                 location_long = 0
-            json_ret["location_lat"] = location_lat
-            json_ret["location_long"] = location_long
-            json_ret["location_method"] = "geolocation"
+            if location_lat is not None or location_long is not None:
+                json_ret["location_lat"] = location_lat
+                json_ret["location_long"] = location_long
+                json_ret["location_method"] = "geolocation"
         else:
             location_lat = json_data["location_lat"]
             location_long = json_data["location_long"]
@@ -123,23 +129,23 @@ class register(APIView):
                 location_city=location_city,
                 location_country=location_country,
                 # timestamp is automatic
-                last_seen = timezone.now(),
+                last_seen=timezone.now(),
                 minutes_connected=0,
                 token_update=token_update,
                 token_peer=token_peer,
                 active=True,
             )
         except IntegrityError:
-            json_ret["status"] = "fail"
-            json_ret["reason"] = "Unique key failed, use keep_alive instead."
-            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+            json_ret_fail["status"] = "fail"
+            json_ret_fail["reason"] = "Unique key failed, use keep_alive instead."
+            return Response(json_ret_fail, status=status.HTTP_400_BAD_REQUEST)
 
         if ret is not None:
             json_ret["status"] = "success"
             return Response(json_ret, status=status.HTTP_201_CREATED)
         else:
-            json_ret["status"] = "fail"
-            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+            json_ret_fail["status"] = "fail"
+            return Response(json_ret_fail, status=status.HTTP_400_BAD_REQUEST)
 
 
 class update(APIView):
@@ -212,6 +218,8 @@ class keep_alive(APIView):
             peer_obj.last_seen = timezone.now()
             peer_obj.active = True
             peer_obj.save()
+
+        print(ret)
         return ret
 
 
