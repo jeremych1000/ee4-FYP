@@ -1,9 +1,11 @@
 from django.conf import settings
 from django_cron import CronJobBase, Schedule
+from django.utils import timezone
 
 import requests, json, datetime
 
 from client import models
+
 
 class Register(CronJobBase):
     RUN_EVERY_MINS = None
@@ -21,11 +23,11 @@ class Register(CronJobBase):
 
         r = requests.post(target_url, data=json.dumps(payload))
         print(r.text)
-     
-        models.bootstrap.objects.all().delete() # delete existing bootstrapped record
+
+        models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
 
         models.bootstrap.objects.create(
             token_update=r.json()["token_update"],
             token_peer=r.json()["token_peer"],
-            last_updated=datetime.datetime.now(),
+            # last_updated=timezone.make_aware(datetime.datetime.now()),
         )

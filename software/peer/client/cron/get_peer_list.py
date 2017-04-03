@@ -26,9 +26,11 @@ class Get_Peer_List(CronJobBase):
 
         total_added = 0
         for i in json_ret:
-            if i["ip_address"] != settings.PEER_HOSTNAME:
-                r = requests.get('http://'+i["ip_address"]+'/client/status/')
-                active = (r.status_code == 200) #  <- leave this for pinging by peer, ignore bootstrap active
+            print(i)
+            if i["ip_address"] != settings.PEER_HOSTNAME and i["port"] != settings.PEER_PORT:
+                status_url = "http://" + str(i["ip_address"]) + ":" + str(i["port"]) + "/client/status/"
+                r = requests.get(status_url)
+                active = (r.status_code == 200)  # <- leave this for pinging by peer, ignore bootstrap active
 
                 try:
                     models.peer_list.objects.create(
