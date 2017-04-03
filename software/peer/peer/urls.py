@@ -20,6 +20,6 @@ from .log import log
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^', include("client.urls")),
+    url(r'^client/', include("client.urls")),
     url(r'^log/$', log.as_view()),
 ]

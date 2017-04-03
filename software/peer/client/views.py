@@ -17,6 +17,16 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from . import models, serializers
 
+class status(APIView):
+    # return 200 if have registered
+    permission_classes = (AllowAny, )
+
+    def get(self, request):
+        if len(models.bootstrap.objects.all()) > 0:
+            return Response(None, status=status.HTTP_200_OK)
+        else:
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
+
 class get_plates(APIView):
     permission_classes = (AllowAny, )
 

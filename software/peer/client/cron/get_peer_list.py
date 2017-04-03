@@ -26,25 +26,30 @@ class Get_Peer_List(CronJobBase):
 
         total_added = 0
         for i in json_ret:
-            try:
-                models.peer_list.objects.create(
-                    ip_address=i["ip_address"],
-                    port=i["port"],
-                    location_lat=i["location_lat"],
-                    location_long=i["location_long"],
-                    location_city=i["location_city"],
-                    location_country=i["location_country"],
-                    # time_accepted=
-                    # last_updated=
-                    token=i["token_peer"],
-                    active=i["active"],
-                    # no_plates=
-                    # no_matching_plates=
-                    # trust=
-                )
-                total_added += 1
-            except Exception as e:
-                print(e.__cause__)
+            if i["ip_address"] != settings.PEER_HOSTNAME:
+                r = requests.get('http://'+i["ip_address"]+'/client/status/')
+                active = (r.status_code == 200) #  <- leave this for pinging by peer, ignore bootstrap active
 
+                try:
+                    models.peer_list.objects.create(
+                        ip_address=i["ip_address"],
+                        port=i["port"],
+                        location_lat=i["location_lat"],
+                        location_long=i["location_long"],
+                        location_city=i["location_city"],
+                        location_country=i["location_country"],
+                        # time_accepted=
+                        # last_updated=
+                        token=i["token_peer"],
+                        active=active,
+                        # no_plates=
+                        # no_matching_plates=
+                        # trust=
+                    )
+                    total_added += 1
+                except Exception as e:
+                    print(e.__cause__)
+
+            else:
+                print("Skipped entry due to being itself.")
         print("Total peers added: ", total_added)
-        pass
