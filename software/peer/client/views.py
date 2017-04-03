@@ -23,9 +23,9 @@ class status(APIView):
 
     def get(self, request):
         if len(models.bootstrap.objects.all()) > 0:
-            return Response(None, status=status.HTTP_200_OK)
+            return HttpResponse(status=200)
         else:
-            return Response(None, status=status.HTTP_204_NO_CONTENT)
+            return HttpResponse(status=204)
 
 class get_plates(APIView):
     permission_classes = (AllowAny, )
