@@ -16,12 +16,14 @@ class Keep_Alive(CronJobBase):
     def do(self):
         base_url = settings.BOOTSTRAP_BASE_URL
         post_url = base_url + 'bootstrap/' + 'keep_alive/'
+        print(post_url)
 
-        bootstrap_server = models.bootstrap.objects.all().first()
+        a = models.bootstrap.objects.first()
+        token = a.token_update
 
         headers = {
             'Content-Type': 'application/json',
-            'Authorization': bootstrap_server.token_update,
+            'Authorization': token,
         }
         payload = {
             "ip_address": "peer1",
@@ -31,5 +33,5 @@ class Keep_Alive(CronJobBase):
         r = requests.post(post_url, data=json.dumps(payload), headers=headers)
         print(r.text)
 
-        bootstrap_server.last_updated = timezone.now()
-        bootstrap_server.save()
+        a.last_updated = timezone.now()
+        a.save()
