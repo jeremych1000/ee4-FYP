@@ -180,10 +180,19 @@ GEOIP_PATH = os.path.join(STATICFILES_DIRS[0], 'geolite2')
 ################# others
 
 CRON_CLASSES = [
+    # bootstrapping
     'client.cron.register.Register',
     'client.cron.keep_alive.Keep_Alive',
+    'client.cron.deregister.Deregister',
+    # peers
+    'client.cron.get_peer_list.Get_Peer_List',
+    'client.cron.get_plates.Get_Plates',
 ]
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
 BOOTSTRAP_BASE_URL = 'http://bootstrap:34568/' # must include http or No connection adapters were found for ...
+
+PEER_HOSTNAME = 'peer1'
+PEER_PORT = 34571
+
 TRUST_THRESHOLD = 10

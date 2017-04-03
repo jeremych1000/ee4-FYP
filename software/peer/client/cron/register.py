@@ -1,11 +1,9 @@
 from django.conf import settings
-
 from django_cron import CronJobBase, Schedule
 
 import requests, json, datetime
 
 from client import models
-
 
 class Register(CronJobBase):
     RUN_EVERY_MINS = None
@@ -14,16 +12,14 @@ class Register(CronJobBase):
 
     def do(self):
         base_url = settings.BOOTSTRAP_BASE_URL
-        post_url = base_url + 'bootstrap/' + 'register/'
-
-        print(post_url)
+        target_url = base_url + 'bootstrap/' + 'register/'
 
         payload = {
-            "ip_address": "peer1",
-            "port": 34571,
+            "ip_address": settings.PEER_HOSTNAME,
+            "port": settings.PEER_PORT,
         }
 
-        r = requests.post(post_url, data=json.dumps(payload))
+        r = requests.post(target_url, data=json.dumps(payload))
         print(r.text)
      
         models.bootstrap.objects.all().delete() # delete existing bootstrapped record

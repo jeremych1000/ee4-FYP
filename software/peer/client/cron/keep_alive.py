@@ -1,7 +1,7 @@
 from django.conf import settings
-from django.utils import timezone
-
 from django_cron import CronJobBase, Schedule
+
+from django.utils import timezone
 
 import requests, json, datetime
 
@@ -15,8 +15,8 @@ class Keep_Alive(CronJobBase):
 
     def do(self):
         base_url = settings.BOOTSTRAP_BASE_URL
-        post_url = base_url + 'bootstrap/' + 'keep_alive/'
-        print(post_url)
+        target_url = base_url + 'bootstrap/' + 'keep_alive/'
+        # print(post_url)
 
         a = models.bootstrap.objects.first()
         token = a.token_update
@@ -26,12 +26,12 @@ class Keep_Alive(CronJobBase):
             'Authorization': token,
         }
         payload = {
-            "ip_address": "peer1",
-            "port": 34571,
+            "ip_address": settings.PEER_HOSTNAME,
+            "port": settings.PEER_PORT,
         }
 
-        r = requests.post(post_url, data=json.dumps(payload), headers=headers)
-        print(r.text)
+        r = requests.post(target_url, data=json.dumps(payload), headers=headers)
+        # print(r.text)
 
         a.last_updated = timezone.now()
         a.save()
