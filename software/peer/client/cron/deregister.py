@@ -28,5 +28,7 @@ class Deregister(CronJobBase):
         r = requests.post(target_url, data=json.dumps(payload), headers=headers)
         print(r.text)
 
-        models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
-
+        if r.status_code == 200:
+            models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
+        else:
+            print("Something went wrong, HTTP status: ", r.status_code)

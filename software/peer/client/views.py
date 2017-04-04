@@ -3,8 +3,10 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponse
+from django.db import *
+from django.core.exceptions import *
 
-import os, requests
+import os, requests, json, datetime
 from ipware.ip import get_ip
 
 from rest_framework.views import APIView
@@ -27,9 +29,14 @@ class status(APIView):
         else:
             return HttpResponse(status=204)
 
-class get_plates(APIView):
+    def post(self, request):
+        pass
+
+class plates(APIView):
     permission_classes = (AllowAny, )
 
+    # get all plates
+    # TODO: add by time, etc
     def get(self, request):
         ip = get_ip(request)
 
@@ -52,4 +59,80 @@ class get_plates(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
             return Response(None, status=status.HTTP_200_OK)
+
+    # accept plates from other users
+    def post(self, request):
+        bootstrap_obj = models.bootstrap.objects.first()
+        json_ret = {}
+
+        if bootstrap_obj is None:
+            # shoudln't happen as all peers should be registered to be peers, but who knows...
+            # TODO: return fail, as not registered yet
+            json_ret["status"] = "failure"
+            json_ret["reason"] = "Peer is not registered yet, please ask them to do so."
+            return Response(json_ret, status=status.HTTP_200_OK)
+        else:
+            self_token = bootstrap_obj.token_peer
+
+        try:
+            token = request.META['HTTP_AUTHORIZATION']
+        except KeyError:
+            # TODO: return fail, no token included
+            json_ret["status"] = "failure"
+            json_ret["reason"] = "No peer token included."
+            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+        if token == self_token:
+            json_data = json.loads(request.body.decode("utf-8"))
+
+            try:
+                peer_obj = models.peer_list.objects.get(ip_address=json_data["ip_address"], port=json_data["port"])
+            except ObjectDoesNotExist:
+                json_ret["status"] = "failure"
+                json_ret["reason"] = "Not a recognized peer, verify IP/PORT combination."
+                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+            json_ret["plates_ret"] = []
+            plates_added = 0
+            plates_fail = False
+            for i in json_data["plates"]:
+                try:
+                    models.plates.objects.create(
+                        # timestamp_recieved=,
+                        timestamp_peer=i["timestamp"],
+                        plate=i["plate"],
+                        location_lat=i["location_lat"],
+                        location_long=i["location_long"],
+                        confidence=i["confidence"],
+                        source=peer_obj,
+                    )
+                    plates_added += 1
+                except Exception as e:
+                    print(e.__cause__)
+                    json_ret["plates_ret"].append(
+                        {
+                            "plate": i["plate"],
+                            "timestamp": i["timestamp"],
+                            "status": "failure",
+                            "reason": str(e.__cause__)
+                        }
+                    )
+                    plates_fail = True
+
+            if plates_fail:
+                json_ret["status"] = "failure"
+                json_ret["reason"] = "Please look at [\"plates_ret\"]"
+                return Response(json_ret, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+            else:
+                json_ret["status"] = "success"
+                json_ret["reason"] = str(plates_added) + " added"
+                return Response(json_ret, status=status.HTTP_200_OK)
+
+        else:
+            json_ret["status"] = "failure"
+            json_ret["reason"] = "Wrong peer token."
+            return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
+
+        pass
+
 

@@ -3,6 +3,7 @@ from django.utils import timezone
 
 from datetime import datetime
 
+
 class bootstrap(models.Model):
     # what a crappy method of preventing more than one entry... should use admin methods in the future
     ajsdkfjasldkfjasldkfja = models.CharField(max_length=1, default="1", unique=True)
@@ -10,22 +11,13 @@ class bootstrap(models.Model):
     token_update = models.CharField(max_length=40)
     token_peer = models.CharField(max_length=40)
     time_accepted = models.DateTimeField(default=timezone.now)
-    last_updated = models.DateTimeField()
-
-
-class plates(models.Model):
-    timestamp = models.DateTimeField(auto_now_add=True)
-    plate = models.CharField(max_length=10)
-    location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
-                                       null=True)  # rough location to organize peers by proximity
-    location_long = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
-                                        null=True)  # rough location to organize peers by proximity
-    confidence = models.FloatField()
+    last_updated = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
 
 
 class peer_list(models.Model):
     ip_address = models.GenericIPAddressField(protocol='ipv4')  # reachable IP address
     port = models.PositiveIntegerField()  # port on which server is run on
+    is_self = models.BooleanField(default=False) # self is protected keyword, dont use that
 
     location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
                                        null=True)  # rough location to organize peers by proximity
@@ -37,7 +29,8 @@ class peer_list(models.Model):
                                         null=True)  # HIDDEN FROM USER, holds rough country from IP geolocation
 
     time_accepted = models.DateTimeField(default=timezone.now)
-    last_updated = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0))) # I assume this means epoch
+    last_updated = models.DateTimeField(
+        default=timezone.make_aware(datetime.utcfromtimestamp(0)))  # I assume this means epoch
 
     token = models.UUIDField(default=None,
                              editable=False)
@@ -56,6 +49,21 @@ class peer_list(models.Model):
         unique_together = ('ip_address', 'port')
 
 
+class plates(models.Model):
+    timestamp_recieved = models.DateTimeField(default=timezone.now, editable=False)
+    timestamp_peer = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
+    plate = models.CharField(max_length=10)
+    location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
+                                       null=True)  # rough location to organize peers by proximity
+    location_long = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
+                                        null=True)  # rough location to organize peers by proximity
+    confidence = models.FloatField(default=0)
+    source = models.ForeignKey(peer_list, default=None)
+
+    class Meta:
+        unique_together = ('source', 'timestamp_peer', 'plate')
+
+
 class violations(models.Model):
     plate1 = models.ForeignKey(plates, related_name='plate1')
     plate2 = models.ForeignKey(plates, related_name='plate2')
@@ -65,6 +73,6 @@ class violations(models.Model):
     method = models.CharField(default="p2p", max_length=10)  # or itself
 
     time_accepted = models.DateTimeField(default=timezone.now)
-    last_updated = models.DateTimeField()
+    last_updated = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
 
     img_path = models.FilePathField()

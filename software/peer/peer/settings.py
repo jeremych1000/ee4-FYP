@@ -186,7 +186,7 @@ CRON_CLASSES = [
     'client.cron.deregister.Deregister',
     # peers
     'client.cron.get_peer_list.Get_Peer_List',
-    'client.cron.get_plates.Get_Plates',
+    'client.cron.share_plates.Share_Plates',
 ]
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 

@@ -5,9 +5,8 @@ import requests, json, datetime
 
 from client import models
 
-
 class Get_Peer_List(CronJobBase):
-    RUN_EVERY_MINS = 15
+    RUN_EVERY_MINS = None
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'peer.get_peer_list'
 
@@ -20,6 +19,7 @@ class Get_Peer_List(CronJobBase):
 
         r = requests.get(target_url)
         json_ret = r.json()
+        print("No. of peers recieved: ", len(json_ret))
 
         # TODO this is not very elegant, delete all
         models.peer_list.objects.all().delete()
@@ -27,31 +27,37 @@ class Get_Peer_List(CronJobBase):
         total_added = 0
         for i in json_ret:
             print(i)
-            if i["ip_address"] != settings.PEER_HOSTNAME and i["port"] != settings.PEER_PORT:
-                status_url = "http://" + str(i["ip_address"]) + ":" + str(i["port"]) + "/client/status/"
+
+            is_self = (i["ip_address"] == settings.PEER_HOSTNAME and i["port"] == settings.PEER_PORT)
+
+            status_url = "http://" + str(i["ip_address"]) + ":" + str(i["port"]) + "/client/status/"
+            try:
                 r = requests.get(status_url)
-                active = (r.status_code == 200)  # <- leave this for pinging by peer, ignore bootstrap active
+                r.raise_for_status()
+            except requests.RequestException as e:
+                print("Exception while requests - ", e.request, e.response, e.__cause__)
 
-                try:
-                    models.peer_list.objects.create(
-                        ip_address=i["ip_address"],
-                        port=i["port"],
-                        location_lat=i["location_lat"],
-                        location_long=i["location_long"],
-                        location_city=i["location_city"],
-                        location_country=i["location_country"],
-                        # time_accepted=
-                        # last_updated=
-                        token=i["token_peer"],
-                        active=active,
-                        # no_plates=
-                        # no_matching_plates=
-                        # trust=
-                    )
-                    total_added += 1
-                except Exception as e:
-                    print(e.__cause__)
+            active = (r.status_code == 200)  # <- leave this for pinging by peer, ignore bootstrap active
 
-            else:
-                print("Skipped entry due to being itself.")
+            try:
+                models.peer_list.objects.create(
+                    ip_address=i["ip_address"],
+                    port=i["port"],
+                    is_self=is_self,
+                    location_lat=i["location_lat"],
+                    location_long=i["location_long"],
+                    location_city=i["location_city"],
+                    location_country=i["location_country"],
+                    # time_accepted=
+                    # last_updated=
+                    token=i["token_peer"],
+                    active=active,
+                    # no_plates=
+                    # no_matching_plates=
+                    # trust=
+                )
+                total_added += 1
+            except Exception as e:
+                print("Exception while adding to database - ", e.__cause__)
+
         print("Total peers added: ", total_added)
