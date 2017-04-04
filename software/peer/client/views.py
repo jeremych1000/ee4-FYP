@@ -61,12 +61,13 @@ class status(APIView):
 
             json_ret["status"] = "success"
             json_ret["reason"] = "Successfully updated peer record."
-            #TODO WHY??? return Response(json_ret, status=status.HTTP_200_OK)
+            # TODO WHY??? return Response(json_ret, status=status.HTTP_200_OK)
             return HttpResponse(status=200)
         else:
             json_ret["status"] = "failure"
             json_ret["reason"] = "Token error"
-            return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
+            #return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
+            return HttpResponse(status=401)
 
 class plates(APIView):
     permission_classes = (AllowAny, )
