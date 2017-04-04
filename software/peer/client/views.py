@@ -38,6 +38,11 @@ class status(APIView):
         json_ret = {}
 
         try:
+            self_token = str(models.peer_list.objects.all().filter(is_self=True).first().token)
+        except Exception as e:
+            print("Exception occursed when finding self peer object - ", e)
+
+        try:
             peer_obj = models.peer_list.objects.get(ip_address=json_data["ip_address"], port=json_data["port"])
         except ObjectDoesNotExist:
             json_ret["status"] = "failure"
@@ -46,7 +51,7 @@ class status(APIView):
         except Exception as e:
             print("Exception occured when finding peer object - ", e, e.__cause__)
 
-        if peer_obj.token == token:
+        if self_token == token:
             peer_obj.active = True
             peer_obj.last_updated = timezone.now()
             try:
@@ -56,7 +61,8 @@ class status(APIView):
 
             json_ret["status"] = "success"
             json_ret["reason"] = "Successfully updated peer record."
-            return Response(json_ret, status=status.HTTP_200_OK)
+            #TODO WHY??? return Response(json_ret, status=status.HTTP_200_OK)
+            return HttpResponse(status=200)
         else:
             json_ret["status"] = "failure"
             json_ret["reason"] = "Token error"

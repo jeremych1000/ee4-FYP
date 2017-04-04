@@ -44,12 +44,13 @@ class Keep_Alive_Peer(CronJobBase):
     def do(self):
         peer_obj = models.peer_list.objects.all()
 
-        peer_obj_self = peer_obj.filter(is_self=True)
+        peer_obj_self = peer_obj.filter(is_self=True).first()
         peer_obj = peer_obj.filter(is_self=False)
 
         for i in peer_obj:
             base_url = "http://" + str(i.ip_address) + ":" + str(i.port) + "/client/status/"
-            token = i.token
+            token = str(i.token)
+            print(base_url, token)
 
             headers = {
                 'Content-Type': 'application/json',
@@ -62,8 +63,13 @@ class Keep_Alive_Peer(CronJobBase):
             }
 
             try:
-                r = requests.post(base_url, payload=payload, headers=headers)
+                print("r")
+                r = requests.post(base_url, data=json.dumps(payload), headers=headers)
+                print("rfin")
                 r.raise_for_status()
             except requests.RequestException as e:
                 print("Exception raised at requests - ", e)
+                print(r.json())
+
+            print(r.status_code)
 
