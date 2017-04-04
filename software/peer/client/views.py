@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponse
+from django.utils import timezone
 from django.db import *
 from django.core.exceptions import *
 
@@ -20,17 +21,46 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 from . import models, serializers
 
 class status(APIView):
-    # return 200 if have registered
     permission_classes = (AllowAny, )
 
     def get(self, request):
+        # return 200 if have registered
+
         if len(models.bootstrap.objects.all()) > 0:
             return HttpResponse(status=200)
         else:
             return HttpResponse(status=204)
 
     def post(self, request):
-        pass
+        # accept keep alive signals from other peers to update in peer_list model
+        token = request.META['HTTP_AUTHORIZATION']
+        json_data = json.loads(request.body.decode("utf-8"))
+        json_ret = {}
+
+        try:
+            peer_obj = models.peer_list.objects.get(ip_address=json_data["ip_address"], port=json_data["port"])
+        except ObjectDoesNotExist:
+            json_ret["status"] = "failure"
+            json_ret["reason"] = "No such peer in the database, please check IP and port."
+            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            print("Exception occured when finding peer object - ", e, e.__cause__)
+
+        if peer_obj.token == token:
+            peer_obj.active = True
+            peer_obj.last_updated = timezone.now()
+            try:
+                peer_obj.save()
+            except Exception as e:
+                print("Exception occured when saving - ", e, e.__cause__)
+
+            json_ret["status"] = "success"
+            json_ret["reason"] = "Successfully updated peer record."
+            return Response(json_ret, status=status.HTTP_200_OK)
+        else:
+            json_ret["status"] = "failure"
+            json_ret["reason"] = "Token error"
+            return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
 
 class plates(APIView):
     permission_classes = (AllowAny, )
@@ -45,7 +75,7 @@ class plates(APIView):
         try:
             peer_object = models.peer_list.objects.all().filter(ip_address=ip)
         except models.peer_list.DoesNotExist or len(peer_object) == 0:
-            return Response(None, status=status.HTTP_200_OK)
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
 
         trust_threshold = len(peer_object) * settings.TRUST_THRESHOLD
         trust_peer_object = 0

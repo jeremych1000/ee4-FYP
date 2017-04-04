@@ -183,6 +183,7 @@ CRON_CLASSES = [
     # bootstrapping
     'client.cron.register.Register',
     'client.cron.keep_alive.Keep_Alive',
+    'client.cron.keep_alive.Keep_Alive_Peer',
     'client.cron.deregister.Deregister',
     # peers
     'client.cron.get_peer_list.Get_Peer_List',

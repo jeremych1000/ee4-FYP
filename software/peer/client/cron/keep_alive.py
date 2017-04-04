@@ -35,3 +35,35 @@ class Keep_Alive(CronJobBase):
 
         a.last_updated = timezone.now()
         a.save()
+
+class Keep_Alive_Peer(CronJobBase):
+    RUN_EVERY_MINS = 5
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    code = 'peer.keep_alive_peer'
+
+    def do(self):
+        peer_obj = models.peer_list.objects.all()
+
+        peer_obj_self = peer_obj.filter(is_self=True)
+        peer_obj = peer_obj.filter(is_self=False)
+
+        for i in peer_obj:
+            base_url = "http://" + str(i.ip_address) + ":" + str(i.port) + "/client/status/"
+            token = i.token
+
+            headers = {
+                'Content-Type': 'application/json',
+                'Authorization': token,
+            }
+
+            payload = {
+                "ip_address": str(peer_obj_self.ip_address),
+                "port": peer_obj_self.port,
+            }
+
+            try:
+                r = requests.post(base_url, payload=payload, headers=headers)
+                r.raise_for_status()
+            except requests.RequestException as e:
+                print("Exception raised at requests - ", e)
+
