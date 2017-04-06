@@ -19,28 +19,30 @@ class Update_Tokens(CronJobBase):
 
         peers = models.peer.objects.all()
         try:
-            peer_objects = peers.filter(requires_peer_broadcasting=True)
+            peer_objects_require_broadcasting = peers.filter(requires_peer_broadcasting=True)
         except ObjectDoesNotExist:
             need_broadcasting = False
 
         if need_broadcasting:
-            serializer = serializers.get_token(peer_objects,  many=True)
+            serializer = serializers.get_token(peer_objects_require_broadcasting,  many=True)
 
             try:
                 peer_objects = peers.filter(active=True, requires_peer_broadcasting=False)
             except ObjectDoesNotExist:
                 print("No active peers found")
 
+            raised = False
             for i in peer_objects:
                 target_url = 'http://' + str(i.ip_address) + ':' + str(i.port) + '/client/peers/'
+                print("URL is ", target_url)
+
                 headers = {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json' 
                 }
                 payload = {
                     'peers': serializer.data
                 }
 
-                raised = False
                 try:
                     r = requests.patch(target_url, data=json.dumps(payload), headers=headers)
                     r.raise_for_status()
@@ -51,12 +53,12 @@ class Update_Tokens(CronJobBase):
                     raised=True
                     print("Exception during requests - ", str(e), " for peer ", target_url)
 
-                if not raised:
-                    print("No problem, resetting requires_peer_broadcasting")
+            if not raised:
+                print("No problem, resetting requires_peer_broadcasting")
+                for i in peer_objects_require_broadcasting:
                     i.requires_peer_broadcasting = False
                     try:
                         i.save()
                     except Exception as e:
                         print("Exception occured while saving - ", str(e))
 
-                        
