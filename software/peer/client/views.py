@@ -5,6 +5,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.utils import timezone
 from django.db import *
+from django.db.utils import *
 from django.core.exceptions import *
 
 import os, requests, json, datetime
@@ -147,6 +148,7 @@ class plates(APIView):
                         location_lat=i["location_lat"],
                         location_long=i["location_long"],
                         confidence=i["confidence"],
+                        sent=False,
                         source=peer_obj,
                     )
                 except IntegrityError:
@@ -157,16 +159,6 @@ class plates(APIView):
                             "timestamp": i["timestamp"],
                             "status": "failure",
                             "reason": "Integrity error"
-                        }
-                    )
-                except Exception as e:
-                    print(e.__cause__)
-                    json_ret["plates_ret"].append(
-                        {
-                            "plate": i["plate"],
-                            "timestamp": i["timestamp"],
-                            "status": "failure",
-                            "reason": str(e.__cause__)
                         }
                     )
                     plates_fail = True

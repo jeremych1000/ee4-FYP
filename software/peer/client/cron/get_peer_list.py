@@ -1,6 +1,7 @@
 from django.conf import settings
 from django_cron import CronJobBase, Schedule
 from django.db import *
+from django.db.utils import *
 import requests, json, datetime
 
 from client import models

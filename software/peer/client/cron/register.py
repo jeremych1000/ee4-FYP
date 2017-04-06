@@ -2,6 +2,7 @@ from django.conf import settings
 from django_cron import CronJobBase, Schedule
 from django.utils import timezone
 from django.db import *
+from django.db.utils import *
 from django.core.exceptions import *
 
 import requests, json, datetime

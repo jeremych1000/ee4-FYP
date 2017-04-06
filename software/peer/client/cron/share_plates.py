@@ -42,4 +42,12 @@ class Share_Plates(CronJobBase):
                 except requests.RequestException as e:
                     raised = True
                     print(r.status_code, r.json())
-                assert(r.status_code==200)
+                print(r.status_code)
+                if r.status_code == 200:
+                    print("Setting plates to 'sent'")
+                    for i in plates_to_be_sent:
+                        i.sent = True
+                        try:
+                            i.save()
+                        except Exception as e:
+                            print("Exception occured while saving - ", str(e))
