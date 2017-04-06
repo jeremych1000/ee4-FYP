@@ -7,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.http import HttpResponse
 from django.utils import timezone
-from django.db import IntegrityError
+from django.db import *
+from django.core.exceptions import *
 
 # location stuff
 import geoip2
@@ -140,9 +141,13 @@ class register(APIView):
                 active=True,
             )
         except IntegrityError:
+            # either reregistering or fake
+            # check previous token, if correct, change all tokens, broadcast to peers
+            # deny if not
             json_ret_fail["status"] = "fail"
-            json_ret_fail["reason"] = "Unique key failed, use keep_alive instead."
-            return Response(json_ret_fail, status=status.HTTP_400_BAD_REQUEST)
+            json_ret_fail["reason"] = "Unique key failed"
+            # expect peer will issue a PATCH request if conflict
+            return HttpResponse(json_ret_fail, status=status.HTTP_409_CONFLICT)
 
         if ret is not None:
             json_ret["status"] = "success"
@@ -150,6 +155,44 @@ class register(APIView):
         else:
             json_ret_fail["status"] = "fail"
             return Response(json_ret_fail, status=status.HTTP_400_BAD_REQUEST)
+
+    def patch(self, request):
+        # re-registering
+        # check token, if correct, change, broadcast, deny if not
+        json_data = json.loads(request.body.decode("utf-8"))
+        json_ret = {}
+
+        try:
+            peer_obj = models.peer.objects.get(
+                ip_address=json_data["ip_address"],
+                port=json_data["port"],
+                token_update=json_data["token_update"],
+                token_peer=json_data["token_peer"]
+            )
+        except ObjectDoesNotExist:
+            json_ret["status"] = "failure"
+            json_ret["reason"] = "Peer object not found"
+            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
+        new_token_update = uuid.uuid4()
+        new_token_peer = uuid.uuid4()
+
+        peer_obj.token_update = new_token_update
+        peer_obj.token_peer = new_token_peer
+        peer_obj.requires_peer_broadcasting = True
+        try:
+            peer_obj.save()
+        except Exception as e:
+            print("Exception occurred while saving updated peer entry - ", str(e))
+            json_ret["status"] = "failure"
+            json_ret["reason"] = str(e)
+            return Response(json_ret, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+        json_ret["status"] = "success"
+        json_ret["reason"] = "Updated peer record, updating all other peers now."
+        json_ret["token_update"] = str(new_token_update)
+        json_ret["token_peer"] = str(new_token_peer)
+        return Response(json_ret, status=status.HTTP_200_OK)
 
 
 class update(APIView):
@@ -192,7 +235,7 @@ class deregister(APIView):
         if "port" in json_data:
             port = json_data["port"]
         token = request.META['HTTP_AUTHORIZATION']
-
+        print(ip_address, port, token)
         (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
         if peer_obj is not None:
             peer_obj.delete()
@@ -216,6 +259,7 @@ class keep_alive(APIView):
         if "port" in json_data:
             port = json_data["port"]
         token = request.META['HTTP_AUTHORIZATION']
+        print("recieved token is ", token)
 
         (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
         if peer_obj is not None:

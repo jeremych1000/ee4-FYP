@@ -17,4 +17,6 @@ class Minutes_Connected(CronJobBase):
         for i in peer_objects:
             if i.active == True:
                 i.minutes_connected += 5
-                i.save()
+            else:
+                i.minutes_connected = 0
+            i.save()

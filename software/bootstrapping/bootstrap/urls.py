@@ -1,5 +1,6 @@
 from django.conf.urls import url, include
 from . import views
+from .cron import *
 
 urlpatterns = [
     # index
@@ -10,5 +11,6 @@ urlpatterns = [
 
     url(r'^keep_alive/$', views.keep_alive.as_view(), name='keep_alive'),
 
-    url(r'^get_peers/$', views.get_peers.as_view(), name='get_peers'),
+    # cron stuff
+    url(r'^get_peer_list/$', views.get_peers.as_view(), name='get_peers'),
 ]

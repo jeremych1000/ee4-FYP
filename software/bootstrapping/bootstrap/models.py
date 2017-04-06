@@ -1,7 +1,7 @@
 from django.db import models
 from django.utils import timezone
 import uuid
-
+from datetime import datetime
 
 # Create your models here.
 class peer(models.Model):
@@ -20,7 +20,7 @@ class peer(models.Model):
                                         null=True)  # HIDDEN FROM USER, holds rough country from IP geolocation
 
     first_seen = models.DateTimeField(default=timezone.now)  # Automatically set the field to now when the object is first created.
-    last_seen = models.DateTimeField()
+    last_seen = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
 
     minutes_connected = models.PositiveIntegerField()
 
@@ -32,6 +32,7 @@ class peer(models.Model):
                                   editable=False)  # token which will be distributed to other peers to allow token authentication when communicating
 
     active = models.BooleanField(default=False)
+    requires_peer_broadcasting = models.BooleanField(default=False)
 
     class Meta:
         # http://stackoverflow.com/questions/2201598/how-to-define-two-fields-unique-as-couple
