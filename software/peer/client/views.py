@@ -194,4 +194,19 @@ class peers(APIView):
         json_data = json.loads(request.body.decode("utf-8"))
         print("peers patch")
         print(json_data)
+
+        for i in json_data["peers"]:
+            print(i)
+            try:
+                peer = models.peer_list.objects.get(ip_address=i["ip_address"], port=i["port"])
+            except ObjectDoesNotExist:
+                print("No such peer found, not updating information")
+
+            peer.token = i["token_peer"]
+            try:
+                print("Attempting to save peer with updated token - ", i["token_peer"])
+                peer.save()
+            except Exception as e:
+                print("Error occured while saving peer - ", str(e))
+
         return HttpResponse(status=200)
