@@ -1,6 +1,8 @@
 from django.conf import settings
 from django_cron import CronJobBase, Schedule
 from django.utils import timezone
+from django.db import *
+from django.core.exceptions import *
 
 import requests, json, datetime
 
@@ -22,11 +24,49 @@ class Register(CronJobBase):
         }
 
         r = requests.post(target_url, data=json.dumps(payload))
-        print(r.text)
+        
+        if r.status_code == 201:
+            models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
+            models.bootstrap.objects.create(
+                token_update=r.json()["token_update"],
+                token_peer=r.json()["token_peer"],
+            )
+        elif r.status_code == 409:  # conflict:
+            b = models.bootstrap.objects.first()
+            payload = {
+                "ip_address": settings.PEER_HOSTNAME,
+                "port": settings.PEER_PORT,
+                "token_update": str(b.token_update),
+                "token_peer": str(b.token_peer),
+            }
 
-        models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
-        models.bootstrap.objects.create(
-            token_update=r.json()["token_update"],
-            token_peer=r.json()["token_peer"],
-            # last_updated=timezone.make_aware(datetime.datetime.now()),
-        )
+            try:
+                r = requests.patch(target_url, data=json.dumps(payload))
+                r.raise_for_status()
+            except requests.RequestException as e:
+                print("Requests exception - ", str(e))
+
+            print("patch json is ", r.json())
+            b.token_update = r.json()["token_update"]
+            b.token_peer = r.json()["token_peer"]
+            try:
+                b.save()
+            except Exception as e:
+                print("Exception occured while saving while PATCHing - ", str(e))
+
+            # update peer list record too if exist
+            try:
+                p = models.peer_list.objects.get(is_self=True)
+            except ObjectDoesNotExist:
+                print(
+                    "Peer list object does not, which shouldn't happen since it should only exist if we have registered!")
+
+            p.token = r.json()["token_peer"]
+            p.last_updated = timezone.now()
+            try:
+                p.save()
+            except Exception as e:
+                print("Exception occured while saving peer list record - ", str(e))
+
+        else:
+            print("Other HTTP status code recieved - ", r.status_code)

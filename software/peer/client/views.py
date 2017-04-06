@@ -176,4 +176,8 @@ class plates(APIView):
 
         pass
 
+class peers(APIView):
+    permission_classes = (AllowAny, )
 
+    def patch(self, request):
+        pass

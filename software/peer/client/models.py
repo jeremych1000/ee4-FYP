@@ -7,7 +7,7 @@ from datetime import datetime
 class bootstrap(models.Model):
     # what a crappy method of preventing more than one entry... should use admin methods in the future
     # but hey it works
-    asdf = models.CharField(max_length=1, default="1", unique=True)
+    asdf = models.CharField(max_length=1, default="1", unique=True, editable=False)
 
     token_update = models.CharField(max_length=40)
     token_peer = models.CharField(max_length=40)
