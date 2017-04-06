@@ -20,8 +20,9 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from . import models, serializers
 
+
 class status(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     def get(self, request):
         # return 200 if have registered
@@ -48,6 +49,7 @@ class status(APIView):
             json_ret["status"] = "failure"
             json_ret["reason"] = "No such peer in the database, please check IP and port."
             return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
         except Exception as e:
             print("Exception occured when finding peer object - ", e, e.__cause__)
 
@@ -65,11 +67,12 @@ class status(APIView):
         else:
             json_ret["status"] = "failure"
             json_ret["reason"] = "Token error"
-            #return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
+            # return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
             return HttpResponse(status=401)
 
+
 class plates(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     # get all plates
     # TODO: add by time, etc
@@ -95,7 +98,6 @@ class plates(APIView):
 
         if trust_peer_object >= trust_threshold:
             plates = models.plates.objects.all()
-
             serializer = serializers.get_plates(plates, many=True)
             return Response(dict(plates=serializer.data))
         else:
@@ -140,14 +142,23 @@ class plates(APIView):
                 try:
                     models.plates.objects.create(
                         # timestamp_recieved=,
-                        timestamp_peer=i["timestamp"],
+                        timestamp_peer=i["timestamp_recieved"],
                         plate=i["plate"],
                         location_lat=i["location_lat"],
                         location_long=i["location_long"],
                         confidence=i["confidence"],
                         source=peer_obj,
                     )
-                    plates_added += 1
+                except IntegrityError:
+                    print("Integrity Error at plate ", i["plate"])
+                    json_ret["plates_ret"].append(
+                        {
+                            "plate": i["plate"],
+                            "timestamp": i["timestamp"],
+                            "status": "failure",
+                            "reason": "Integrity error"
+                        }
+                    )
                 except Exception as e:
                     print(e.__cause__)
                     json_ret["plates_ret"].append(
@@ -159,6 +170,7 @@ class plates(APIView):
                         }
                     )
                     plates_fail = True
+                plates_added += 1
 
             if plates_fail:
                 json_ret["status"] = "failure"
@@ -174,10 +186,27 @@ class plates(APIView):
             json_ret["reason"] = "Wrong peer token."
             return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
 
-        pass
 
 class peers(APIView):
-    permission_classes = (AllowAny, )
+    permission_classes = (AllowAny,)
 
     def patch(self, request):
-        pass
+        json_data = json.loads(request.body.decode("utf-8"))
+        print("peers patch")
+        print(json_data)
+
+        for i in json_data["peers"]:
+            print(i)
+            try:
+                peer = models.peer_list.objects.get(ip_address=i["ip_address"], port=i["port"])
+            except ObjectDoesNotExist:
+                print("No such peer found, not updating information")
+
+            peer.token = i["token_peer"]
+            try:
+                print("Attempting to save peer with updated token - ", i["token_peer"])
+                peer.save()
+            except Exception as e:
+                print("Error occured while saving peer - ", str(e))
+
+        return HttpResponse(status=200)
