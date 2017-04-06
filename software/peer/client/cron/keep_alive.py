@@ -14,9 +14,7 @@ class Keep_Alive(CronJobBase):
     code = 'peer.keep_alive'
 
     def do(self):
-        base_url = settings.BOOTSTRAP_BASE_URL
-        target_url = base_url + 'bootstrap/' + 'keep_alive/'
-        # print(post_url)
+        base_url = settings.BOOTSTRAP_BASE_URL + 'bootstrap/' + 'keep_alive/'
 
         a = models.bootstrap.objects.first()
         token = a.token_update
