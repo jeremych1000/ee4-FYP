@@ -48,6 +48,7 @@ class status(APIView):
             json_ret["status"] = "failure"
             json_ret["reason"] = "No such peer in the database, please check IP and port."
             return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+
         except Exception as e:
             print("Exception occured when finding peer object - ", e, e.__cause__)
 
@@ -180,4 +181,11 @@ class peers(APIView):
     permission_classes = (AllowAny, )
 
     def patch(self, request):
-        pass
+        json_data = json.loads(request.body.decode("utf-8"))
+        print("peers patch")
+        print(json_data)
+        return HttpResponse(status=200)
+
+
+
+

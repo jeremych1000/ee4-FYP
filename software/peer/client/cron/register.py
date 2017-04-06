@@ -24,7 +24,7 @@ class Register(CronJobBase):
         }
 
         r = requests.post(target_url, data=json.dumps(payload))
-        
+
         if r.status_code == 201:
             models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
             models.bootstrap.objects.create(
