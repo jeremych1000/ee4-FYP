@@ -13,15 +13,15 @@ class Share_Plates(CronJobBase):
 
     def do(self):
         plates_to_be_sent = models.plates.objects.filter(sent=False)
+        print(plates_to_be_sent)
         if len(plates_to_be_sent) >= settings.NO_PLATES_BATCH_BEFORE_SEND:
             peer_self = models.peer_list.objects.get(is_self=True)
-            active_peers = models.peer_list.objects.filter(active=True, is_self=False,
-                                                           trust__gte=settings.TRUST_THRESHOLD)
+            active_peers = models.peer_list.objects.filter(active=True, is_self=False) #, trust__gte=settings.TRUST_THRESHOLD)
 
             for i in active_peers:
-                base_url = 'http://' + i.ip_address + ':' + i.port + '/client/plates/'
-                token = i.token
-
+                base_url = 'http://' + i.ip_address + ':' + str(i.port) + '/client/plates/'
+                token = str(i.token)
+                print(base_url, token)
                 headers = {
                     'Content-Type': 'application/json',
                     'Authorization': token,
@@ -38,8 +38,8 @@ class Share_Plates(CronJobBase):
                 try:
                     r = requests.post(base_url, data=json.dumps(payload), headers=headers)
                     r.raise_for_status()
+                    print(r.json())
                 except requests.RequestException as e:
                     raised = True
-                    print("Exception raised at requests - ", e)
                     print(r.status_code, r.json())
                 assert(r.status_code==200)
