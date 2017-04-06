@@ -30,11 +30,19 @@ class Keep_Alive(CronJobBase):
             "port": settings.PEER_PORT,
         }
 
-        r = requests.post(target_url, data=json.dumps(payload), headers=headers)
-        # print(r.text)
+        try:
+            r = requests.post(base_url, data=json.dumps(payload), headers=headers)
+            r.raise_for_status()
+        except requests.RequestException as e:
+            print("Exception raised at requests - ", e)
+            print(r.status_code, r.json())
 
         a.last_updated = timezone.now()
-        a.save()
+        try:
+            a.save()
+        except Exception as e:
+            print("Exception occured when saving - ", e, e.__cause__)
+
 
 class Keep_Alive_Peer(CronJobBase):
     RUN_EVERY_MINS = 5
@@ -50,7 +58,6 @@ class Keep_Alive_Peer(CronJobBase):
         for i in peer_obj:
             base_url = "http://" + str(i.ip_address) + ":" + str(i.port) + "/client/status/"
             token = str(i.token)
-            print(base_url, token)
 
             headers = {
                 'Content-Type': 'application/json',
@@ -62,14 +69,18 @@ class Keep_Alive_Peer(CronJobBase):
                 "port": peer_obj_self.port,
             }
 
+            raised = False
             try:
-                print("r")
                 r = requests.post(base_url, data=json.dumps(payload), headers=headers)
-                print("rfin")
                 r.raise_for_status()
             except requests.RequestException as e:
+                raised = True
                 print("Exception raised at requests - ", e)
-                print(r.json())
+                print(r.status_code, r.json())
 
-            print(r.status_code)
-
+            if not raised:
+                i.last_updated = timezone.now()
+                try:
+                    i.save()
+                except Exception as e:
+                    print("Exception occured when saving - ", e, e.__cause__)

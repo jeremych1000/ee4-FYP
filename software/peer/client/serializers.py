@@ -6,5 +6,5 @@ class get_plates(serializers.ModelSerializer):
     class Meta:
         model = models.plates
         fields = (
-                'timestamp', 'plate', 'location_lat', 'location_long', 'confidence',
+                'timestamp_recieved', 'timestamp_peer', 'plate', 'location_lat', 'location_long', 'confidence',
             )

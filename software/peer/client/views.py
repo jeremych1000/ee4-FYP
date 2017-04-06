@@ -53,7 +53,6 @@ class status(APIView):
 
         if self_token == token:
             peer_obj.active = True
-            peer_obj.last_updated = timezone.now()
             try:
                 peer_obj.save()
             except Exception as e:
@@ -77,7 +76,12 @@ class plates(APIView):
     def get(self, request):
         ip = get_ip(request)
 
-        token = request.META['HTTP_AUTHORIZATION']
+        try:
+            pass
+            # TODO: why did I put token here
+            # token = request.META['HTTP_AUTHORIZATION']
+        except KeyError:
+            return Response(None, status=status.HTTP_400_BAD_REQUEST)
 
         try:
             peer_object = models.peer_list.objects.all().filter(ip_address=ip)
@@ -93,7 +97,7 @@ class plates(APIView):
             plates = models.plates.objects.all()
 
             serializer = serializers.get_plates(plates, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
+            return Response(dict(plates=serializer.data))
         else:
             return Response(None, status=status.HTTP_200_OK)
 

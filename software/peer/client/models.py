@@ -6,7 +6,8 @@ from datetime import datetime
 
 class bootstrap(models.Model):
     # what a crappy method of preventing more than one entry... should use admin methods in the future
-    ajsdkfjasldkfjasldkfja = models.CharField(max_length=1, default="1", unique=True)
+    # but hey it works
+    asdf = models.CharField(max_length=1, default="1", unique=True)
 
     token_update = models.CharField(max_length=40)
     token_peer = models.CharField(max_length=40)
@@ -50,7 +51,7 @@ class peer_list(models.Model):
 
 
 class plates(models.Model):
-    timestamp_recieved = models.DateTimeField(default=timezone.now, editable=False)
+    timestamp_recieved = models.DateTimeField(default=timezone.now) # for when recieve the plate
     timestamp_peer = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
     plate = models.CharField(max_length=10)
     location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
@@ -59,6 +60,8 @@ class plates(models.Model):
                                         null=True)  # rough location to organize peers by proximity
     confidence = models.FloatField(default=0)
     source = models.ForeignKey(peer_list, default=None)
+
+    sent = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('source', 'timestamp_peer', 'plate')

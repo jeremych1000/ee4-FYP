@@ -25,7 +25,6 @@ class Register(CronJobBase):
         print(r.text)
 
         models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
-
         models.bootstrap.objects.create(
             token_update=r.json()["token_update"],
             token_peer=r.json()["token_peer"],
