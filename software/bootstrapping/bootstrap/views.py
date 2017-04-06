@@ -195,6 +195,19 @@ class register(APIView):
         return Response(json_ret, status=status.HTTP_200_OK)
 
 
+    def delete(self, request):
+        json_data = json.loads(request.body.decode("utf-8"))
+
+        ip_address = json_data["ip_address"]
+        port = json_data["port"]
+        token = request.META['HTTP_AUTHORIZATION']
+
+        (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
+        if peer_obj is not None:
+            peer_obj.delete()
+        return ret
+
+
 class update(APIView):
     permission_classes = (AllowAny,)
 
@@ -216,29 +229,6 @@ class update(APIView):
         if peer_obj is not None:
             # TODO
             pass
-        return ret
-
-
-class deregister(APIView):
-    permission_classes = (AllowAny,)
-
-    def post(self, request):
-        '''
-        Used to remove the peer entry from the database. POST, not GET, same as logging out.
-        :param request:
-        :return:
-        '''
-        json_data = json.loads(request.body.decode("utf-8"))
-
-        if "ip_address" in json_data:
-            ip_address = json_data["ip_address"]
-        if "port" in json_data:
-            port = json_data["port"]
-        token = request.META['HTTP_AUTHORIZATION']
-        print(ip_address, port, token)
-        (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
-        if peer_obj is not None:
-            peer_obj.delete()
         return ret
 
 
