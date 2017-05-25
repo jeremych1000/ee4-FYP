@@ -15,4 +15,11 @@ class Check_Violations(CronJobBase):
     code = 'peer.check_violations'
 
     def do(self):
+        '''
+        Goes through plates model, seperates into detected by self or by peers
+        Then sees if there are matches (sort? use python if in? performance?)
+        
+        Consult google to check minimum distance, maybe speed limit
+        If over some threshold accounting for tool error (10%?), then add to violations database
+        '''
         pass
