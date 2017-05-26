@@ -49,36 +49,40 @@ class Keep_Alive_Peer(CronJobBase):
 
     def do(self):
         peer_obj = models.peer_list.objects.all()
-
         peer_obj_self = peer_obj.filter(is_self=True).first()
-        peer_obj = peer_obj.filter(is_self=False)
 
-        for i in peer_obj:
-            base_url = "http://" + str(i.ip_address) + ":" + str(i.port) + "/client/status/"
-            token = str(i.token)
+        try:
+            peer_obj = peer_obj.filter(is_self=False)
+        except:
+            print("No non-self peers found, not sending any keep alive.")
+        finally:
+            for i in peer_obj:
+                print("Keep Alive Peer", i)
+                base_url = "http://" + str(i.ip_address) + ":" + str(i.port) + "/client/status/"
+                token = str(i.token)
 
-            headers = {
-                'Content-Type': 'application/json',
-                'Authorization': token,
-            }
+                headers = {
+                    'Content-Type': 'application/json',
+                    'Authorization': token,
+                }
 
-            payload = {
-                "ip_address": str(peer_obj_self.ip_address),
-                "port": peer_obj_self.port,
-            }
+                payload = {
+                    "ip_address": str(peer_obj_self.ip_address),
+                    "port": peer_obj_self.port,
+                }
 
-            raised = False
-            try:
-                r = requests.post(base_url, data=json.dumps(payload), headers=headers)
-                r.raise_for_status()
-            except requests.RequestException as e:
-                raised = True
-                print("Exception raised at requests - ", e)
-                print(r.status_code, r.json())
-
-            if not raised:
-                i.last_updated = timezone.now()
+                raised = False
                 try:
-                    i.save()
-                except Exception as e:
-                    print("Exception occured when saving - ", e, e.__cause__)
+                    r = requests.post(base_url, data=json.dumps(payload), headers=headers)
+                    r.raise_for_status()
+                except requests.RequestException as e:
+                    raised = True
+                    print("Exception raised at requests - ", e)
+                    print(r.status_code, r.json())
+
+                if not raised:
+                    i.last_updated = timezone.now()
+                    try:
+                        i.save()
+                    except Exception as e:
+                        print("Exception occured when saving - ", e, e.__cause__)

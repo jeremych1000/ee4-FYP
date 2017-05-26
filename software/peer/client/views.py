@@ -14,7 +14,8 @@ from ipware.ip import get_ip
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.renderers import JSONRenderer
-from rest_framework import status, serializers, viewsets
+from rest_framework import status as drf_status
+from rest_framework import serializers, viewsets
 from rest_framework.decorators import api_view
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
@@ -29,9 +30,9 @@ class status(APIView):
         # return 200 if have registered
 
         if len(models.bootstrap.objects.all()) > 0:
-            return HttpResponse(status=200)
+            return Response(status=drf_status.HTTP_200_OK)
         else:
-            return HttpResponse(status=204)
+            return Response(status=drf_status.HTTP_204_NO_CONTENT)
 
     def post(self, request):
         # accept keep alive signals from other peers to update in peer_list model
@@ -49,7 +50,7 @@ class status(APIView):
         except ObjectDoesNotExist:
             json_ret["status"] = "failure"
             json_ret["reason"] = "No such peer in the database, please check IP and port."
-            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+            return Response(json_ret, status=drf_status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
             print("Exception occured when finding peer object - ", e, e.__cause__)
@@ -63,14 +64,62 @@ class status(APIView):
 
             json_ret["status"] = "success"
             json_ret["reason"] = "Successfully updated peer record."
-            # TODO WHY??? return Response(json_ret, status=status.HTTP_200_OK)
-            return HttpResponse(status=200)
+            return Response(json_ret, status=drf_status.HTTP_200_OK)
         else:
             json_ret["status"] = "failure"
             json_ret["reason"] = "Token error"
             # return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
-            return HttpResponse(status=401)
+            return Response(json_ret, status=drf_status.HTTP_401_UNAUTHORIZED)
 
+
+
+class peers(APIView):
+    permission_classes = (AllowAny,)
+
+    def patch(self, request):
+        json_data = json.loads(request.body.decode("utf-8"))
+        print("peers patch")
+        print(json_data)
+
+        for i in json_data["peers"]:
+            print(i)
+            try:
+                peer = models.peer_list.objects.get(ip_address=i["ip_address"], port=i["port"])
+            except ObjectDoesNotExist:
+                print("No such peer found, adding now.")
+                try:
+                    ret = models.peer_list.objects.create(
+                        ip_address=i["ip_address"],
+                        port=i["port"],
+                        is_self=False,
+                        location_lat=i["location_lat"],
+                        location_long=i["location_long"],
+                        location_city=i["location_city"],
+                        location_country=i["location_country"],
+                        # time_accepted=
+                        last_updated=i["last_seen"],
+                        token=i["token_peer"],
+                        active=True,
+                        # no_plates=
+                        # no_matching_plates=
+                        # trust=
+                    )
+                except Exception as e:
+                    print("Error while adding new peer to list form PATCH - ", str(e))
+
+                if ret is not None:
+                    return Response(status=drf_status.HTTP_201_CREATED)
+                else:
+                    return Response(status=drf_status.HTTP_400_BAD_REQUEST)
+
+            try:
+                print("Attempting to save peer with updated token - ", i["token_peer"])
+                peer.token = i["token_peer"]
+                peer.save()
+            except Exception as e:
+                print("Error occured while saving peer - ", str(e))
+
+        return Response(status=drf_status.HTTP_200_OK)
 
 class plates(APIView):
     permission_classes = (AllowAny,)
@@ -85,12 +134,12 @@ class plates(APIView):
             # TODO: why did I put token here
             # token = request.META['HTTP_AUTHORIZATION']
         except KeyError:
-            return Response(None, status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=drf_status.HTTP_400_BAD_REQUEST)
 
         try:
             peer_object = models.peer_list.objects.all().filter(ip_address=ip)
         except models.peer_list.DoesNotExist or len(peer_object) == 0:
-            return Response(None, status=status.HTTP_204_NO_CONTENT)
+            return Response(status=drf_status.HTTP_204_NO_CONTENT)
 
         trust_threshold = len(peer_object) * settings.TRUST_THRESHOLD
         trust_peer_object = 0
@@ -102,7 +151,7 @@ class plates(APIView):
             serializer = serializers.get_plates(plates, many=True)
             return Response(dict(plates=serializer.data))
         else:
-            return Response(None, status=status.HTTP_200_OK)
+            return Response(status=drf_status.HTTP_200_OK)
 
     # accept plates from other users
     def post(self, request):
@@ -114,7 +163,7 @@ class plates(APIView):
             # TODO: return fail, as not registered yet
             json_ret["status"] = "failure"
             json_ret["reason"] = "Peer is not registered yet, please ask them to do so."
-            return Response(json_ret, status=status.HTTP_200_OK)
+            return Response(json_ret, status=drf_status.HTTP_200_OK)
         else:
             self_token = bootstrap_obj.token_peer
 
@@ -124,7 +173,7 @@ class plates(APIView):
             # TODO: return fail, no token included
             json_ret["status"] = "failure"
             json_ret["reason"] = "No peer token included."
-            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+            return Response(json_ret, status=drf_status.HTTP_400_BAD_REQUEST)
 
         if token == self_token:
             json_data = json.loads(request.body.decode("utf-8"))
@@ -134,7 +183,7 @@ class plates(APIView):
             except ObjectDoesNotExist:
                 json_ret["status"] = "failure"
                 json_ret["reason"] = "Not a recognized peer, verify IP/PORT combination."
-                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+                return Response(json_ret, status=drf_status.HTTP_400_BAD_REQUEST)
 
             json_ret["plates_ret"] = []
             plates_added = 0
@@ -167,38 +216,14 @@ class plates(APIView):
             if plates_fail:
                 json_ret["status"] = "failure"
                 json_ret["reason"] = "Please look at [\"plates_ret\"]"
-                return Response(json_ret, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response(json_ret, status=drf_status.HTTP_500_INTERNAL_SERVER_ERROR)
             else:
                 json_ret["status"] = "success"
                 json_ret["reason"] = str(plates_added) + " added"
-                return Response(json_ret, status=status.HTTP_200_OK)
+                return Response(json_ret, status=drf_status.HTTP_200_OK)
 
         else:
             json_ret["status"] = "failure"
             json_ret["reason"] = "Wrong peer token."
-            return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
+            return Response(json_ret, status=drf_status.HTTP_401_UNAUTHORIZED)
 
-
-class peers(APIView):
-    permission_classes = (AllowAny,)
-
-    def patch(self, request):
-        json_data = json.loads(request.body.decode("utf-8"))
-        print("peers patch")
-        print(json_data)
-
-        for i in json_data["peers"]:
-            print(i)
-            try:
-                peer = models.peer_list.objects.get(ip_address=i["ip_address"], port=i["port"])
-            except ObjectDoesNotExist:
-                print("No such peer found, not updating information")
-
-            peer.token = i["token_peer"]
-            try:
-                print("Attempting to save peer with updated token - ", i["token_peer"])
-                peer.save()
-            except Exception as e:
-                print("Error occured while saving peer - ", str(e))
-
-        return HttpResponse(status=200)
