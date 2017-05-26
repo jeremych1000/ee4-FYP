@@ -8,6 +8,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.utils import timezone
 from django.db import *
+from django.db.utils import *
 from django.core.exceptions import *
 
 # location stuff

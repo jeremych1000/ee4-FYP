@@ -3,6 +3,7 @@ from django.conf import settings
 from django.utils import timezone
 from django.core.exceptions import *
 from django.db import *
+from django.db.utils import *
 from django_cron import CronJobBase, Schedule
 
 from bootstrap import models, serializers
@@ -20,11 +21,16 @@ class Update_Tokens(CronJobBase):
         peers = models.peer.objects.all()
         try:
             peer_objects_require_broadcasting = peers.filter(requires_peer_broadcasting=True)
+            print("Peers require broadcasting: ", peer_objects_require_broadcasting)
         except ObjectDoesNotExist:
+            need_broadcasting = False
+            print("No peers require broadcasting")
+        if len(peer_objects_require_broadcasting) == 0:
             need_broadcasting = False
 
         if need_broadcasting:
-            serializer = serializers.get_token(peer_objects_require_broadcasting,  many=True)
+            serializer = serializers.get_peers(peer_objects_require_broadcasting,  many=True)
+            print(serializer)
 
             try:
                 peer_objects = peers.filter(active=True, requires_peer_broadcasting=False)
@@ -42,6 +48,8 @@ class Update_Tokens(CronJobBase):
                 payload = {
                     'peers': serializer.data
                 }
+
+                print("Payload is ", payload['peers'])
 
                 try:
                     r = requests.patch(target_url, data=json.dumps(payload), headers=headers)
