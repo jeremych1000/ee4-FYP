@@ -50,7 +50,7 @@ class status(APIView):
         except ObjectDoesNotExist:
             json_ret["status"] = "failure"
             json_ret["reason"] = "No such peer in the database, please check IP and port."
-            return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
+            return Response(json_ret, status=drf_status.HTTP_400_BAD_REQUEST)
 
         except Exception as e:
             print("Exception occured when finding peer object - ", e, e.__cause__)
@@ -64,7 +64,6 @@ class status(APIView):
 
             json_ret["status"] = "success"
             json_ret["reason"] = "Successfully updated peer record."
-            # TODO WHY??? return Response(json_ret, status=status.HTTP_200_OK)
             return Response(json_ret, status=drf_status.HTTP_200_OK)
         else:
             json_ret["status"] = "failure"
@@ -72,6 +71,55 @@ class status(APIView):
             # return Response(json_ret, status=status.HTTP_401_UNAUTHORIZED)
             return Response(json_ret, status=drf_status.HTTP_401_UNAUTHORIZED)
 
+
+
+class peers(APIView):
+    permission_classes = (AllowAny,)
+
+    def patch(self, request):
+        json_data = json.loads(request.body.decode("utf-8"))
+        print("peers patch")
+        print(json_data)
+
+        for i in json_data["peers"]:
+            print(i)
+            try:
+                peer = models.peer_list.objects.get(ip_address=i["ip_address"], port=i["port"])
+            except ObjectDoesNotExist:
+                print("No such peer found, adding now.")
+                try:
+                    ret = models.peer_list.objects.create(
+                        ip_address=i["ip_address"],
+                        port=i["port"],
+                        is_self=False,
+                        location_lat=i["location_lat"],
+                        location_long=i["location_long"],
+                        location_city=i["location_city"],
+                        location_country=i["location_country"],
+                        # time_accepted=
+                        last_updated=i["last_seen"],
+                        token=i["token_peer"],
+                        active=True,
+                        # no_plates=
+                        # no_matching_plates=
+                        # trust=
+                    )
+                except Exception as e:
+                    print("Error while adding new peer to list form PATCH - ", str(e))
+
+                if ret is not None:
+                    return Response(status=drf_status.HTTP_201_CREATED)
+                else:
+                    return Response(status=drf_status.HTTP_400_BAD_REQUEST)
+
+            try:
+                print("Attempting to save peer with updated token - ", i["token_peer"])
+                peer.token = i["token_peer"]
+                peer.save()
+            except Exception as e:
+                print("Error occured while saving peer - ", str(e))
+
+        return Response(status=drf_status.HTTP_200_OK)
 
 class plates(APIView):
     permission_classes = (AllowAny,)
@@ -179,27 +227,3 @@ class plates(APIView):
             json_ret["reason"] = "Wrong peer token."
             return Response(json_ret, status=drf_status.HTTP_401_UNAUTHORIZED)
 
-
-class peers(APIView):
-    permission_classes = (AllowAny,)
-
-    def patch(self, request):
-        json_data = json.loads(request.body.decode("utf-8"))
-        print("peers patch")
-        print(json_data)
-
-        for i in json_data["peers"]:
-            print(i)
-            try:
-                peer = models.peer_list.objects.get(ip_address=i["ip_address"], port=i["port"])
-            except ObjectDoesNotExist:
-                print("No such peer found, not updating information")
-
-            peer.token = i["token_peer"]
-            try:
-                print("Attempting to save peer with updated token - ", i["token_peer"])
-                peer.save()
-            except Exception as e:
-                print("Error occured while saving peer - ", str(e))
-
-        return Response(status=drf_status.HTTP_200_OK)
