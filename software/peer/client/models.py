@@ -42,7 +42,7 @@ class peer_list(models.Model):
 
     no_matching_plates = models.PositiveIntegerField(default=0)
 
-    trust = models.PositiveIntegerField(default=0)
+    trust = models.FloatField(default=500)
 
     class Meta:
         # http://stackoverflow.com/questions/2201598/how-to-define-two-fields-unique-as-couple
@@ -62,6 +62,7 @@ class plates(models.Model):
     source = models.ForeignKey(peer_list, default=None)
 
     sent = models.BooleanField(default=False)
+    processed = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('source', 'timestamp_peer', 'plate')

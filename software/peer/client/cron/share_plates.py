@@ -7,7 +7,7 @@ from client import models, serializers
 
 
 class Share_Plates(CronJobBase):
-    RUN_EVERY_MINS = None
+    RUN_EVERY_MINS = 1
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'peer.share_plates'
 

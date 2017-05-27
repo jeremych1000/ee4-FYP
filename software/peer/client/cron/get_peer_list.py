@@ -31,7 +31,7 @@ class Get_Peer_List(CronJobBase):
 
             is_self = (i["ip_address"] == settings.PEER_HOSTNAME and i["port"] == settings.PEER_PORT)
 
-            status_url = "http://" + str(i["ip_address"]) + ":" + str(i["port"]) + "/client/status/"
+            status_url = "http://" + str(i["ip_address"]) + ":" + str(i["port"]) + "/client/state/"
             try:
                 r = requests.get(status_url)
                 r.raise_for_status()

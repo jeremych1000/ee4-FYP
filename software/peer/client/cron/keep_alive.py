@@ -58,7 +58,7 @@ class Keep_Alive_Peer(CronJobBase):
         finally:
             for i in peer_obj:
                 print("Keep Alive Peer", i)
-                base_url = "http://" + str(i.ip_address) + ":" + str(i.port) + "/client/status/"
+                base_url = "http://" + str(i.ip_address) + ":" + str(i.port) + "/client/state/"
                 token = str(i.token)
 
                 headers = {
