@@ -32,8 +32,15 @@ class Register(CronJobBase):
                 token_update=r.json()["token_update"],
                 token_peer=r.json()["token_peer"],
             )
+            print("Bootstrap object created")
         elif r.status_code == 409:  # conflict:
-            b = models.bootstrap.objects.first()
+            print("409 conflict, now patching for new key")
+            try:
+                b = models.bootstrap.objects.first()
+            except ObjectDoesNotExist:
+                print("No bootstrap object found, please delete record in bootstrap server.")
+
+            print("Bootstrap object found, now issuing PATCH")
             payload = {
                 "ip_address": settings.PEER_HOSTNAME,
                 "port": settings.PEER_PORT,
@@ -47,6 +54,7 @@ class Register(CronJobBase):
             except requests.RequestException as e:
                 print("Requests exception - ", str(e))
 
+            print("patch old is ", b.token_update, b.token_peer)
             print("patch json is ", r.json())
             b.token_update = r.json()["token_update"]
             b.token_peer = r.json()["token_peer"]

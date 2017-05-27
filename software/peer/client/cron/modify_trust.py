@@ -21,15 +21,28 @@ class Modify_Trust(CronJobBase):
     code = 'peer.modify_trust'
 
     def do(self):
-        try:
-            plates = models.plates.objects.all()
-        except ObjectDoesNotExist:
-            print("plates object does not exist")
+        print("Running Modify_Trust")
 
         try:
             peer_self = models.peer_list.objects.all().filter(is_self=True).first()
         except ObjectDoesNotExist:
             print("peer object does not exist")
+            raise
+        if not peer_self:
+            print("peer object does not exist")
+            raise
+        print("Gotten peer_self")
+
+        try:
+            plates = models.plates.objects.all()
+            print("plates is ", plates)
+        except ObjectDoesNotExist:
+            print("plates object does not exist")
+            raise
+        if not plates:
+            print("plates object does not exist")
+            raise
+        print("Gotten plates")
 
         plates_self = plates.filter(source=peer_self)
         plates_others = plates.filter(~Q(source=peer_self))
@@ -49,6 +62,7 @@ class Modify_Trust(CronJobBase):
                 if i not in not_in_plates_self:
                     not_in_plates_self.append(i.source)
 
+        print("not_in_plates_self is ", not_in_plates_self)
         for i in not_in_plates_self:
             i.trust *= 0.9
-
+            i.save()

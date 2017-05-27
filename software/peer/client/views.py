@@ -113,6 +113,7 @@ class peers(APIView):
             try:
                 print("Attempting to save peer with updated token - ", i["token_peer"])
                 peer.token = i["token_peer"]
+                peer.last_updated = timezone.now()
                 peer.save()
             except Exception as e:
                 print("Error occured while saving peer - ", str(e))
@@ -219,7 +220,7 @@ class plates(APIView):
             if plates_fail:
                 json_ret["status"] = "failure"
                 json_ret["reason"] = "Please look at [\"plates_ret\"]"
-                return Response(json_ret, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                return Response(json_ret, status=status.HTTP_200_OK)
             else:
                 json_ret["status"] = "success"
                 json_ret["reason"] = str(plates_added) + " added"
