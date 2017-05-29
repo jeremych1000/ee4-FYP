@@ -33,11 +33,11 @@ def four_point_transform(image, pts, height, width, use_default_size):
     (tl, tr, br, bl) = rect
 
     if use_default_size:
-        print("Using default size")
+        #print("Using default size")
         maxWidth = width
         maxHeight = height
     else:
-        print("Calculating max size as not default")
+        #print("Calculating max size as not default")
         # compute the width of the new image, which will be the
         # maximum distance between bottom-right and bottom-left
         # x-coordiates or the top-right and top-left x-coordinates

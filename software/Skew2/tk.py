@@ -1,6 +1,7 @@
 import tkinter as tk
 import numpy as np
 import cv2
+import imutils
 import time
 
 from warp_image import warp
@@ -20,7 +21,7 @@ if type is "image":
     rows,cols,ch = input_file.shape
 else:
     #need to add check for image successful read or not
-    input_file = cv2.VideoCapture("test_files/eu_parking.mp4")
+    input_file = cv2.VideoCapture("F:/test_videos/walking/VID_20170529_003059.mp4")
     cols = input_file.get(3)
     rows = input_file.get(4)
 
@@ -29,7 +30,6 @@ else:
         print("Failed to read video")
     cv2.imshow("first frame", first_frame)
     #frame = first_frame #needed as img is either image or video
-
 
 def task():
     print("Doing task")
@@ -41,23 +41,27 @@ def task():
     pts = [ (tl[0], tl[1]), (tr[0], tr[1]), (bl[0], bl[1]), (br[0], br[1]) ]
     HSV_min = np.array([h1.get(), s1.get(), v1.get()], np.uint8)
     HSV_max = np.array([h2.get(), s2.get(), v2.get()], np.uint8)
+    r_angle = rotate_angle.get()
+    curr_frame.set(curr_frame.get() + 1)
+    print("Current frame is %u" % curr_frame.get())
 
     if type is "video":
         ret, frame = input_file.read()
         cv2.imshow("current frame", frame)
 
     is_motion, motion_frame = detect_motion(first_frame, frame, 10000, int(cols))
+
+    #need to add histogram equalization too
+
+    rotated = imutils.rotate(motion_frame, r_angle)
+    warped = warp(rotated, pts)
+    hsv = extract_colour(warped, HSV_min, HSV_max, 0)
+    cv2.imwrite("tmp_output.jpg", hsv)
+
+    cv2.imshow("output", hsv)
+
     if is_motion:
-        output = warp(motion_frame, pts)
-        hsv = extract_colour(output, HSV_min, HSV_max, 0)
-        cv2.imwrite("tmp_output.jpg", hsv)
-
-        cv2.imshow("output", hsv)
-
-        #ALPR
-        get_plates("tmp_output.jpg")
-    else:
-        cv2.imshow("output", frame)
+        get_plates("tmp_output.jpg", "eu", 3)
 
     print("---")
 
@@ -73,7 +77,8 @@ tk.Label(root, text="Bottom Left").grid(row=2, column=0)
 tk.Label(root, text="Bottom Right").grid(row=3, column=0)
 tk.Label(root, text="HSV Low").grid(row=4, column=0)
 tk.Label(root, text="HSV High").grid(row=5, column=0)
-tk.Label(root, text="Update Interval").grid(row=6, column=0)
+tk.Label(root, text="Rotation Angle").grid(row=6, column=0)
+tk.Label(root, text="Update Interval").grid(row=7, column=0)
 
 tl = (tk.IntVar(), tk.IntVar())
 tr = (tk.IntVar(), tk.IntVar())
@@ -82,7 +87,10 @@ br = (tk.IntVar(), tk.IntVar())
 h = (tk.IntVar(), tk.IntVar())
 s = (tk.IntVar(), tk.IntVar())
 v = (tk.IntVar(), tk.IntVar())
+rotate_angle = tk.IntVar()
 update_interval = tk.IntVar()
+curr_frame = tk.IntVar()
+curr_frame.set(0)
 
 #http://effbot.org/tkinterbook/grid.htm
 warp1 = tk.Scale(root, orient='horizontal', from_=0, to=cols)
@@ -133,9 +141,13 @@ v2 = tk.Scale(root, orient='horizontal', from_=0, to=255)
 v2.set(255)
 v2.grid(row=5, column=3)
 
-update_scale = tk.Scale(root, orient='horizontal', from_=100, to=2000, var=update_interval)
+rot_angle = tk.Scale(root, orient='horizontal', from_=0, to=360, var=rotate_angle)
+rot_angle.set(0)
+rot_angle.grid(row=6, column=1)
+
+update_scale = tk.Scale(root, orient='horizontal', from_=1, to=1000, var=update_interval)
 update_scale.set(1000)
-update_scale.grid(row=6, column=1)
+update_scale.grid(row=7, column=1)
 
 root.after(update_interval.get(), task)
 root.mainloop()

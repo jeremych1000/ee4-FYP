@@ -3,7 +3,7 @@ import datetime
 import imutils
 
 def detect_motion(first, current, min_area = 10000, resize_width = 1000):
-    displayText = "---------"
+    displayText = "~~~~~~~~"
     motion_detected = False
 
     #first_frame = imutils.resize(first, width=resize_width)
@@ -33,7 +33,7 @@ def detect_motion(first, current, min_area = 10000, resize_width = 1000):
         # and update the text
         (x, y, w, h) = cv2.boundingRect(c)
         cv2.rectangle(current, (x, y), (x + w, y + h), (0, 255, 0), 2)
-        displayText = "!!!!!!!!!!!"
+        displayText = "@@@@@@@@"
         motion_detected =  True
 
     # draw the text and timestamp on the frame

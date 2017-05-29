@@ -1,13 +1,13 @@
-import sys
+import cv2, sys
 from openalpr import Alpr
 
-def get_plates(input, region="eu", top_n=3):
-    alpr = Alpr(region, "C:/Users/Jeremy/Documents/GitHub/openalpr/windows/build/dist/2.2.0/v120/Release/x64/openalpr.conf", "C:/Users/Jeremy/Documents/GitHub/openalpr/windows/build/dist/2.2.0/v120/Release/x64/runtime_data")
+def alpr(path):
+    alpr = Alpr("eu", "C:\\Users\\Jeremy\\Documents\\GitHub\\openalpr\\windows\\build\\dist\\2.2.0\\v120\\Release\\x64\\openalpr.conf", "C:\\Users\\Jeremy\\Documents\\GitHub\\openalpr\\windows\\build\\dist\\2.2.0\\v120\\Release\\x64\\runtime_data")
     if not alpr.is_loaded():
         print("Error loading OpenALPR")
         sys.exit(1)
-
-    alpr.set_top_n(top_n)
+        
+    alpr.set_top_n(3)
     #alpr.set_default_region("md")
 
     results = alpr.recognize_file(input)
@@ -31,4 +31,16 @@ def get_plates(input, region="eu", top_n=3):
     # Call when completely done to release memory
     alpr.unload()
 
-    #return results
+vidcap = cv2.VideoCapture("F:/test_videos/walking/VID_20170528_200924.mp4")
+
+count = 0
+success = True
+while success:
+  success,image = vidcap.read()
+  print("Reading ", count, "th frame: ", success)
+  name = "frame"+str(count)+".jpg"
+
+  alpr(name)
+
+  cv2.imwrite(name, image)     # save frame as JPEG file
+  count += 1

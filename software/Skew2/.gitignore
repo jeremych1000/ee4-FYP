@@ -3,3 +3,4 @@
 *.so.*
 .idea/
 *.egg-info
+test_files/
