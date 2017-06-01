@@ -65,6 +65,7 @@ class Update_Tokens(CronJobBase):
                 print("No problem, resetting requires_peer_broadcasting")
                 for i in peer_objects_require_broadcasting:
                     i.requires_peer_broadcasting = False
+                    i.minutes_connected = 0
                     try:
                         i.save()
                     except Exception as e:
