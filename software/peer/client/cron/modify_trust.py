@@ -10,7 +10,7 @@ from django.core.exceptions import *
 from django_cron import CronJobBase, Schedule
 from django.db.models import Q
 
-import requests, json, datetime
+import requests, json, datetime, math
 
 from client import models, serializers
 
@@ -24,7 +24,8 @@ class Modify_Trust(CronJobBase):
         print("Running Modify_Trust")
 
         try:
-            peer_self = models.peer_list.objects.all().filter(is_self=True).first()
+            peers = models.peer_list.objects.all()
+            peer_self = peers.filter(is_self=True).first()
         except ObjectDoesNotExist:
             print("peer object does not exist")
             raise
@@ -48,21 +49,22 @@ class Modify_Trust(CronJobBase):
         plates_others = plates.filter(~Q(source=peer_self))
         plates_others = plates_others.filter(processed=False)
 
-        not_in_plates_self = []
+        in_plates_self = []
         for i in plates_others:
             if i in plates_self:
                 source = i.source
-                source.trust += 10
+                source.trust += settings.ADD_TRUST_MATCHING_PLATE
                 source.no_matching_plates += 1
-                i.processed = True
-
                 source.save()
-                i.save()
-            else:
-                if i not in not_in_plates_self:
-                    not_in_plates_self.append(i.source)
 
-        print("not_in_plates_self is ", not_in_plates_self)
-        for i in not_in_plates_self:
-            i.trust *= 0.9
-            i.save()
+                i.processed = True
+                i.save()
+
+                in_plates_self.append(source)
+
+        for i in peers:
+            if i not in in_plates_self:
+                # only decrease trust if no plate from source in non-processed
+                if i.trust > 0:
+                    i.trust = math.floor(i.trust * settings.TRUST_DECAY)
+                    i.save()
