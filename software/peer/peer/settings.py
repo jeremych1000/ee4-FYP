@@ -30,6 +30,8 @@ ALLOWED_HOSTS = ['jeremych.zapto.org', 'sleepify.zapto.org', 'localhost', '127.0
 
 INSTALLED_APPS = [
     'client',
+    'alpr',
+    'web_interface',
 
     # REST API
     'rest_framework',
@@ -189,19 +191,25 @@ CRON_CLASSES = [
     'client.cron.get_peer_list.Get_Peer_List',
     'client.cron.share_plates.Share_Plates',
     'client.cron.modify_trust.Modify_Trust',
+    # alpr
+    'alpr.cron.import_videos.Import_Videos',
+    'alpr.cron.process_videos.Process_Videos',
 ]
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
 BOOTSTRAP_BASE_URL = 'http://bootstrap:34568/' # must include http or No connection adapters were found for ...
 
-PEER_HOSTNAME = 'peer1'
-PEER_PORT = 34571
+PEER_HOSTNAME = 'peer1' # peer IP
+PEER_PORT = 34571 # peer port
 
-TRUST_THRESHOLD = 10
+TRUST_THRESHOLD = 10 # what trust needed before sending
 
-NO_PLATES_BATCH_BEFORE_SEND = 1
+NO_PLATES_BATCH_BEFORE_SEND = 1 # howm
 MIN_TRUST_FOR_SHARE_PLATES = 40
 ADD_TRUST_MATCHING_PLATE = 10
 TRUST_DECAY = 0.9
 
 SPEEDING_LIMIT_PERCENT = 10
+
+ALPR_FPS = 5
+ALPR_VIDEO_PATH = '/home/pi/test_videos/walking/'

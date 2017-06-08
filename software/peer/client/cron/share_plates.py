@@ -16,10 +16,13 @@ class Share_Plates(CronJobBase):
         print(plates_to_be_sent)
         if len(plates_to_be_sent) >= settings.NO_PLATES_BATCH_BEFORE_SEND:
             peer_self = models.peer_list.objects.get(is_self=True)
-            active_peers = models.peer_list.objects.filter(active=True, is_self=False) #, trust__gte=settings.TRUST_THRESHOLD)
+            active_peers = models.peer_list.objects.filter(active=True,
+                                                           is_self=False)  # , trust__gte=settings.TRUST_THRESHOLD)
+
+            at_least_one_peer_received = False
 
             for i in active_peers:
-                if i.trust > settings.MIN_TRUST_FOR_SHARE_PLATES:
+                if i.trust > settings.MIN_TRUST_FOR_SHARE_PLATES or i.trust == 0:  # if 0 assumes the peer is new, so broadcast anyway
                     base_url = 'http://' + i.ip_address + ':' + str(i.port) + '/client/plates/'
                     token = str(i.token)
                     print(base_url, token)
@@ -44,10 +47,11 @@ class Share_Plates(CronJobBase):
                         print(r.status_code, r.json())
                     print(r.status_code)
                     if r.status_code == 200:
+                        at_least_one_peer_received = True
                         print("Setting plates to 'sent'")
-                        for i in plates_to_be_sent:
-                            i.sent = True
+                        for p in plates_to_be_sent:
+                            p.sent = True
                             try:
-                                i.save()
+                                p.save()
                             except Exception as e:
                                 print("Exception occured while saving - ", str(e))
