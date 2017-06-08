@@ -60,7 +60,6 @@ __pycache__/
 #db.sqlite3
 migrations/
 media/uploaded_images/
-alpr/
 
 # C extensions
 *.so
