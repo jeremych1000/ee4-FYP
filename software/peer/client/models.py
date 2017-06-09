@@ -51,8 +51,7 @@ class peer_list(models.Model):
 
 
 class plates(models.Model):
-    timestamp_recieved = models.DateTimeField(default=timezone.now) # for when recieve the plate
-    timestamp_peer = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
+    timestamp = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
     plate = models.CharField(max_length=10)
     location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
                                        null=True)  # rough location to organize peers by proximity
@@ -65,7 +64,7 @@ class plates(models.Model):
     processed = models.BooleanField(default=False)
 
     class Meta:
-        unique_together = ('timestamp_peer', 'plate')
+        unique_together = ('timestamp', 'plate')
 
 
 class violations(models.Model):

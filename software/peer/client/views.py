@@ -197,7 +197,7 @@ class plates(APIView):
                     try:
                         models.plates.objects.create(
                             # timestamp_recieved=,
-                            timestamp_peer=j["timestamp_recieved"],
+                            timestamp=j["timestamp"],
                             plate=j["plate"],
                             location_lat=j["location_lat"],
                             location_long=j["location_long"],

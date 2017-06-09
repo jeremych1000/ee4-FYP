@@ -34,37 +34,39 @@ class Modify_Trust(CronJobBase):
             raise
         print("Gotten peer_self")
 
+        has_plates = True
         try:
             plates = models.plates.objects.all()
             print("plates is ", plates)
         except ObjectDoesNotExist:
             print("plates object does not exist")
-            raise
+            has_plates = False
         if not plates:
             print("plates object does not exist")
-            raise
+            has_plates = False
         print("Gotten plates")
 
-        plates_self = plates.filter(source=peer_self)
-        plates_others = plates.filter(~Q(source=peer_self))
-        plates_others = plates_others.filter(processed=False)
+        if has_plates:
+            plates_self = plates.filter(source=peer_self)
+            plates_others = plates.filter(~Q(source=peer_self))
+            plates_others = plates_others.filter(processed=False)
 
-        in_plates_self = []
-        for i in plates_others:
-            if i in plates_self:
-                source = i.source
-                source.trust += settings.ADD_TRUST_MATCHING_PLATE
-                source.no_matching_plates += 1
-                source.save()
+            in_plates_self = []
+            for i in plates_others:
+                if i in plates_self:
+                    source = i.source
+                    source.trust += settings.ADD_TRUST_MATCHING_PLATE
+                    source.no_matching_plates += 1
+                    source.save()
 
-                i.processed = True
-                i.save()
-
-                in_plates_self.append(source)
-
-        for i in peers:
-            if i not in in_plates_self and i is not peer_self:
-                # only decrease trust if no plate from source in non-processed
-                if i.no_plates > 0 and i.trust > 0:
-                    i.trust = math.floor(i.trust * settings.TRUST_DECAY)
+                    i.processed = True
                     i.save()
+
+                    in_plates_self.append(source)
+
+            for i in peers:
+                if i not in in_plates_self and i is not peer_self:
+                    # only decrease trust if no plate from source in non-processed
+                    if i.no_plates > 0 and i.trust > 0:
+                        i.trust = math.floor(i.trust * settings.TRUST_DECAY)
+                        i.save()

@@ -10,7 +10,7 @@ from alpr import models
 
 
 class Import_Videos(CronJobBase):
-    RUN_EVERY_MINS = None
+    RUN_EVERY_MINS = 10
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     code = 'alpr.import_videos'
 
@@ -18,7 +18,7 @@ class Import_Videos(CronJobBase):
         filelist = [f for f in os.listdir(settings.ALPR_VIDEO_PATH) if
                     os.path.isfile(os.path.join(settings.ALPR_VIDEO_PATH, f))]
 
-        print(type(filelist), filelist)
+        print("Video file list is ", filelist)
 
         for file in filelist:
             try:
@@ -28,7 +28,7 @@ class Import_Videos(CronJobBase):
                     time_processed=timezone.make_aware(datetime.datetime.utcfromtimestamp(0)),
                 )
             except IntegrityError:
-                print("Integrity Error, setting to not processed.")
+                #print("Integrity Error, setting to not processed.")
                 a = models.videos.objects.get(filename=os.path.join(settings.ALPR_VIDEO_PATH, file))
                 a.processed = False
                 try:

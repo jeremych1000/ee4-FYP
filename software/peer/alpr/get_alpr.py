@@ -1,5 +1,9 @@
 import sys, platform, random, os, datetime
-from .openalpr import Alpr
+try:
+    sys.path.append('/home/pi/openalpr/src/bindings/python')
+    from openalpr import Alpr
+except ImportError:
+    print("Trying openalpr import")
 
 def create_alpr(region="gb", top_n=1):
     if platform.system().lower().find("windows") != -1:
