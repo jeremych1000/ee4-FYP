@@ -9,6 +9,7 @@ from django.db.utils import *
 from django.core.exceptions import *
 
 import os, requests, json, datetime
+from collections import OrderedDict
 from ipware.ip import get_ip
 
 from rest_framework.views import APIView
@@ -176,8 +177,8 @@ class plates(APIView):
             return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
 
         if token == self_token:
-            json_data = json.loads(request.body.decode("utf-8"))
-
+            json_data = json.loads(request.body.decode("utf-8"), object_pairs_hook=OrderedDict)
+            print("json_data", json_data)
             plates_added = 0
             for i in json_data:
                 # get peer object first, then assign source to all plates from that peer
@@ -189,15 +190,15 @@ class plates(APIView):
                     json_ret["status"] = "failure"
                     json_ret["reason"] = i["source"]["ip_address"] + "/" + i["source"]["port"] + " not a recognized peer, verify IP/PORT combination."
 
-                for j in i["plates"]:
+                for j in i["plate_list"]:
                     try:
                         models.plates.objects.create(
                             # timestamp_recieved=,
-                            timestamp_peer=i["timestamp_recieved"],
-                            plate=i["plate"],
-                            location_lat=i["location_lat"],
-                            location_long=i["location_long"],
-                            confidence=i["confidence"],
+                            timestamp_peer=j["timestamp_recieved"],
+                            plate=j["plate"],
+                            location_lat=j["location_lat"],
+                            location_long=j["location_long"],
+                            confidence=j["confidence"],
                             sent=False,
                             source=peer_obj,
                         )

@@ -23,14 +23,10 @@ class Share_Plates(CronJobBase):
                     "ip_address": s.ip_address,
                     "port": s.port
                 }
-                print("paylaod tmp", plate_payload_tmp)
                 se = models.plates.objects.filter(source=s, sent=False)
-                print(se)
-                ser = serializers.get_plates(se, many=True).data
-                print (ser)
-                plate_payload_tmp["plates"] = serializers.get_plates(se, many=True).data
+                ser = serializers.get_plates(list(se), many=True)
+                plate_payload_tmp["plates"] = json.dumps(ser.data)
                 plate_payload.append(plate_payload_tmp)
-                print("plate payload", plate_payload)
 
             #now get list of peers and send payload to each of them
             active_peers = models.peer_list.objects.filter(active=True,
@@ -46,20 +42,17 @@ class Share_Plates(CronJobBase):
                         'Authorization': token,
                     }
 
-                    plates = serializers.get_plates(models.plates.objects, many=True)
-
                     payload = {
                         "ip_address": settings.PEER_HOSTNAME,
                         "port": settings.PEER_PORT,
-                        "plates": plate_payload
+                        "plate_list": plate_payload
                     }
-                    print(payload)
+                    print("\n\npayload is ", payload)
                     try:
                         r = requests.post(base_url, data=json.dumps(payload), headers=headers)
                         r.raise_for_status()
-                        print(r.json())
                     except requests.RequestException as e:
-                        print(r.status_code, r.json())
+                        print(r.status_code, r.json(), str(e))
                     print(r.status_code)
                     if r.status_code == 200:
                         at_least_one_peer_received = True
