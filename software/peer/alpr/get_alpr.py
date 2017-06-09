@@ -1,5 +1,5 @@
 import sys, platform, random, os, datetime
-from openalpr import Alpr
+from .openalpr import Alpr
 
 def create_alpr(region="gb", top_n=1):
     if platform.system().lower().find("windows") != -1:

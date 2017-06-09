@@ -18,11 +18,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="process_videos.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alpr/cron/process_videos.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="share_plates.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/cron/share_plates.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
-              <caret line="47" column="35" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="35" />
+            <state relative-caret-position="544">
+              <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -46,11 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1428">
-              <caret line="204" column="38" lean-forward="true" selection-start-line="204" selection-start-column="38" selection-end-line="204" selection-end-column="38" />
+            <state relative-caret-position="772">
+              <caret line="168" column="40" lean-forward="true" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
               <folding>
                 <element signature="e#0#35#0" expanded="true" />
               </folding>
@@ -58,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="register.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="register.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/cron/register.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="374">
@@ -71,8 +81,8 @@
       <file leaf-file-name="modify_trust.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/cron/modify_trust.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="850">
-              <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
+            <state relative-caret-position="442">
+              <caret line="40" column="49" lean-forward="true" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -85,6 +95,18 @@
               <caret line="25" column="43" lean-forward="true" selection-start-line="25" selection-start-column="43" selection-end-line="25" selection-end-column="43" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="get_alpr.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alpr/get_alpr.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="17" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+              <folding>
+                <element signature="e#0#42#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,31 +125,9 @@
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/peer/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1724">
-              <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
+            <state relative-caret-position="-976">
+              <caret line="60" column="45" lean-forward="false" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
               <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/models.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="833">
-              <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="64" selection-end-column="50" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="get_alpr.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/alpr/get_alpr.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="374">
-              <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
             </state>
           </provider>
         </entry>
@@ -178,14 +178,14 @@
         <option value="$PROJECT_DIR$/alpr/cron/import_videos.py" />
         <option value="$PROJECT_DIR$/alpr/split_video.py" />
         <option value="$PROJECT_DIR$/alpr/process_results.py" />
-        <option value="$PROJECT_DIR$/alpr/cron/process_videos.py" />
-        <option value="$PROJECT_DIR$/alpr/get_alpr.py" />
         <option value="$PROJECT_DIR$/client/serializers.py" />
-        <option value="$PROJECT_DIR$/client/cron/modify_trust.py" />
-        <option value="$PROJECT_DIR$/client/cron/share_plates.py" />
-        <option value="$PROJECT_DIR$/client/views.py" />
         <option value="$PROJECT_DIR$/client/cron/get_peer_list.py" />
         <option value="$PROJECT_DIR$/client/cron/register.py" />
+        <option value="$PROJECT_DIR$/alpr/cron/process_videos.py" />
+        <option value="$PROJECT_DIR$/alpr/get_alpr.py" />
+        <option value="$PROJECT_DIR$/client/cron/share_plates.py" />
+        <option value="$PROJECT_DIR$/client/cron/modify_trust.py" />
+        <option value="$PROJECT_DIR$/client/views.py" />
       </list>
     </option>
   </component>
@@ -896,52 +896,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alpr/cron/process_videos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1836">
-          <caret line="122" column="107" lean-forward="false" selection-start-line="122" selection-start-column="107" selection-end-line="122" selection-end-column="107" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/cron/keep_alive.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alpr/get_alpr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#42#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="833">
           <caret line="52" column="0" lean-forward="false" selection-start-line="52" selection-start-column="0" selection-end-line="64" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/cron/modify_trust.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="850">
-          <caret line="64" column="23" lean-forward="true" selection-start-line="64" selection-start-column="23" selection-end-line="64" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/peer/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1724">
-          <caret line="111" column="1" lean-forward="true" selection-start-line="111" selection-start-column="1" selection-end-line="111" selection-end-column="1" />
           <folding />
         </state>
       </provider>
@@ -956,26 +914,6 @@
             <marker date="1496969445000" expanded="true" signature="124:299" ph="..." />
             <marker date="1496969445000" expanded="true" signature="348:468" ph="..." />
             <marker date="1496969445000" expanded="true" signature="364:468" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/cron/share_plates.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
-          <caret line="47" column="35" lean-forward="false" selection-start-line="47" selection-start-column="25" selection-end-line="47" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="204" column="38" lean-forward="true" selection-start-line="204" selection-start-column="38" selection-end-line="204" selection-end-column="38" />
-          <folding>
-            <element signature="e#0#35#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -995,6 +933,68 @@
         <state relative-caret-position="374">
           <caret line="31" column="16" lean-forward="false" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/peer/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-976">
+          <caret line="60" column="45" lean-forward="false" selection-start-line="60" selection-start-column="45" selection-end-line="60" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpr/get_alpr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="17" lean-forward="true" selection-start-line="26" selection-start-column="17" selection-end-line="26" selection-end-column="17" />
+          <folding>
+            <element signature="e#0#42#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/cron/keep_alive.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpr/cron/process_videos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/cron/share_plates.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="32" column="13" lean-forward="false" selection-start-line="32" selection-start-column="13" selection-end-line="32" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/cron/modify_trust.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="40" column="49" lean-forward="true" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="772">
+          <caret line="168" column="40" lean-forward="true" selection-start-line="168" selection-start-column="40" selection-end-line="168" selection-end-column="40" />
+          <folding>
+            <element signature="e#0#35#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

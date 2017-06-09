@@ -177,20 +177,22 @@ class plates(APIView):
             return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
 
         if token == self_token:
-            json_data = json.loads(request.body.decode("utf-8"), object_pairs_hook=OrderedDict)
-            print("json_data", json_data)
+            json_data = json.loads(request.body.decode("utf-8"))
+
             plates_added = 0
-            for i in json_data:
+            for i in json_data["plate_list"]:
                 # get peer object first, then assign source to all plates from that peer
                 # ignore integrity error
-
+                ip_address = i["source"]["ip_address"]
+                port = i["source"]["port"]
                 try:
-                    peer_obj = models.peer_list.objects.get(ip_address=i["source"]["ip_address"], port=i["source"]["port"])
+                    peer_obj = models.peer_list.objects.get(ip_address=ip_address, port=port)
                 except ObjectDoesNotExist:
                     json_ret["status"] = "failure"
-                    json_ret["reason"] = i["source"]["ip_address"] + "/" + i["source"]["port"] + " not a recognized peer, verify IP/PORT combination."
+                    json_ret["reason"] = i["source"]["ip_address"] + "/" + i["source"][
+                        "port"] + " not a recognized peer, verify IP/PORT combination."
 
-                for j in i["plate_list"]:
+                for j in i["plates"]:
                     try:
                         models.plates.objects.create(
                             # timestamp_recieved=,
@@ -206,7 +208,7 @@ class plates(APIView):
                         peer_obj.no_plates += 1
                         peer_obj.save()
                     except IntegrityError:
-                        print("Integrity Error")
+                        print("Integrity Error for ", j["plate"])
 
             json_ret["status"] = "success"
             json_ret["reason"] = str(plates_added) + " added"

@@ -1,5 +1,7 @@
 from django.conf import settings
 from django_cron import CronJobBase, Schedule
+from django.db import *
+from django.core.exceptions import *
 
 import requests, json, datetime
 
@@ -15,7 +17,7 @@ class Share_Plates(CronJobBase):
         if models.plates.objects.filter(sent=False).count() >= settings.NO_PLATES_BATCH_BEFORE_SEND:
             plate_payload = []
             distinct_sources = models.plates.objects.values('source').distinct()
-            print("1")
+
             for source in distinct_sources:
                 s = models.peer_list.objects.get(id=source["source"])
                 plate_payload_tmp = {}
@@ -24,13 +26,18 @@ class Share_Plates(CronJobBase):
                     "port": s.port
                 }
                 se = models.plates.objects.filter(source=s, sent=False)
-                ser = serializers.get_plates(list(se), many=True)
-                plate_payload_tmp["plates"] = json.dumps(ser.data)
+                ser = serializers.get_plates(list(se), many=True).data
+                pl = json.loads(json.dumps(ser))
+                plate_payload_tmp["plates"] = pl
                 plate_payload.append(plate_payload_tmp)
+            #print(plate_payload)
 
             #now get list of peers and send payload to each of them
-            active_peers = models.peer_list.objects.filter(active=True,
+            try:
+                active_peers = models.peer_list.objects.filter(active=True,
                                                            is_self=False)  # , trust__gte=settings.TRUST_THRESHOLD)
+            except ObjectDoesNotExist:
+                print("No active peers.")
 
             for i in active_peers:
                 if i.trust > settings.MIN_TRUST_FOR_SHARE_PLATES or i.trust == 0:  # if 0 assumes the peer is new, so broadcast anyway
@@ -51,8 +58,10 @@ class Share_Plates(CronJobBase):
                     try:
                         r = requests.post(base_url, data=json.dumps(payload), headers=headers)
                         r.raise_for_status()
-                    except requests.RequestException as e:
-                        print(r.status_code, r.json(), str(e))
+                    except requests.RequestException:
+                        print(r.status_code, r.json())
+                    except Exception as e:
+                        print(str(e))
                     print(r.status_code)
                     if r.status_code == 200:
                         at_least_one_peer_received = True
@@ -63,5 +72,7 @@ class Share_Plates(CronJobBase):
                                 p.save()
                             except Exception as e:
                                 print("Exception occured while saving - ", str(e))
+                else:
+                    print("Trust not enough, not sharing any.")
         else:
             print("Not enough plates yet.")

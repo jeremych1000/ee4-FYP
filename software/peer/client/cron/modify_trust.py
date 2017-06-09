@@ -65,6 +65,6 @@ class Modify_Trust(CronJobBase):
         for i in peers:
             if i not in in_plates_self and i is not peer_self:
                 # only decrease trust if no plate from source in non-processed
-                if i.trust > 0:
+                if i.no_plates > 0 and i.trust > 0:
                     i.trust = math.floor(i.trust * settings.TRUST_DECAY)
                     i.save()
