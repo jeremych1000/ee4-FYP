@@ -193,6 +193,7 @@ class plates(APIView):
                         "port"] + " not a recognized peer, verify IP/PORT combination."
 
                 for j in i["plates"]:
+                    success = True
                     try:
                         models.plates.objects.create(
                             # timestamp_recieved=,
@@ -204,12 +205,14 @@ class plates(APIView):
                             sent=False,
                             source=peer_obj,
                         )
+                    except IntegrityError:
+                        success = False
+                        print("Integrity Error for ", j["plate"])
+                    if success:
                         plates_added += 1
                         peer_obj.no_plates += 1
                         peer_obj.save()
-                    except IntegrityError:
-                        print("Integrity Error for ", j["plate"])
-
+            print(plates_added, " plates added")
             json_ret["status"] = "success"
             json_ret["reason"] = str(plates_added) + " added"
             return Response(json_ret, status=status.HTTP_200_OK)

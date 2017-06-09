@@ -65,7 +65,7 @@ class plates(models.Model):
     processed = models.BooleanField(default=False)
 
     class Meta:
-        unique_together = ('source', 'timestamp_peer', 'plate')
+        unique_together = ('timestamp_peer', 'plate')
 
 
 class violations(models.Model):

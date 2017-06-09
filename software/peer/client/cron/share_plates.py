@@ -18,6 +18,14 @@ class Share_Plates(CronJobBase):
             plate_payload = []
             distinct_sources = models.plates.objects.values('source').distinct()
 
+            # now get list of peers and send payload to each of them
+            try:
+                active_peers = models.peer_list.objects.filter(active=True,
+                                                               is_self=False)  # , trust__gte=settings.TRUST_THRESHOLD)
+            except ObjectDoesNotExist:
+                print("No active peers.")
+
+            # could add filtering based on if destination is source, but then just ignoring integrity error is easier...
             for source in distinct_sources:
                 s = models.peer_list.objects.get(id=source["source"])
                 plate_payload_tmp = {}
@@ -31,13 +39,6 @@ class Share_Plates(CronJobBase):
                 plate_payload_tmp["plates"] = pl
                 plate_payload.append(plate_payload_tmp)
             #print(plate_payload)
-
-            #now get list of peers and send payload to each of them
-            try:
-                active_peers = models.peer_list.objects.filter(active=True,
-                                                           is_self=False)  # , trust__gte=settings.TRUST_THRESHOLD)
-            except ObjectDoesNotExist:
-                print("No active peers.")
 
             for i in active_peers:
                 if i.trust > settings.MIN_TRUST_FOR_SHARE_PLATES or i.trust == 0:  # if 0 assumes the peer is new, so broadcast anyway
