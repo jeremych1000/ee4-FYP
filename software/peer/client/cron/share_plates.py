@@ -64,9 +64,8 @@ class Share_Plates(CronJobBase):
                         print(str(e))
                     print(r.status_code)
                     if r.status_code == 200:
-                        at_least_one_peer_received = True
                         print("Setting plates to 'sent'")
-                        for p in range(0): #plates_to_be_sent:
+                        for p in models.plates.objects.filter(sent=False):
                             p.sent = True
                             try:
                                 p.save()
