@@ -178,53 +178,38 @@ class plates(APIView):
         if token == self_token:
             json_data = json.loads(request.body.decode("utf-8"))
 
-            try:
-                peer_obj = models.peer_list.objects.get(ip_address=json_data["ip_address"], port=json_data["port"])
-            except ObjectDoesNotExist:
-                json_ret["status"] = "failure"
-                json_ret["reason"] = "Not a recognized peer, verify IP/PORT combination."
-                return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
-
-            json_ret["plates_ret"] = []
             plates_added = 0
-            plates_fail = False
-            for i in json_data["plates"]:
+            for i in json_data:
+                # get peer object first, then assign source to all plates from that peer
+                # ignore integrity error
+
                 try:
-                    models.plates.objects.create(
-                        # timestamp_recieved=,
-                        timestamp_peer=i["timestamp_recieved"],
-                        plate=i["plate"],
-                        location_lat=i["location_lat"],
-                        location_long=i["location_long"],
-                        confidence=i["confidence"],
-                        sent=False,
-                        source=peer_obj,
-                    )
+                    peer_obj = models.peer_list.objects.get(ip_address=i["source"]["ip_address"], port=i["source"]["port"])
+                except ObjectDoesNotExist:
+                    json_ret["status"] = "failure"
+                    json_ret["reason"] = i["source"]["ip_address"] + "/" + i["source"]["port"] + " not a recognized peer, verify IP/PORT combination."
 
-                except IntegrityError:
-                    print("Integrity Error at plate ", i["plate"])
-                    json_ret["plates_ret"].append(
-                        {
-                            "plate": i["plate"],
-                            "timestamp": i["timestamp"],
-                            "status": "failure",
-                            "reason": "Integrity error"
-                        }
-                    )
-                    plates_fail = True
+                for j in i["plates"]:
+                    try:
+                        models.plates.objects.create(
+                            # timestamp_recieved=,
+                            timestamp_peer=i["timestamp_recieved"],
+                            plate=i["plate"],
+                            location_lat=i["location_lat"],
+                            location_long=i["location_long"],
+                            confidence=i["confidence"],
+                            sent=False,
+                            source=peer_obj,
+                        )
+                        plates_added += 1
+                        peer_obj.no_plates += 1
+                        peer_obj.save()
+                    except IntegrityError:
+                        print("Integrity Error")
 
-                plates_added += 1
-                peer_obj.no_plates += 1
-                peer_obj.save()
-
-            if plates_fail:
-                json_ret["status"] = "failure"
-                json_ret["reason"] = "Please look at [\"plates_ret\"]"
-                return Response(json_ret, status=status.HTTP_200_OK)
-            else:
-                json_ret["status"] = "success"
-                json_ret["reason"] = str(plates_added) + " added"
-                return Response(json_ret, status=status.HTTP_200_OK)
+            json_ret["status"] = "success"
+            json_ret["reason"] = str(plates_added) + " added"
+            return Response(json_ret, status=status.HTTP_200_OK)
 
         else:
             json_ret["status"] = "failure"

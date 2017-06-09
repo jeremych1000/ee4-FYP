@@ -12,14 +12,29 @@ class Share_Plates(CronJobBase):
     code = 'peer.share_plates'
 
     def do(self):
-        plates_to_be_sent = models.plates.objects.filter(sent=False)
-        print(plates_to_be_sent)
-        if len(plates_to_be_sent) >= settings.NO_PLATES_BATCH_BEFORE_SEND:
-            peer_self = models.peer_list.objects.get(is_self=True)
+        if models.plates.objects.filter(sent=False).count() >= settings.NO_PLATES_BATCH_BEFORE_SEND:
+            plate_payload = []
+            distinct_sources = models.plates.objects.values('source').distinct()
+            print("1")
+            for source in distinct_sources:
+                s = models.peer_list.objects.get(id=source["source"])
+                plate_payload_tmp = {}
+                plate_payload_tmp["source"] = {
+                    "ip_address": s.ip_address,
+                    "port": s.port
+                }
+                print("paylaod tmp", plate_payload_tmp)
+                se = models.plates.objects.filter(source=s, sent=False)
+                print(se)
+                ser = serializers.get_plates(se, many=True).data
+                print (ser)
+                plate_payload_tmp["plates"] = serializers.get_plates(se, many=True).data
+                plate_payload.append(plate_payload_tmp)
+                print("plate payload", plate_payload)
+
+            #now get list of peers and send payload to each of them
             active_peers = models.peer_list.objects.filter(active=True,
                                                            is_self=False)  # , trust__gte=settings.TRUST_THRESHOLD)
-
-            at_least_one_peer_received = False
 
             for i in active_peers:
                 if i.trust > settings.MIN_TRUST_FOR_SHARE_PLATES or i.trust == 0:  # if 0 assumes the peer is new, so broadcast anyway
@@ -36,9 +51,9 @@ class Share_Plates(CronJobBase):
                     payload = {
                         "ip_address": settings.PEER_HOSTNAME,
                         "port": settings.PEER_PORT,
-                        "plates": plates.data
+                        "plates": plate_payload
                     }
-
+                    print(payload)
                     try:
                         r = requests.post(base_url, data=json.dumps(payload), headers=headers)
                         r.raise_for_status()
@@ -49,9 +64,11 @@ class Share_Plates(CronJobBase):
                     if r.status_code == 200:
                         at_least_one_peer_received = True
                         print("Setting plates to 'sent'")
-                        for p in plates_to_be_sent:
+                        for p in range(0): #plates_to_be_sent:
                             p.sent = True
                             try:
                                 p.save()
                             except Exception as e:
                                 print("Exception occured while saving - ", str(e))
+        else:
+            print("Not enough plates yet.")
