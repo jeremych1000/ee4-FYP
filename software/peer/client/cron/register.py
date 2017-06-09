@@ -24,6 +24,13 @@ class Register(CronJobBase):
             "port": settings.PEER_PORT,
         }
 
+        if models.bootstrap.objects.count() == 0:
+            # try to delete server bootstrap first, only if locally haven't registered
+            r = requests.delete(target_url, data=json.dumps(payload))
+            if r.status_code != 200:
+                print("something's gone horribly wrong, please delete bootstrap record manually")
+                raise
+
         r = requests.post(target_url, data=json.dumps(payload))
 
         if r.status_code == 201:
