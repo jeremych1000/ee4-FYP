@@ -9,6 +9,13 @@ class get_plates(serializers.ModelSerializer):
                 'timestamp', 'plate', 'location_lat', 'location_long', 'confidence',
             )
 
+class get_plates_only(serializers.ModelSerializer):
+    class Meta:
+        model = models.plates
+        fields = (
+                'plate',
+            )
+
 
 class get_source(serializers.ModelSerializer):
     class Meta:

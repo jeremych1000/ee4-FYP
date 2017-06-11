@@ -61,7 +61,8 @@ class plates(models.Model):
     source = models.ForeignKey(peer_list, default=None)
 
     sent = models.BooleanField(default=False)
-    processed = models.BooleanField(default=False)
+    processed_trust = models.BooleanField(default=False)
+    processed_violation = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('timestamp', 'plate')
@@ -75,7 +76,12 @@ class violations(models.Model):
     unit = models.CharField(default="miles", max_length=5)
     method = models.CharField(default="p2p", max_length=10)  # or itself
 
-    time_accepted = models.DateTimeField(default=timezone.now)
-    last_updated = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
+    time1 = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
+    time2 = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
+
+    distance = models.FloatField()
 
     img_path = models.FilePathField()
+
+    class Meta:
+        unique_together = ('plate1', 'plate2', 'time1', 'time2')

@@ -11,8 +11,14 @@ from django_cron import CronJobBase, Schedule
 from django.db.models import Q
 
 import requests, json, datetime, math
+from difflib import SequenceMatcher
+from operator import itemgetter
 
 from client import models, serializers
+
+
+def similar(a, b):
+    return SequenceMatcher(None, a, b).ratio()
 
 
 class Modify_Trust(CronJobBase):
@@ -49,24 +55,40 @@ class Modify_Trust(CronJobBase):
         if has_plates:
             plates_self = plates.filter(source=peer_self)
             plates_others = plates.filter(~Q(source=peer_self))
-            plates_others = plates_others.filter(processed=False)
+            plates_others = plates_others.filter(processed_trust=False)
 
-            in_plates_self = []
-            for i in plates_others:
-                if i in plates_self:
-                    source = i.source
-                    source.trust += settings.ADD_TRUST_MATCHING_PLATE
-                    source.no_matching_plates += 1
-                    source.save()
+            pl_self = serializers.get_plates(plates_self, many=True)
+            pl_others = serializers.get_plates(plates_others, many=True)
 
-                    i.processed = True
+            pl_self_json = json.loads(json.dumps(pl_self.data, indent=2))
+            pl_others_json = json.loads(json.dumps(pl_others.data, indent=2))
+
+            # loop other plate then loop inner plate
+            pl_self_list = [i["plate"] for i in pl_self_json]
+            pl_others_list = [i["plate"] for i in pl_others_json]
+
+            pl_in_both = [i for i in pl_others_list if i in pl_self_list]
+
+            others_with_matching_plates = []
+
+            for i in pl_in_both:
+                try:
+                    others_plate = plates_others.filter(plate=i).last()
+                except ObjectDoesNotExist:
+                    print("Object does not exist")
+                others_plate_source = others_plate.source
+
+                others_plate_source.trust += settings.ADD_TRUST_MATCHING_PLATE
+                others_plate_source.no_matching_plates += 1
+                others_plate_source.save()
+                others_with_matching_plates.append(others_plate_source)
+
+                others_plate.processed_trust = True
+                others_plate.save()
+
+            decrease_trust_peers = [i for i in peers if i not in others_with_matching_plates]
+            print(decrease_trust_peers)
+            for i in decrease_trust_peers:
+                if i.no_plates > 0 and i.trust > 0:
+                    i.trust = math.floor(i.trust * settings.TRUST_DECAY)
                     i.save()
-
-                    in_plates_self.append(source)
-
-            for i in peers:
-                if i not in in_plates_self and i is not peer_self:
-                    # only decrease trust if no plate from source in non-processed
-                    if i.no_plates > 0 and i.trust > 0:
-                        i.trust = math.floor(i.trust * settings.TRUST_DECAY)
-                        i.save()

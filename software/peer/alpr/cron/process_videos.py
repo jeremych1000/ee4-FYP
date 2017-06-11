@@ -113,7 +113,7 @@ class Process_Videos(CronJobBase):
 
                     try:
                         client_models.plates.objects.create(
-                            timestamp_recieved=ret_date,
+                            timestamp=ret_date,
                             plate=ret_plate,
                             location_lat=peer_self.location_lat,
                             location_long=peer_self.location_long,

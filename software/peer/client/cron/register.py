@@ -84,5 +84,6 @@ class Register(CronJobBase):
             except Exception as e:
                 print("Exception occured while saving peer list record - ", str(e))
 
+            print("Successfully updated bootstrap and peer_lists.")
         else:
             print("Other HTTP status code recieved - ", r.status_code)
