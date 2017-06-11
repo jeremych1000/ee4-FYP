@@ -64,6 +64,8 @@ class plates(models.Model):
     processed_trust = models.BooleanField(default=False)
     processed_violation = models.BooleanField(default=False)
 
+    img_path = models.FilePathField(blank=True)
+
     class Meta:
         unique_together = ('timestamp', 'plate')
 
@@ -80,8 +82,6 @@ class violations(models.Model):
     time2 = models.DateTimeField()
 
     distance = models.FloatField()
-
-    img_path = models.FilePathField()
 
     user_sent_to_peers = models.BooleanField(default=False)
 

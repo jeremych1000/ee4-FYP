@@ -73,4 +73,4 @@ def get_plates_slow(input):
     date = datetime.datetime.strptime(tail, "%Y%m%d_%H%M%S_%f.png")
 
     print(".", end="", flush=True)
-    return results, date
+    return results, date, input

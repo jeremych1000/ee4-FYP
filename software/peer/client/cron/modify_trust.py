@@ -43,14 +43,14 @@ class Modify_Trust(CronJobBase):
         has_plates = True
         try:
             plates = models.plates.objects.all()
-            print("plates is ", plates)
+            #print("plates is ", plates)
         except ObjectDoesNotExist:
             print("plates object does not exist")
             has_plates = False
         if not plates:
             print("plates object does not exist")
             has_plates = False
-        print("Gotten plates")
+        print("Gotten plates for trust")
 
         if has_plates:
             plates_self = plates.filter(source=peer_self)

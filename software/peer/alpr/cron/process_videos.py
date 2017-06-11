@@ -37,11 +37,13 @@ class Process_Videos(CronJobBase):
         except ObjectDoesNotExist:
             print("No videos found, terminating.")
 
-        if len(filelist) == 0:
+        filelist_length = len(filelist)
+        if filelist_length == 0:
             print("No videos need to be processed, terminating.")
         else:
+            loop_index = 0
             for i in filelist:
-                print("\n---\n")
+                print("\n---\n", loop_index, "/", filelist_length)
 
                 head, tail = os.path.split(i.filename)
                 head = head + "/"  # otherwise /home/pi/ee4-FYP/software/peer -  VID_20170528_201314.mp4
@@ -98,12 +100,12 @@ class Process_Videos(CronJobBase):
 
                 print("\n", len(results), " raw results received from ALPR")
                 print("Took ", end - start)
-                # print("Results for debug: ", results)
+                #print("Results for debug: ", results)
                 plates = extract_plates(results)
                 print(len(plates), " unique cars detected")
                 print("Plates: ", plates)
 
-                for ret_plate, ret_conf, ret_date in plates:
+                for ret_plate, ret_conf, ret_date, ret_filepath in plates:
                     ret_date = timezone.make_aware(ret_date)
 
                     try:
@@ -119,26 +121,12 @@ class Process_Videos(CronJobBase):
                             location_long=peer_self.location_long,
                             confidence=ret_conf,
                             source=peer_self,
+                            img_path=ret_filepath,
                         )
                     except IntegrityError:
                         print("Integrity Error while adding plate to database.", ret_plate, ret_conf, ret_date)
                     except Exception as e:
                         print("Exception occured - ", str(e))
-
-                # class plates(models.Model):
-                #     timestamp_recieved = models.DateTimeField(default=timezone.now)  # for when recieve the plate
-                #     timestamp_peer = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
-                #     plate = models.CharField(max_length=10)
-                #     location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
-                #                                        null=True)  # rough location to organize peers by proximity
-                #     location_long = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
-                #                                         null=True)  # rough location to organize peers by proximity
-                #     confidence = models.FloatField(default=0)
-                #     source = models.ForeignKey(peer_list, default=None)
-                #
-                #     sent = models.BooleanField(default=False)
-                #     processed = models.BooleanField(default=False)
-
 
                 # then mark as processed
                 i.processed = True
@@ -152,5 +140,7 @@ class Process_Videos(CronJobBase):
                 if del_folder_on_end:
                     del_folder(head, video_name)
 
+                loop_index += 1
+
             main_end = datetime.datetime.now()
-            print("\n---\nTotal ", len(i), " videos took ", main_end - main_start)
+            print("\n---\nTotal took ", main_end - main_start)

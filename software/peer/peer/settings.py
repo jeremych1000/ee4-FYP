@@ -191,7 +191,7 @@ CRON_CLASSES = [
     'client.cron.get_peer_list.Get_Peer_List',
     'client.cron.share_plates.Share_Plates',
     'client.cron.modify_trust.Modify_Trust',
-    'client.cron.violations.Detect_Violations'
+    'client.cron.violations.Detect_Violations',
     # alpr
     'alpr.cron.import_videos.Import_Videos',
     'alpr.cron.process_videos.Process_Videos',
