@@ -76,12 +76,14 @@ class violations(models.Model):
     unit = models.CharField(default="miles", max_length=5)
     method = models.CharField(default="p2p", max_length=10)  # or itself
 
-    time1 = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
-    time2 = models.DateTimeField(default=timezone.make_aware(datetime.utcfromtimestamp(0)))
+    time1 = models.DateTimeField()
+    time2 = models.DateTimeField()
 
     distance = models.FloatField()
 
     img_path = models.FilePathField()
+
+    user_sent_to_peers = models.BooleanField(default=False)
 
     class Meta:
         unique_together = ('plate1', 'plate2', 'time1', 'time2')

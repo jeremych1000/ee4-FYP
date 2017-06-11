@@ -44,11 +44,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/client/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1087">
-              <caret line="86" column="64" lean-forward="false" selection-start-line="86" selection-start-column="64" selection-end-line="86" selection-end-column="64" />
+            <state relative-caret-position="901">
+              <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -89,11 +89,11 @@
       <file leaf-file-name="violations.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/cron/violations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+            <state relative-caret-position="543">
+              <caret line="98" column="61" lean-forward="true" selection-start-line="98" selection-start-column="61" selection-end-line="98" selection-end-column="61" />
               <folding>
                 <element signature="e#362#394#0" expanded="true" />
-                <marker date="1497214825000" expanded="true" signature="1555:5003" ph="..." />
+                <marker date="1497215009000" expanded="true" signature="1555:5003" ph="..." />
               </folding>
             </state>
           </provider>
@@ -109,11 +109,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/peer/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="651">
-              <caret line="193" column="4" lean-forward="true" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="46" />
+            <state relative-caret-position="1025">
+              <caret line="215" column="28" lean-forward="true" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -172,10 +172,10 @@
         <option value="$PROJECT_DIR$/client/cron/register.py" />
         <option value="$PROJECT_DIR$/client/cron/violations_test.py" />
         <option value="$PROJECT_DIR$/client/serializers.py" />
-        <option value="$PROJECT_DIR$/peer/settings.py" />
-        <option value="$PROJECT_DIR$/client/models.py" />
         <option value="$PROJECT_DIR$/client/cron/modify_trust.py" />
+        <option value="$PROJECT_DIR$/peer/settings.py" />
         <option value="$PROJECT_DIR$/client/cron/violations.py" />
+        <option value="$PROJECT_DIR$/client/models.py" />
       </list>
     </option>
   </component>
@@ -929,14 +929,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1087">
-          <caret line="86" column="64" lean-forward="false" selection-start-line="86" selection-start-column="64" selection-end-line="86" selection-end-column="64" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/cron/violations_test.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -964,21 +956,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/peer/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1025">
+          <caret line="215" column="28" lean-forward="true" selection-start-line="215" selection-start-column="28" selection-end-line="215" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/cron/violations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="45" column="22" lean-forward="false" selection-start-line="45" selection-start-column="22" selection-end-line="45" selection-end-column="22" />
+        <state relative-caret-position="543">
+          <caret line="98" column="61" lean-forward="true" selection-start-line="98" selection-start-column="61" selection-end-line="98" selection-end-column="61" />
           <folding>
             <element signature="e#362#394#0" expanded="true" />
-            <marker date="1497214825000" expanded="true" signature="1555:5003" ph="..." />
+            <marker date="1497215009000" expanded="true" signature="1555:5003" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/peer/settings.py">
+    <entry file="file://$PROJECT_DIR$/client/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="651">
-          <caret line="193" column="4" lean-forward="true" selection-start-line="193" selection-start-column="4" selection-end-line="193" selection-end-column="46" />
+        <state relative-caret-position="901">
+          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
           <folding />
         </state>
       </provider>

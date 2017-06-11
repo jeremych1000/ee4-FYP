@@ -126,4 +126,3 @@ class Detect_Violations(CronJobBase):
                     print("Successfully added to violations database")
                     others_plate.processed_violation = True
                     others_plate.save()
-
