@@ -32,7 +32,7 @@ class peer(models.Model):
                                   editable=False)  # token which will be distributed to other peers to allow token authentication when communicating
 
     active = models.BooleanField(default=False)
-    requires_peer_broadcasting = models.BooleanField(default=False)
+    requires_peer_broadcasting = models.BooleanField(default=True)
 
     class Meta:
         # http://stackoverflow.com/questions/2201598/how-to-define-two-fields-unique-as-couple

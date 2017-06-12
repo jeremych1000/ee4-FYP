@@ -186,3 +186,6 @@ CRON_CLASSES = [
     'bootstrap.cron.peer_broadcast.Update_Tokens',
 ]
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
+
+GOOGLE_MAPS_API_KEY = 'AIzaSyAa6ZK81sMBK2dVrGcOVaWhKUVyfvyUft8'
+FERNET_KEY = b'a0SThzUK3EFVlxbZ5_3ru1ou2vWShkGR6Ca_RV7kvWQ='

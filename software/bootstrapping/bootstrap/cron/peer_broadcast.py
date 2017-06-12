@@ -52,7 +52,7 @@ class Update_Tokens(CronJobBase):
                 print("Payload is ", payload['peers'])
 
                 try:
-                    r = requests.patch(target_url, data=json.dumps(payload), headers=headers)
+                    r = requests.patch(target_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY), headers=headers)
                     r.raise_for_status()
                 except requests.RequestException as e:
                     raised=True

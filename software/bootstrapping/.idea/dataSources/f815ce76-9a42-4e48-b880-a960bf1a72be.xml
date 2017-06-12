@@ -365,7 +365,7 @@ permission_id</ColNames>
       <DataType>BOOL(0,-1)|4</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="82" parent="10" name="bootstrap_peer_ip_address_6f169d19_uniq">
+    <index id="82" parent="10" name="bootstrap_peer_ip_address_port_6f169d19_uniq">
       <ColNames>ip_address
 port</ColNames>
       <Unique>1</Unique>

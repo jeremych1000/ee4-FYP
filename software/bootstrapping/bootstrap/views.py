@@ -26,7 +26,8 @@ from rest_framework.permissions import IsAuthenticated, AllowAny
 
 from ipware.ip import get_real_ip
 
-from . import models, serializers, functions
+from bootstrap import models, serializers, functions
+from bootstrap.encrypt import encrypt, decrypt
 
 import datetime, json, requests, uuid, socket, os
 
@@ -50,8 +51,8 @@ class register(APIView):
         :param request: Django HTTP request
         :return: HTTP 200 if successful
         '''
-        json_data = json.loads(request.body.decode("utf-8"))
-
+        json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
+        print("json data is _____", json_data, type(json_data))
         json_ret = {}
         json_ret_fail = {}  # use this dictionary for return fail
 
@@ -140,6 +141,7 @@ class register(APIView):
                 token_update=token_update,
                 token_peer=token_peer,
                 active=True,
+                requires_peer_broadcasting=True,
             )
         except IntegrityError:
             # either reregistering or fake
@@ -160,7 +162,7 @@ class register(APIView):
     def patch(self, request):
         # re-registering
         # check token, if correct, change, broadcast, deny if not
-        json_data = json.loads(request.body.decode("utf-8"))
+        json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
         json_ret = {}
 
         try:
@@ -195,18 +197,23 @@ class register(APIView):
         json_ret["token_peer"] = str(new_token_peer)
         return Response(json_ret, status=status.HTTP_200_OK)
 
-
     def delete(self, request):
-        json_data = json.loads(request.body.decode("utf-8"))
+        json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
 
         ip_address = json_data["ip_address"]
         port = json_data["port"]
-        token = request.META['HTTP_AUTHORIZATION']
 
-        (peer_obj, ret) = functions.get_peer_entry(ip_address, port, token)
-        if peer_obj is not None:
+        try:
+            peer_obj = models.peer.objects.get(ip_address=ip_address, port=port)
+        except ObjectDoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        # else
+        try:
             peer_obj.delete()
-        return ret
+        except Exception as e:
+            print("Exception while deleting peer - ", str(e))
+        return Response(status=status.HTTP_200_OK)
 
 
 class update(APIView):
@@ -218,7 +225,7 @@ class update(APIView):
         :param request:
         :return:
         '''
-        json_data = json.loads(request.body.decode("utf-8"))
+        json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
 
         if "ip_address" in json_data:
             ip_address = json_data["ip_address"]
@@ -243,7 +250,7 @@ class keep_alive(APIView):
         :param request:
         :return:
         '''
-        json_data = json.loads(request.body.decode("utf-8"))
+        json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
 
         if "ip_address" in json_data:
             ip_address = json_data["ip_address"]
