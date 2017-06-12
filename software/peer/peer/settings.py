@@ -109,6 +109,17 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+
 #
 # logging
 #
@@ -199,6 +210,7 @@ CRON_CLASSES = [
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyAa6ZK81sMBK2dVrGcOVaWhKUVyfvyUft8'
+FERNET_KEY = b'a0SThzUK3EFVlxbZ5_3ru1ou2vWShkGR6Ca_RV7kvWQ='
 
 BOOTSTRAP_BASE_URL = 'http://bootstrap:34568/' # must include http or No connection adapters were found for ...
 
