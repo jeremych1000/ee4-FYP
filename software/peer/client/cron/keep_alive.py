@@ -6,6 +6,7 @@ from django.utils import timezone
 import requests, json, datetime
 
 from client import models
+from client.encrypt import encrypt, decrypt
 
 
 class Keep_Alive(CronJobBase):
@@ -29,7 +30,7 @@ class Keep_Alive(CronJobBase):
         }
 
         try:
-            r = requests.post(base_url, data=json.dumps(payload), headers=headers)
+            r = requests.post(base_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY), headers=headers)
             r.raise_for_status()
         except requests.RequestException as e:
             print("Exception raised at requests - ", e)
@@ -73,7 +74,7 @@ class Keep_Alive_Peer(CronJobBase):
 
                 raised = False
                 try:
-                    r = requests.post(base_url, data=json.dumps(payload), headers=headers)
+                    r = requests.post(base_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY), headers=headers)
                     r.raise_for_status()
                 except requests.RequestException as e:
                     raised = True

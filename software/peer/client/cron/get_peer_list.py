@@ -4,7 +4,8 @@ from django.db import *
 from django.db.utils import *
 import requests, json, datetime
 
-from client import models
+from client import models, encrypt
+
 
 class Get_Peer_List(CronJobBase):
     RUN_EVERY_MINS = None

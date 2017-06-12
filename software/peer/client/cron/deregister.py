@@ -4,6 +4,7 @@ from django_cron import CronJobBase, Schedule
 import requests, json, datetime
 
 from client import models
+from client.encrypt import encrypt, decrypt
 
 
 class Deregister(CronJobBase):
@@ -25,7 +26,7 @@ class Deregister(CronJobBase):
             "port": settings.PEER_PORT,
         }
 
-        r = requests.post(target_url, data=json.dumps(payload), headers=headers)
+        r = requests.post(target_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY), headers=headers)
         print(r.text)
 
         if r.status_code == 200:

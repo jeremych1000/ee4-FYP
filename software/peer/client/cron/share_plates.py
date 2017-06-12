@@ -6,6 +6,7 @@ from django.core.exceptions import *
 import requests, json, datetime
 
 from client import models, serializers
+from client.encrypt import encrypt, decrypt
 
 
 class Share_Plates(CronJobBase):
@@ -38,7 +39,7 @@ class Share_Plates(CronJobBase):
                 pl = json.loads(json.dumps(ser))
                 plate_payload_tmp["plates"] = pl
                 plate_payload.append(plate_payload_tmp)
-            #print(plate_payload)
+            # print(plate_payload)
 
             for i in active_peers:
                 if i.trust > settings.MIN_TRUST_FOR_SHARE_PLATES or i.trust == 0:  # if 0 assumes the peer is new, so broadcast anyway
@@ -57,7 +58,8 @@ class Share_Plates(CronJobBase):
                     }
                     print("\n\npayload is ", payload)
                     try:
-                        r = requests.post(base_url, data=json.dumps(payload), headers=headers)
+                        r = requests.post(base_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY),
+                                          headers=headers)
                         r.raise_for_status()
                     except requests.RequestException:
                         print(r.status_code, r.json())

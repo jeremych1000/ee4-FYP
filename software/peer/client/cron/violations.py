@@ -21,6 +21,7 @@ from django_cron import CronJobBase, Schedule, models
 import requests, json, datetime, googlemaps
 
 from client import models, serializers
+from client.encrypt import encrypt, decrypt
 
 
 def get_distance(origin, destination):
@@ -61,7 +62,7 @@ class Detect_Violations(CronJobBase):
         has_plates = True
         try:
             plates = models.plates.objects.all()
-            #print("plates is ", plates)
+            # print("plates is ", plates)
         except ObjectDoesNotExist:
             print("plates object does not exist")
             has_plates = False

@@ -20,7 +20,8 @@ from rest_framework.decorators import api_view
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 from rest_framework.permissions import IsAuthenticated, AllowAny
 
-from . import models, serializers
+from client import models, serializers
+from client.encrypt import encrypt, decrypt
 
 
 class state(APIView):
@@ -37,7 +38,7 @@ class state(APIView):
     def post(self, request):
         # accept keep alive signals from other peers to update in peer_list model
         token = request.META['HTTP_AUTHORIZATION']
-        json_data = json.loads(request.body.decode("utf-8"))
+        json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
         json_ret = {}
 
         try:
@@ -76,7 +77,7 @@ class peers(APIView):
     permission_classes = (AllowAny,)
 
     def patch(self, request):
-        json_data = json.loads(request.body.decode("utf-8"))
+        json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
         print("peers patch")
         print(json_data)
 
@@ -177,7 +178,7 @@ class plates(APIView):
             return Response(json_ret, status=status.HTTP_400_BAD_REQUEST)
 
         if token == self_token:
-            json_data = json.loads(request.body.decode("utf-8"))
+            json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
 
             plates_added = 0
             for i in json_data["plate_list"]:

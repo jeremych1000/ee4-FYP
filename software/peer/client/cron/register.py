@@ -8,6 +8,7 @@ from django.core.exceptions import *
 import requests, json, datetime
 
 from client import models
+from client.encrypt import encrypt, decrypt
 
 
 class Register(CronJobBase):
@@ -26,12 +27,12 @@ class Register(CronJobBase):
 
         if models.bootstrap.objects.count() == 0:
             # try to delete server bootstrap first, only if locally haven't registered
-            r = requests.delete(target_url, data=json.dumps(payload))
+            r = requests.delete(target_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY))
             if r.status_code != 200:
                 print("something's gone horribly wrong, please delete bootstrap record manually")
                 raise
 
-        r = requests.post(target_url, data=json.dumps(payload))
+        r = requests.post(target_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY))
 
         if r.status_code == 201:
             models.bootstrap.objects.all().delete()  # delete existing bootstrapped record
@@ -56,7 +57,7 @@ class Register(CronJobBase):
             }
 
             try:
-                r = requests.patch(target_url, data=json.dumps(payload))
+                r = requests.patch(target_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY))
                 r.raise_for_status()
             except requests.RequestException as e:
                 print("Requests exception - ", str(e))
