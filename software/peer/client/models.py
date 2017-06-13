@@ -18,7 +18,7 @@ class bootstrap(models.Model):
 class peer_list(models.Model):
     ip_address = models.GenericIPAddressField(protocol='ipv4')  # reachable IP address
     port = models.PositiveIntegerField()  # port on which server is run on
-    is_self = models.BooleanField(default=False) # self is protected keyword, dont use that
+    is_self = models.BooleanField(default=False)  # self is protected keyword, dont use that
 
     location_lat = models.DecimalField(max_digits=9, decimal_places=6, blank=True, default=None,
                                        null=True)  # rough location to organize peers by proximity
@@ -65,6 +65,9 @@ class plates(models.Model):
     processed_violation = models.BooleanField(default=False)
 
     img_path = models.FilePathField(blank=True)
+
+    def get_absolute_url(self):
+        return "/alpr/%s/" % self.confidence
 
     class Meta:
         unique_together = ('timestamp', 'plate')

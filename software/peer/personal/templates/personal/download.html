@@ -1,0 +1,54 @@
+{% extends "personal/base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+{% block head_title %}
+    Download - EE4-FYP
+{% endblock %}
+
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#download").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            {% if registered and peers_exist %}
+                background-image: url('/media/img/jumbotron_on2.jpg');
+            {% elif registered %}
+                background-image: url('/media/img/jumbotron_on.jpg');
+            {% else %}
+                background-image: url('/media/img/jumbotron_off2.jpg');
+            {% endif %}
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+        <div class="container">
+            <h1>Download</h1>
+            <p>Get and compile our project. Then pretend you made it. Nah, don't do that.</p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <h1>Download instructions</h1>
+
+    <ul class="list-group">
+        <li class="list-group-item">Clone GitHub respository using <code><kbd>git clone
+            https://github.com/jeremych1000/ee4-FYP</kbd> </code></li>
+        <li class="list-group-item">Setup web server with <code>hardware/rpi/*.sh</code></li>
+        <li class="list-group-item">Change peer settings in <code>software/peer/peer/settings.py</code></li>
+        <li class="list-group-item">Run web server using <code><kbd>cd software/peer; python manage.py
+            runserver 0.0.0.0:80</kbd> </code></li>
+    </ul>
+{% endblock %}

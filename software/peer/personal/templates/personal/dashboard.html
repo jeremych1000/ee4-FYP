@@ -1,0 +1,89 @@
+{% extends "personal/base.html" %}
+{% load bootstrap3 %}
+{% load staticfiles %}
+{% load render_table from django_tables2 %}
+
+{% block head_title %}
+    Dashboard - EE4-FYP
+{% endblock %}
+
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#dashboard").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+                height: 25em;
+                padding-top: 5em;
+                margin-bottom: 1em;
+                {% if registered and peers_exist %}
+                    background-image: url('/media/img/jumbotron_on2.jpg');
+                {% elif registered %}
+                    background-image: url('/media/img/jumbotron_on.jpg');
+                {% else %}
+                    background-image: url('/media/img/jumbotron_off2.jpg');
+                {% endif %}
+                background-size: cover;
+                color: #ffffff;
+                text-align: center;
+                ">
+        <div class="container">
+            <h1>Dashboard</h1>
+            <p>With great power comes great responsibility.</p>
+            <br/>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/dashboard?action=register" role="button">Register peer</a>
+                <a class="btn btn-primary btn-lg" href="/dashboard?action=get_peer_list" role="button">Get initial peer list</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    <h1>Reset buttons</h1>
+    <p>
+        <a class="btn btn-warning btn-lg" href="/dashboard?action=clear_bootstrap" role="button">Clear bootstrap connections</a>
+        <a class="btn btn-warning btn-lg" href="/dashboard?action=clear_peers" role="button">Clear peer list</a>
+        <a class="btn btn-warning btn-lg" href="/dashboard?action=clear_videos" role="button">Clear videos to process</a>
+        <a class="btn btn-warning btn-lg" href="/dashboard?action=clear_plates" role="button">Clear detected plates</a>
+        <a class="btn btn-warning btn-lg" href="/dashboard?action=clear_violations" role="button">Clear detected violations</a>
+        <a class="btn btn-danger btn-lg" href="/dashboard?action=reset_all" role="button">Clear ALL</a>
+    </p>
+
+    <br/>
+
+    <h1>Action buttons</h1>
+    <p>
+        <a class="btn btn-success btn-lg" href="/dashboard?action=keep_alive_bootstrap" role="button">Keep alive bootstrap</a>
+        <a class="btn btn-success btn-lg" href="/dashboard?action=keep_alive_peer" role="button">Keep alive peers</a>
+        <a class="btn btn-success btn-lg" href="/dashboard?action=modify_trust" role="button">Modify trust</a>
+        <a class="btn btn-success btn-lg" href="/dashboard?action=share_plates" role="button">Share plates</a>
+        <a class="btn btn-success btn-lg" href="/dashboard?action=detect_videos" role="button">Detect videos for processing</a>
+        <a class="btn btn-success btn-lg" href="/dashboard?action=detect_plates" role="button">Detect plates</a>
+        <a class="btn btn-success btn-lg" href="/dashboard?action=detect_violations" role="button">Detect violations</a>
+    </p>
+
+    <br/>
+
+    <h1>Bootstrap details ({{ length.bootstrap }})</h1>
+    {% render_table data.bootstrap %}
+
+    <h1>Other peers' details ({{ length.peer }})</h1>
+    {% render_table data.peer %}
+
+    <h1>Plates details ({{ length.plate }})</h1>
+    {% render_table data.plate %}
+
+    <h1>Violations details ({{ length.violation }})</h1>
+    {% render_table data.violation %}
+
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "personal/base.html" %}
+{% load bootstrap3 %}
+
+{% block set_navbar_active %}
+    <script>
+        $(document).ready(function () {
+            $(".nav li").removeClass("active");
+            $(".nav li#home").addClass("active");//this will remove the active class from
+            //previously active menu item
+        });
+    </script>
+{% endblock %}
+
+{% block jumbotron %}
+
+    <div class="jumbotron"
+         style="
+            height: 25em;
+            padding-top: 5em;
+            margin-bottom: 1em;
+            {% if registered and peers_exist %}
+                background-image: url('/media/img/jumbotron_on2.jpg');
+            {% elif registered %}
+                background-image: url('/media/img/jumbotron_on.jpg');
+            {% else %}
+                background-image: url('/media/img/jumbotron_off2.jpg');
+            {% endif %}
+            background-size: cover;
+            color: #ffffff;
+            text-align: center;
+            ">
+
+        <div class="container">
+            <h1>Welcome, {{ my_name }}!</h1>
+            <p>Bad night's sleep <i class="em em-sleepy"></i>? We've got you.</p>
+            <br/>
+            <p>
+                <a class="btn btn-primary btn-lg" href="/about" role="button">Learn More</a>
+                <a class="btn btn-primary btn-lg" href="/download" role="button">Download</a>
+            </p>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block quick_stats %}
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        {% bootstrap_messages %}
+    {% endif %}
+
+    <div class="content-section-a">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Death to twisting and turning:<br>Sleep like a baby</h2>
+                    <p class="lead">Quisque consequat porta feugiat. Donec mattis faucibus urna, vel fringilla turpis
+                        convallis tincidunt. Sed vitae sapien ac quam hendrerit faucibus.
+                    </p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="/media/img/ipad.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-a -->
+
+    <div class="content-section-b">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">App + the Cloud + <br>Machine Learning = <i class="em em-sunglasses"></i></h2>
+                    <p class="lead">
+                        Ut interdum nisl sem, eget finibus ligula eleifend quis. Phasellus condimentum arcu arcu, non
+                        dapibus velit
+                        tristique id. Integer volutpat et turpis non euismod.
+                    </p>
+                </div>
+                <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+                    <img class="img-responsive" src="/media/img/dog.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+    <!-- /.content-section-b -->
+
+    <div class="content-section-a">
+
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-5 col-sm-6">
+                    <hr class="section-heading-spacer">
+                    <div class="clearfix"></div>
+                    <h2 class="section-heading">Professional statistics and pretty graphs mean you feel smarter </h2>
+                    <p class="lead">
+                        Vivamus risus elit, dignissim quis aliquam tempus, sodales eget mi. Nam sit amet purus ultrices,
+                        molestie lorem
+                        in,
+                        mattis lacus.
+                    </p>
+                </div>
+                <div class="col-lg-5 col-lg-offset-2 col-sm-6">
+                    <img class="img-responsive" src="/media/img/phones.png" alt="">
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container -->
+
+    </div>
+
+
+{% endblock %}

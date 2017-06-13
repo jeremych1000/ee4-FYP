@@ -1,0 +1,262 @@
+{% load bootstrap3 %}
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block head_title %}Welcome - EE4-FYP{% endblock %}</title>
+    <meta charset="utf-8"/>
+
+    <link rel="shortcut icon" href="/media/icons/favicon.ico"/>
+
+    <!-- custom google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link href="{% static "bootstrap-3.3.7-custom/css/bootstrap.min.css" %}" rel="stylesheet">
+    {#    <link href="{% static "bootstrap-themes/bootstrap-darkly.min.css" %}" rel="stylesheet">#}
+    {% bootstrap_javascript %}
+
+    <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- custom overriding bootstrap parameters -->
+    <style type="text/css">
+        html {
+            position: relative;
+            min-height: 100%;
+        }
+
+        body {
+            height: 100%;
+            /* Margin bottom by footer height */
+            margin-bottom: 60px;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: #101010;
+            color: #FFFFFF;
+        }
+
+        @media (min-width: 979px) {
+            ul.nav li.dropdown:hover > ul.dropdown-menu {
+                display: block;
+            }
+
+            .container-fluid {
+                padding-left: 60px;
+                padding-right: 60px;
+            }
+        }
+    </style>
+
+    <!-- http://stackoverflow.com/questions/8878033/how-to-make-twitter-bootstrap-menu-dropdown-on-hover-rather-than-click -->
+
+    <!-- allauth template stuff -->
+    {% block extra_head %}
+    {% endblock %}
+
+    <!-- script to set current navbar id as active -->
+    {% block set_navbar_active %}
+    {% endblock %}
+
+
+    {% block extra_javascript %}
+    {% endblock %}
+
+    <!-- javascript for making login modal pop up -->
+    <script type="text/javascript">
+        function show_login_modal() {
+            $('#myLoginModal').modal('show')
+        }
+        function hide_login_modal() {
+            $('#myLoginModal').modal('hide')
+        }
+    </script>
+
+    {% if login %}
+    <script type="text/javascript">
+        $(window).load(function () {
+            $('#myLoginModal').modal('show');
+        });
+    </script>
+    {% endif %}
+
+</head>
+
+<body class="body" style="background-color:#f6f6f6">
+
+<nav class="navbar navbar-inverse" style="margin-bottom: 0em; border-radius: 0px;">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">
+                <img src="/media/img/ee4logo_i.png" alt="Brand"
+                     style="max-width: 150px; margin-top: -2px; height: 100%; width: auto;">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li id="home" class="active"><a href="/">Home <span class="sr-only">(current)</span></a></li>
+
+
+                <li id="profile" class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                       aria-expanded="false">My Profile <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="/myaccount/profile/">My Details</a></li>
+                        <li><a href="/myaccount/calendar/">Connect Calendar</a></li>
+                        <li><a href="/accounts/social/connections/">Connect Social Accounts</a></li>
+                    </ul>
+                </li>
+                <li id="stats"><a href="/myaccount/statistics/">My Statistics</a></li>
+                <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
+
+
+            </ul>
+            <!--
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Doesn't do anything...">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+            </form>
+            -->
+            <ul class="nav navbar-nav navbar-right">
+                <li id="about"><a href="/about/">About</a></li>
+                <li id="download"><a href="/download/">Download</a></li>
+                <li id="contact"><a href="/contact/">Contact</a></li>
+                <li id="help"><a href="/docs/">Documentation</a></li>
+                <li id="privacy"><a href="/privacy/">Privacy Policy</a></li>
+
+                <div class="nav navbar-nav navbar-right">
+                        <a class="btn btn-primary navbar-btn" href="/dashboard/" role="button">Dashboard</a>
+                </div>
+
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+{% block jumbotron %}
+{% endblock %}
+
+<div class="container-fluid" style="min-height:95%; ">
+    <div class="row">
+
+        {% block quick_stats %}
+
+        <div class="col-sm-2">
+            <br>
+
+            <br>
+            <div class="well bs-sidebar" id="sidebar" style="background-color:#fff">
+                <ul class="nav nav-pills nav-stacked">
+                    <h3>Live Data</h3>
+
+                    You are logged in as: Jeremy Chan<br/>
+
+                    <h5>Number of peers in the network</h5>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar"
+                             aria-valuenow="{{ no_peers_in_network.current }}" aria-valuemin="{{ no_peers_in_network.min }}"
+                             aria-valuemax="{{ no_peers_in_network.max }}"
+                             style="width: {{ no_peers_in_network.width }}%; min-width: 2em; max-width: 100%">
+                            {{ no_peers_in_network.current }}
+                        </div>
+                    </div>
+
+                    <h5>Time connected to bootstrap server</h5>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-success active"
+                             role="progressbar"
+                             aria-valuenow="{{ time_connected_to_bootstrap.current }}" aria-valuemin="{{ time_connected_to_bootstrap.min }}"
+                             aria-valuemax="{{ time_connected_to_bootstrap.max }}"
+                             style="width: {{ time_connected_to_bootstrap.width }}%; min-width: 2em; max-width: 100%">
+                            {{ time_connected_to_bootstrap.current }}
+                        </div>
+                    </div>
+
+                    <h5>Number of plates from peers</h5>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-info active"
+                             role="progressbar"
+                             aria-valuenow="{{ no_plates_from_peers.current }}" aria-valuemin="{{ no_plates_from_peers.min }}"
+                             aria-valuemax="{{ no_plates_from_peers.max }}"
+                             style="width: {{ no_plates_from_peers.width }}%; min-width: 2em; max-width: 100%">
+                            {{ no_plates_from_peers.current }}
+                        </div>
+                    </div>
+
+                    <h5>Average confidence of plate detection</h5>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-warning active"
+                             role="progressbar"
+                             aria-valuenow="{{ avg_confidence.current }}" aria-valuemin="{{ avg_confidence.min }}"
+                             aria-valuemax="{{ avg_confidence.max }}"
+                             style="width: {{ avg_confidence.width }}%; min-width: 2em; max-width: 100%">
+                            {{ avg_confidence.current }}
+                        </div>
+                    </div>
+
+                    <h5>Average speed of violations</h5>
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-danger active"
+                             role="progressbar"
+                             aria-valuenow="{{ avg_speed_violations.current }}" aria-valuemin="{{ avg_speed_violations.min }}"
+                             aria-valuemax="{{ avg_speed_violations.max }}"
+                             style="width: {{ avg_speed_violations.width }}%; min-width: 2em; max-width: 100%">
+                            {{ avg_speed_violations.current }}
+                        </div>
+                    </div>
+
+                </ul>
+            </div> <!--well bs-sidebar affix-->
+
+        </div> <!--col-sm-2-->
+        <div class="col-sm-10">
+
+            {% endblock %}
+            <div class="container-fluid">
+                <br/>
+                {% block body %}
+
+                {% bootstrap_messages %}
+
+                {% block content %}
+                {% endblock %}
+
+                {% endblock %}
+
+                {% block extra_body %}
+                {% endblock %}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<footer class="footer">
+    <p align="right">
+        ©{% now "Y" %} Sleepify. All rights reserved. | <a
+            href="http://sleepify.zapto.org/">http://sleepify.zapto.org</a> | Powered by Django and Bootstrap | Created
+        with love from the United Kingdom | Images from DeathToTheStockPhoto &nbsp;&nbsp;
+    </p>
+</footer>
+
+</body>
+
+</html>

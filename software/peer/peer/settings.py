@@ -31,7 +31,7 @@ ALLOWED_HOSTS = ['jeremych.zapto.org', 'sleepify.zapto.org', 'localhost', '127.0
 INSTALLED_APPS = [
     'client',
     'alpr',
-    'web_interface',
+    'personal',
 
     # REST API
     'rest_framework',
@@ -42,6 +42,9 @@ INSTALLED_APPS = [
 
     # bootstrap
     'bootstrap3',
+
+    # django tables 2
+    'django_tables2',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -70,10 +73,15 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                # live data
+                'personal.context_processors.live_data',
+                # default
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # django tables 2
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -207,6 +215,23 @@ CRON_CLASSES = [
     'alpr.cron.import_videos.Import_Videos',
     'alpr.cron.process_videos.Process_Videos',
 ]
+
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+######################## EE4 FYP SETTINGS HERE #########################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+########################################################################
+
+MY_NAME = "Jeremy Chan"
+
+SHORT_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
+
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
 GOOGLE_MAPS_API_KEY = 'AIzaSyAa6ZK81sMBK2dVrGcOVaWhKUVyfvyUft8'
@@ -229,3 +254,5 @@ RESIDENTIAL_SPEED_LIMIT = 30
 
 ALPR_FPS = 5
 ALPR_VIDEO_PATH = '/home/pi/test_videos/walking/'
+ALPR_IMAGES_PATH = '/home/pi/test_videos/walking'
+ALPR_URL = '/alpr/'

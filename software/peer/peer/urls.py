@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.conf.urls.static import static
+from django.conf import settings
 
 from rest_framework_jwt.views import obtain_jwt_token
 
@@ -25,4 +27,5 @@ urlpatterns = [
     url(r'^client/', include("client.urls")),
     url(r'^log/$', log.as_view()),
     url(r'^api-token-auth/', obtain_jwt_token),
-]
+    url(r'^', include("personal.urls"), name='home'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.ALPR_URL, document_root=settings.ALPR_IMAGES_PATH)
