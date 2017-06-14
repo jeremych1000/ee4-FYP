@@ -34,6 +34,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="register.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/cron/register.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="361">
+              <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <marker date="1497469776000" expanded="true" signature="743:984" ph="..." />
+                <marker date="1497469776000" expanded="true" signature="967:984" ph="..." />
+                <marker date="1497469776000" expanded="true" signature="1568:3353" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/personal/views.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -66,23 +81,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dashboard.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/personal/templates/personal/dashboard.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/peer/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="442">
-              <caret line="26" column="152" lean-forward="false" selection-start-line="26" selection-start-column="152" selection-end-line="26" selection-end-column="152" />
+            <state relative-caret-position="778">
+              <caret line="241" column="30" lean-forward="false" selection-start-line="241" selection-start-column="30" selection-end-line="241" selection-end-column="30" />
               <folding>
-                <marker date="1497469135000" expanded="true" signature="2180:2545" ph="..." />
+                <marker date="1497469527000" expanded="true" signature="2180:2545" ph="..." />
               </folding>
             </state>
           </provider>
@@ -194,7 +199,6 @@
         <option value="$PROJECT_DIR$/client/encrypt.py" />
         <option value="$PROJECT_DIR$/client/cron/violations.py" />
         <option value="$PROJECT_DIR$/client/cron/share_plates.py" />
-        <option value="$PROJECT_DIR$/client/cron/register.py" />
         <option value="$PROJECT_DIR$/client/cron/keep_alive.py" />
         <option value="$PROJECT_DIR$/client/cron/get_peer_list.py" />
         <option value="$PROJECT_DIR$/client/cron/deregister.py" />
@@ -216,6 +220,7 @@
         <option value="$PROJECT_DIR$/personal/templates/personal/peers.html" />
         <option value="$PROJECT_DIR$/personal/views.py" />
         <option value="$PROJECT_DIR$/peer/settings.py" />
+        <option value="$PROJECT_DIR$/client/cron/register.py" />
       </list>
     </option>
   </component>
@@ -932,17 +937,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/cron/register.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="650">
-          <caret line="50" column="33" lean-forward="false" selection-start-line="50" selection-start-column="33" selection-end-line="50" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-            <marker date="1497279300000" expanded="true" signature="1553:3338" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/personal/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1144,10 +1138,23 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/peer/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="26" column="152" lean-forward="false" selection-start-line="26" selection-start-column="152" selection-end-line="26" selection-end-column="152" />
+        <state relative-caret-position="778">
+          <caret line="241" column="30" lean-forward="false" selection-start-line="241" selection-start-column="30" selection-end-line="241" selection-end-column="30" />
           <folding>
-            <marker date="1497469135000" expanded="true" signature="2180:2545" ph="..." />
+            <marker date="1497469527000" expanded="true" signature="2180:2545" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/cron/register.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="361">
+          <caret line="33" column="36" lean-forward="false" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <marker date="1497469776000" expanded="true" signature="743:984" ph="..." />
+            <marker date="1497469776000" expanded="true" signature="967:984" ph="..." />
+            <marker date="1497469776000" expanded="true" signature="1568:3353" ph="..." />
           </folding>
         </state>
       </provider>

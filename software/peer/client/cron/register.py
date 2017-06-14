@@ -28,9 +28,10 @@ class Register(CronJobBase):
         if models.bootstrap.objects.count() == 0:
             # try to delete server bootstrap first, only if locally haven't registered
             r = requests.delete(target_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY))
-            if r.status_code != 200:
-                print("something's gone horribly wrong, please delete bootstrap record manually")
-                raise
+            if r.status_code == 400:
+                print("Bootstrap cant find peer object, so assume all deleted")
+            else:
+                r.raise_for_status()
 
         r = requests.post(target_url, data=encrypt(json.dumps(payload), settings.FERNET_KEY))
 

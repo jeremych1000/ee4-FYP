@@ -239,7 +239,7 @@ FERNET_KEY = b'a0SThzUK3EFVlxbZ5_3ru1ou2vWShkGR6Ca_RV7kvWQ='
 
 BOOTSTRAP_BASE_URL = 'http://bootstrap:34568/' # must include http or No connection adapters were found for ...
 
-PEER_HOSTNAME = 'peer1' # peer IP
+PEER_HOSTNAME = '86.177.166.34' # peer IP
 PEER_PORT = 34571 # peer port
 
 TRUST_THRESHOLD = 10 # what trust needed before sending
