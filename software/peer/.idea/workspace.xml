@@ -56,21 +56,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="violations.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="violations.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/cron/violations.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="306">
               <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="download.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/personal/templates/personal/download.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="28" column="23" lean-forward="false" selection-start-line="28" selection-start-column="23" selection-end-line="28" selection-end-column="23" />
               <folding />
             </state>
           </provider>
@@ -82,6 +72,18 @@
             <state relative-caret-position="493">
               <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/peer/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="26" column="152" lean-forward="false" selection-start-line="26" selection-start-column="152" selection-end-line="26" selection-end-column="152" />
+              <folding>
+                <marker date="1497469135000" expanded="true" signature="2180:2545" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -201,7 +203,6 @@
         <option value="$PROJECT_DIR$/client/models.py" />
         <option value="$PROJECT_DIR$/personal/templates/personal/blank.html" />
         <option value="$PROJECT_DIR$/client/serializers.py" />
-        <option value="$PROJECT_DIR$/peer/settings.py" />
         <option value="$PROJECT_DIR$/personal/urls.py" />
         <option value="$PROJECT_DIR$/personal/templates/personal/base.html" />
         <option value="$PROJECT_DIR$/personal/context_processors.py" />
@@ -214,6 +215,7 @@
         <option value="$PROJECT_DIR$/personal/templates/personal/about.html" />
         <option value="$PROJECT_DIR$/personal/templates/personal/peers.html" />
         <option value="$PROJECT_DIR$/personal/views.py" />
+        <option value="$PROJECT_DIR$/peer/settings.py" />
       </list>
     </option>
   </component>
@@ -999,16 +1001,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/peer/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="631">
-          <caret line="231" column="0" lean-forward="true" selection-start-line="231" selection-start-column="0" selection-end-line="231" selection-end-column="0" />
-          <folding>
-            <marker date="1497382469000" expanded="true" signature="2163:2528" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/personal/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
@@ -1147,6 +1139,16 @@
         <state relative-caret-position="306">
           <caret line="57" column="25" lean-forward="true" selection-start-line="57" selection-start-column="25" selection-end-line="57" selection-end-column="25" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/peer/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="26" column="152" lean-forward="false" selection-start-line="26" selection-start-column="152" selection-end-line="26" selection-end-column="152" />
+          <folding>
+            <marker date="1497469135000" expanded="true" signature="2180:2545" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
