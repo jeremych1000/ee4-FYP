@@ -8,6 +8,8 @@ urlpatterns = [
     url(r'^download/$', views.download, name='download'),
     url(r'^privacy/$', views.privacy, name='privacy'),
     url(r'^dashboard/$', views.dashboard, name='dashboard'),
+    url(r'^peers/$', views.peers, name='peers'),
+    url(r'^violations/$', views.violations, name='violations'),
     url(r'^alpr(?P<dir>.+)$', views.get_alpr_image, name='alpr'),
     url(r'^blank/$', views.blank),
 ]

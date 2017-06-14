@@ -10,6 +10,8 @@ from django_tables2 import RequestConfig
 
 import requests, os, subprocess, json
 
+import googlemaps
+
 from client import models, serializers
 from alpr import models as models_alpr
 
@@ -40,6 +42,17 @@ def privacy(request):
 
 def blank(request):
     return render(request, "personal/blank.html")
+
+
+def peers(request):
+    gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+
+
+    return render(request, "personal/peers.html")
+
+
+def violations(request):
+    return render(request, "personal/violations.html")
 
 
 def get_alpr_image(request, dir):
@@ -115,7 +128,7 @@ def dashboard(request):
                     raise
                 messages.success(request, "Deleted plate object.")
         elif action == "clear_violations":
-            b = models.bootstrap.objects.all()
+            b = models.violations.objects.all()
             if len(b) == 0:
                 messages.info(request, "Nothing to delete.")
             for i in b:
@@ -131,18 +144,23 @@ def dashboard(request):
             messages.error(request, mark_safe("<a href='/dashboard'>Click here to go back.</a>"))
         elif action == "reset_all_conf":
             list_to_delete = []
-            list_to_delete.append(i for i in models.bootstrap.objects.all())
-            list_to_delete.append(i for i in models.peer_list.objects.all())
-            list_to_delete.append(i for i in models.plates.objects.all())
-            list_to_delete.append(i for i in models.violations.objects.all())
-            list_to_delete.append(i for i in models_alpr.videos.objects.all())
+            for i in models.bootstrap.objects.all():
+                list_to_delete.append(i)
+            for i in models.peer_list.objects.all():
+                list_to_delete.append(i)
+            for i in models.plates.objects.all():
+                list_to_delete.append(i)
+            for i in models.violations.objects.all():
+                list_to_delete.append(i)
+            for i in models_alpr.videos.objects.all():
+                list_to_delete.append(i)
             for i in list_to_delete:
                 try:
                     i.delete()
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-                messages.success("Deleted violation object.")
+                messages.success(request, "Deleted violation object.")
 
         # ACTION BUTTONS
         elif action == "keep_alive_bootstrap":
@@ -192,7 +210,7 @@ def dashboard(request):
         pl_table = serializers.table_plates(pl)
         vi_table = serializers.table_violations(vi)
 
-        RequestConfig(request).configure(bo_table)
+        #RequestConfig(request).configure(bo_table)
 
         data = {
             "bootstrap": bo_table,

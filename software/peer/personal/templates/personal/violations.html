@@ -9,7 +9,7 @@
     <script>
         $(document).ready(function () {
             $(".nav li").removeClass("active");
-            $(".nav li#peers").addClass("active");//this will remove the active class from
+            $(".nav li#violations").addClass("active");//this will remove the active class from
             //previously active menu item
         });
     </script>
@@ -33,32 +33,16 @@
             text-align: center;
             ">
         <div class="container">
-            <h1>Contact Us!</h1>
-            <p>Get in touch with us using a variety of methods. Cash preferred.</p>
-            <p><a class="btn btn-primary btn-lg" href="mailto:jc4913@ic.ac.uk" role="button">I'm feeling lucky!</a></p>
+            <h1>Violations</h1>
+            <p>List of speeding incidents detected.</p>
         </div>
     </div>
 {% endblock %}
 
 {% block content %}
 
-    <address>
-        <strong>Sleepify, Inc.</strong><br>
-        Department of Electrical and Electronic Engineering<br>
-        Imperial College<br>
-        London, SW7 2AZ<br>
-        United Kingdom<br>
-        <abbr title="Phone">P:</abbr> <a href="tel:+447503379106">(+44) 7503379106</a>
-    </address>
-
     {% bootstrap_messages %}
 
-    {% if details %}
-        {% for i in details %}
-            <p>{{ i.name }} can be contacted at <a href="mailto:{{ i.email }}">{{ i.email }}</a>.</p>
-        {% endfor %}
-    {% else %}
-        <p>There are no contacts to display.</p>
-    {% endif %}
+
 
 {% endblock %}

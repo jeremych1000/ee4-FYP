@@ -52,13 +52,13 @@ def live_data(request):
         avg_speed_violations = violations_obj.aggregate(Avg('average_speed'))["average_speed__avg"]
 
         ret["avg_confidence"] = {
-                "current": avg_confidence,
+                "current": round(avg_confidence, 2),
                 "min": 0,
                 "max": 100,
                 "width": int(100 * avg_confidence / 100)
             }
         ret["avg_speed_violations"] = {
-                "current": avg_speed_violations,
+                "current": round(avg_speed_violations, 2),
                 "min": 0,
                 "max": 50,
                 "width": int(100 * avg_speed_violations / 50)

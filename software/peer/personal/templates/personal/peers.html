@@ -33,32 +33,67 @@
             text-align: center;
             ">
         <div class="container">
-            <h1>Contact Us!</h1>
-            <p>Get in touch with us using a variety of methods. Cash preferred.</p>
-            <p><a class="btn btn-primary btn-lg" href="mailto:jc4913@ic.ac.uk" role="button">I'm feeling lucky!</a></p>
+            <h1>List of peers</h1>
+            <p>So many friends!</p>
         </div>
     </div>
 {% endblock %}
 
 {% block content %}
 
-    <address>
-        <strong>Sleepify, Inc.</strong><br>
-        Department of Electrical and Electronic Engineering<br>
-        Imperial College<br>
-        London, SW7 2AZ<br>
-        United Kingdom<br>
-        <abbr title="Phone">P:</abbr> <a href="tel:+447503379106">(+44) 7503379106</a>
-    </address>
-
     {% bootstrap_messages %}
 
-    {% if details %}
-        {% for i in details %}
-            <p>{{ i.name }} can be contacted at <a href="mailto:{{ i.email }}">{{ i.email }}</a>.</p>
-        {% endfor %}
-    {% else %}
-        <p>There are no contacts to display.</p>
-    {% endif %}
+    <div class="row">
+
+        <div class="col-md-6">test</div>
+        <div class="col-md-6">test</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">test</div>
+        <div class="col-md-6">test</div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">test</div>
+        <div class="col-md-6">test</div>
+
+    </div>
+
+    <div id="map" style="width: 500px; height: 400px;"></div>
+
+    <script type="text/javascript">
+        var locations = [
+          ['Bondi Beach', -33.890542, 151.274856, 4],
+          ['Coogee Beach', -33.923036, 151.259052, 5],
+          ['Cronulla Beach', -34.028249, 151.157507, 3],
+          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+          ['Maroubra Beach', -33.950198, 151.259302, 1]
+        ];
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 10,
+          center: new google.maps.LatLng(-33.92, 151.25),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        var infowindow = new google.maps.InfoWindow();
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+          });
+
+          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
+      </script>
 
 {% endblock %}

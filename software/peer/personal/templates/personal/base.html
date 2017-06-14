@@ -5,7 +5,13 @@
 <html lang="en">
 
 <head>
-    <title>{% block head_title %}Welcome - EE4-FYP{% endblock %}</title>
+
+    <title>
+        {% block head_title %}
+            Welcome - EE4-FYP
+        {% endblock %}
+    </title>
+
     <meta charset="utf-8"/>
 
     <link rel="shortcut icon" href="/media/icons/favicon.ico"/>
@@ -17,6 +23,7 @@
     {% bootstrap_javascript %}
 
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <script src="http://maps.google.com/maps/api/js?sensor=false" type="text/javascript"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -67,23 +74,6 @@
     {% block extra_javascript %}
     {% endblock %}
 
-    <!-- javascript for making login modal pop up -->
-    <script type="text/javascript">
-        function show_login_modal() {
-            $('#myLoginModal').modal('show')
-        }
-        function hide_login_modal() {
-            $('#myLoginModal').modal('hide')
-        }
-    </script>
-
-    {% if login %}
-    <script type="text/javascript">
-        $(window).load(function () {
-            $('#myLoginModal').modal('show');
-        });
-    </script>
-    {% endif %}
 
 </head>
 
@@ -121,19 +111,11 @@
                         <li><a href="/accounts/social/connections/">Connect Social Accounts</a></li>
                     </ul>
                 </li>
-                <li id="stats"><a href="/myaccount/statistics/">My Statistics</a></li>
-                <li id="MLBlock"><a href="/ml">Upload Raw Data</a></li>
-
+                <li id="peers"><a href="/peers/">Peer List</a></li>
+                <li id="violations"><a href="/violations/">Violations</a></li>
 
             </ul>
-            <!--
-            <form class="navbar-form navbar-left">
-                <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Doesn't do anything...">
-                </div>
-                <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            -->
+
             <ul class="nav navbar-nav navbar-right">
                 <li id="about"><a href="/about/">About</a></li>
                 <li id="download"><a href="/download/">Download</a></li>
@@ -251,9 +233,9 @@
 
 <footer class="footer">
     <p align="right">
-        ©{% now "Y" %} Sleepify. All rights reserved. | <a
-            href="http://sleepify.zapto.org/">http://sleepify.zapto.org</a> | Powered by Django and Bootstrap | Created
-        with love from the United Kingdom | Images from DeathToTheStockPhoto &nbsp;&nbsp;
+        ©{% now "Y" %} Jeremy Chan. All rights reserved. | <a
+            href="http://jeremych.zapto.org/">http://jeremych.zapto.org</a> | Powered by Django and Bootstrap | Created
+        with love from the United Kingdom | Images mostly from DeathToTheStockPhoto &nbsp;&nbsp;
     </p>
 </footer>
 
