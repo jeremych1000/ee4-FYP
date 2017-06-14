@@ -45,10 +45,20 @@ def blank(request):
 
 
 def peers(request):
-    gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+    peer_list = models.peer_list.objects.all()
+    peer_locations = []
 
+    # ['Bondi Beach', -33.890542, 151.274856, 4],
+    # ['Coogee Beach', -33.923036, 151.259052, 5],
+    # ['Cronulla Beach', -34.028249, 151.157507, 3],
+    # ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+    # ['Maroubra Beach', -33.950198, 151.259302, 1]
+    for i in peer_list:
+        peer_locations.append([str(i.ip_address)+":"+str(i.port), str(i.location_lat), str(i.location_long)])
 
-    return render(request, "personal/peers.html")
+    #print(mark_safe(peer_locations), type(mark_safe(peer_locations)))
+    return render(request, "personal/peers.html", {"locations": mark_safe(peer_locations)})
+
 
 
 def violations(request):

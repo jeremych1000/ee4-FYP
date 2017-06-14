@@ -21,10 +21,8 @@
             height: 25em;
             padding-top: 5em;
             margin-bottom: 1em;
-            {% if registered and peers_exist %}
+            {% if registered %}
                 background-image: url('/media/img/jumbotron_on2.jpg');
-            {% elif registered %}
-                background-image: url('/media/img/jumbotron_on.jpg');
             {% else %}
                 background-image: url('/media/img/jumbotron_off2.jpg');
             {% endif %}
@@ -45,55 +43,43 @@
 
     <div class="row">
 
-        <div class="col-md-6">test</div>
-        <div class="col-md-6">test</div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-6">test</div>
-        <div class="col-md-6">test</div>
-    </div>
+        <div id="map" style="width: 1500px; height: 800px;"></div>
 
-    <div class="row">
-        <div class="col-md-6">test</div>
-        <div class="col-md-6">test</div>
+        <script type="text/javascript">
+        //      var locations = [
+        //          ['Bondi Beach', -33.890542, 151.274856, 4],
+        //          ['Coogee Beach', -33.923036, 151.259052, 5],
+        //          ['Cronulla Beach', -34.028249, 151.157507, 3],
+        //          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+        //          ['Maroubra Beach', -33.950198, 151.259302, 1]
+        //      ];
 
-    </div>
+            var locations = {{ locations }};
 
-    <div id="map" style="width: 500px; height: 400px;"></div>
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 15,
+              center: new google.maps.LatLng(51.500038, -0.174675),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            });
 
-    <script type="text/javascript">
-        var locations = [
-          ['Bondi Beach', -33.890542, 151.274856, 4],
-          ['Coogee Beach', -33.923036, 151.259052, 5],
-          ['Cronulla Beach', -34.028249, 151.157507, 3],
-          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-          ['Maroubra Beach', -33.950198, 151.259302, 1]
-        ];
+            var infowindow = new google.maps.InfoWindow();
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
-          center: new google.maps.LatLng(-33.92, 151.25),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-        });
+            var marker, i;
 
-        var infowindow = new google.maps.InfoWindow();
+            for (i = 0; i < locations.length; i++) {
+              marker = new google.maps.Marker({
+                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                map: map
+              });
 
-        var marker, i;
-
-        for (i = 0; i < locations.length; i++) {
-          marker = new google.maps.Marker({
-            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-            map: map
-          });
-
-          google.maps.event.addListener(marker, 'click', (function(marker, i) {
-            return function() {
-              infowindow.setContent(locations[i][0]);
-              infowindow.open(map, marker);
+              google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                return function() {
+                  infowindow.setContent(locations[i][0]);
+                  infowindow.open(map, marker);
+                }
+              })(marker, i));
             }
-          })(marker, i));
-        }
-      </script>
-
+          </script>
+    </div>
 {% endblock %}

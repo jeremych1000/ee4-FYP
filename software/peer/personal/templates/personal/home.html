@@ -18,10 +18,8 @@
             height: 25em;
             padding-top: 5em;
             margin-bottom: 1em;
-            {% if registered and peers_exist %}
+            {% if registered %}
                 background-image: url('/media/img/jumbotron_on2.jpg');
-            {% elif registered %}
-                background-image: url('/media/img/jumbotron_on.jpg');
             {% else %}
                 background-image: url('/media/img/jumbotron_off2.jpg');
             {% endif %}
