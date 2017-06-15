@@ -205,7 +205,7 @@ class plates(APIView):
                             confidence=j["confidence"],
                             sent=False,
                             source=peer_obj,
-                            img_path="http://"+str(peer_obj.ip_address)+":"+str(peer_obj.port)+"/alpr"+j["img_path"]
+                            img_path=j["img_path"]
                         )
                     except IntegrityError:
                         success = False

@@ -199,7 +199,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-            messages.success(request, "Deleted "+len(list_to_delete)+" object(s).")
+            messages.success(request, "Deleted "+str(len(list_to_delete))+" object(s).")
 
         # ACTION BUTTONS
         elif action == "keep_alive_bootstrap":
