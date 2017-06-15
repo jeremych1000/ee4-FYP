@@ -46,6 +46,9 @@ INSTALLED_APPS = [
     # django tables 2
     'django_tables2',
 
+    # django facebook api
+    #'django_facebook',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -82,6 +85,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # django tables 2
                 'django.template.context_processors.request',
+                # django facebook
+                #'django_facebook.context_processors.facebook',
             ],
         },
     },
@@ -165,6 +170,11 @@ LOGGING = {
     },
 }
 
+# AUTHENTICATION_BACKENDS = (
+#     'django_facebook.auth_backends.FacebookBackend',
+#     'django.contrib.auth.backends.ModelBackend',
+# )
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.10/topics/i18n/
 
@@ -234,9 +244,6 @@ SHORT_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
 
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
-GOOGLE_MAPS_API_KEY = 'AIzaSyAa6ZK81sMBK2dVrGcOVaWhKUVyfvyUft8'
-FERNET_KEY = b'a0SThzUK3EFVlxbZ5_3ru1ou2vWShkGR6Ca_RV7kvWQ='
-
 BOOTSTRAP_BASE_URL = 'http://bootstrap:34568/' # must include http or No connection adapters were found for ...
 
 PEER_HOSTNAME = '86.177.166.34' # peer IP
@@ -247,7 +254,7 @@ TRUST_THRESHOLD = 10 # what trust needed before sending
 NO_PLATES_BATCH_BEFORE_SEND = 1 # howm
 MIN_TRUST_FOR_SHARE_PLATES = 0 #TODO: test with 40
 ADD_TRUST_MATCHING_PLATE = 10
-TRUST_DECAY = 0.9
+TRUST_DECAY = 0.99
 
 SPEEDING_LIMIT_PERCENT = 10
 RESIDENTIAL_SPEED_LIMIT = 30
@@ -256,3 +263,16 @@ ALPR_FPS = 5
 ALPR_VIDEO_PATH = '/home/pi/test_videos/walking/'
 ALPR_IMAGES_PATH = '/home/pi/test_videos/walking'
 ALPR_URL = '/alpr/'
+
+# api keys + other keys
+GOOGLE_MAPS_API_KEY = 'AIzaSyAa6ZK81sMBK2dVrGcOVaWhKUVyfvyUft8'
+FERNET_KEY = b'a0SThzUK3EFVlxbZ5_3ru1ou2vWShkGR6Ca_RV7kvWQ='
+
+FACEBOOK_APP_ID = '1786476698345753'
+FACEBOOK_APP_SECRET = 'f79b9408f02e05fa2ec9b14ab3e0895b'
+
+TWITTER_CONSUMER_KEY = 'aUe3p3vkiih5tVoOr9NwQfklw',
+TWITTER_CONSUMER_SECRET = 'hlsGz9o8ZlUtUrRM5PVUlgWXCur1Fr54KUkJ4qRoZAEqIC4kYt',
+TWITTER_ACCESS_TOKEN_KEY = '398428540-pU1SxHhVZlU09WSt5Jo7AofhNBkXZWI47YyMSHpu',
+TWITTER_ACCESS_TOKEN_SECRET = 'J3RqksPucuON7uQDafXScxUinxknHwTGPDsUH8JLVBuH2'
+

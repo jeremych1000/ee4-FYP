@@ -64,7 +64,7 @@ class plates(models.Model):
     processed_trust = models.BooleanField(default=False)
     processed_violation = models.BooleanField(default=False)
 
-    img_path = models.FilePathField(blank=True)
+    img_path = models.CharField(max_length=200, blank=True)
 
     def get_absolute_url(self):
         return "/alpr/%s/" % self.confidence
@@ -78,7 +78,7 @@ class violations(models.Model):
     plate2 = models.ForeignKey(plates, related_name='plate2')
 
     average_speed = models.FloatField()
-    unit = models.CharField(default="miles", max_length=5)
+    unit = models.CharField(default="mph", max_length=5)
     method = models.CharField(default="p2p", max_length=10)  # or itself
 
     time1 = models.DateTimeField()

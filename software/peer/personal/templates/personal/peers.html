@@ -41,45 +41,53 @@
 
     {% bootstrap_messages %}
 
+    <h1>Locations of peers in the network</h1>
+    <br />
+
     <div class="row">
 
+        <div class="col-mid-12">
+            <div id="map" style="width: 1400px; height: 800px"></div>
 
-        <div id="map" style="width: 1500px; height: 800px;"></div>
+                <script type="text/javascript">
+                    //      var locations = [
+                    //          ['Bondi Beach', -33.890542, 151.274856, 4],
+                    //          ['Coogee Beach', -33.923036, 151.259052, 5],
+                    //          ['Cronulla Beach', -34.028249, 151.157507, 3],
+                    //          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
+                    //          ['Maroubra Beach', -33.950198, 151.259302, 1]
+                    //      ];
 
-        <script type="text/javascript">
-        //      var locations = [
-        //          ['Bondi Beach', -33.890542, 151.274856, 4],
-        //          ['Coogee Beach', -33.923036, 151.259052, 5],
-        //          ['Cronulla Beach', -34.028249, 151.157507, 3],
-        //          ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-        //          ['Maroubra Beach', -33.950198, 151.259302, 1]
-        //      ];
+                        var locations = {{ locations }};
 
-            var locations = {{ locations }};
+                        var map = new google.maps.Map(document.getElementById('map'), {
+                          zoom: 13,
+                          center: new google.maps.LatLng(51.500038, -0.174675),
+                          mapTypeId: google.maps.MapTypeId.ROADMAP
+                        });
 
-            var map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 15,
-              center: new google.maps.LatLng(51.500038, -0.174675),
-              mapTypeId: google.maps.MapTypeId.ROADMAP
-            });
+                        var infowindow = new google.maps.InfoWindow();
 
-            var infowindow = new google.maps.InfoWindow();
+                        var marker, i;
 
-            var marker, i;
+                        for (i = 0; i < locations.length; i++) {
+                          marker = new google.maps.Marker({
+                            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+                            map: map
+                          });
 
-            for (i = 0; i < locations.length; i++) {
-              marker = new google.maps.Marker({
-                position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-                map: map
-              });
-
-              google.maps.event.addListener(marker, 'click', (function(marker, i) {
-                return function() {
-                  infowindow.setContent(locations[i][0]);
-                  infowindow.open(map, marker);
-                }
-              })(marker, i));
-            }
-          </script>
+                          google.maps.event.addListener(marker, 'click', (function(marker, i) {
+                            return function() {
+                              infowindow.setContent(locations[i][0]);
+                              infowindow.open(map, marker);
+                            }
+                          })(marker, i));
+                        }
+                      </script>
+            </div>
+        </div>
     </div>
+
+    <br />
+
 {% endblock %}

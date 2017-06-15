@@ -30,6 +30,7 @@ def get_distance(origin, destination):
     gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
     ret = gmaps.distance_matrix(origins=origin, destinations=destination, units="imperial")
     # print(json.dumps(ret, indent=2))
+    print(origin, destination)
     return ret["rows"][0]["elements"][0]["distance"]["value"]
 
 
@@ -106,6 +107,7 @@ class Detect_Violations(CronJobBase):
                 print(self_plate.plate, " is ", ("" if speeding else "not"), " speeding based on travelling ", distance,
                       " in ", timedelta, "seconds, equating to ", speed, " miles per hour")
 
+                success=False
                 if speeding:
                     success = True
                     try:

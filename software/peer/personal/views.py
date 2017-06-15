@@ -62,7 +62,36 @@ def peers(request):
 
 
 def violations(request):
-    return render(request, "personal/violations.html")
+    violations_obj = models.violations.objects.all()
+    violations_list = []
+
+    gmaps = googlemaps.Client(key=settings.GOOGLE_MAPS_API_KEY)
+    for v in violations_obj:
+        origin = v.plate1.location_lat, v.plate1.location_long
+        destination = v.plate2.location_lat, v.plate2.location_long
+        ret = gmaps.directions(origin=origin, destination=destination, units="imperial")
+
+        polyline = ret[0]["overview_polyline"]["points"]
+
+        static_maps_url = "https://maps.googleapis.com/maps/api/staticmap?size=400x400&zoom=13" \
+                          + "&path=weight:7|color:red|enc:" + polyline \
+                        + "&markers=color:blue|" + str(origin[0]) + "," + str(origin[1])\
+                          + "|" + str(destination[0]) + "," + str(destination[1])\
+                          + "&key=" + settings.GOOGLE_MAPS_API_KEY
+
+        violations_list.append(
+            {
+                "plate": v.plate1.plate,
+                "time1": v.time1,
+                "time2": v.time2,
+                "distance": v.distance,
+                "speed": v.average_speed,
+                "unit": v.unit,
+                "img_path": v.plate1.img_path,
+                "gmaps": static_maps_url
+            }
+        )
+    return render(request, "personal/violations.html", {"violations": violations_list})
 
 
 def get_alpr_image(request, dir):
@@ -103,7 +132,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-                messages.success(request, "Deleted bootstrap object.")
+            messages.success(request, "Deleted "+str(len(b))+" bootstrap object(s).")
         elif action == "clear_peers":
             b = models.peer_list.objects.all()
             if len(b) == 0:
@@ -114,7 +143,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-                messages.success(request, "Deleted peer_list object.")
+            messages.success(request, "Deleted "+str(len(b))+" peer_list object(s).")
         elif action == "clear_videos":
             b = models_alpr.videos.objects.all()
             if len(b) == 0:
@@ -125,7 +154,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-                messages.success(request, "Deleted video object.")
+            messages.success(request, "Deleted "+str(len(b))+" video object(s).")
         elif action == "clear_plates":
             b = models.plates.objects.all()
             if len(b) == 0:
@@ -136,7 +165,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-                messages.success(request, "Deleted plate object.")
+            messages.success(request, "Deleted "+str(len(b))+" plate object(s).")
         elif action == "clear_violations":
             b = models.violations.objects.all()
             if len(b) == 0:
@@ -147,7 +176,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-                messages.success(request, "Deleted violation object.")
+            messages.success(request, "Deleted "+str(len(b))+" violation object(s).")
         elif action == "reset_all":
             messages.error(request, "Are you SURE you want to delete everything? This is permanent!")
             messages.error(request, mark_safe("<a href='/dashboard?action=reset_all_conf'>Click here to delete.</a>"))
@@ -170,7 +199,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-                messages.success(request, "Deleted violation object.")
+            messages.success(request, "Deleted "+len(list_to_delete)+" object(s).")
 
         # ACTION BUTTONS
         elif action == "keep_alive_bootstrap":
@@ -201,7 +230,7 @@ def dashboard(request):
 
     try:
         bootstrap_obj = models.bootstrap.objects.all()
-        peer_obj = models.peer_list.objects.all().filter(is_self=False)
+        peer_obj = models.peer_list.objects.all()
         plates_obj = models.plates.objects.all()
         violations_obj = models.violations.objects.all()
 

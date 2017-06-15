@@ -121,7 +121,7 @@ class Process_Videos(CronJobBase):
                             location_long=peer_self.location_long,
                             confidence=ret_conf,
                             source=peer_self,
-                            img_path=ret_filepath,
+                            img_path="http://"+str(peer_self.ip_address)+":"+str(peer_self.port)+"/alpr"+str(ret_filepath),
                         )
                     except IntegrityError:
                         print("Integrity Error while adding plate to database.", ret_plate, ret_conf, ret_date)

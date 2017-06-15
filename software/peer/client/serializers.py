@@ -10,7 +10,7 @@ class get_plates(serializers.ModelSerializer):
     class Meta:
         model = models.plates
         fields = (
-                'timestamp', 'plate', 'location_lat', 'location_long', 'confidence',
+                'timestamp', 'plate', 'location_lat', 'location_long', 'confidence', 'img_path'
             )
 
 class get_plates_only(serializers.ModelSerializer):
@@ -92,6 +92,7 @@ class table_bootstrap(tables.Table):
 class table_peers(tables.Table):
     ip_address = tables.Column()
     port = tables.Column()
+    is_self = tables.BooleanColumn()
     location_lat = tables.Column()
     location_long = tables.Column()
     location_city = tables.Column()
@@ -113,7 +114,8 @@ class table_plates(tables.Table):
     location_lat = tables.Column()
     location_long = tables.Column()
     confidence = tables.Column()
-    img_path = tables.LinkColumn(viewname='alpr', args=[A('img_path')])
+    #img_path = tables.LinkColumn(viewname='alpr', args=[A('img_path')])
+    img_path = tables.URLColumn()
     processed_violation = tables.BooleanColumn()
     sent = tables.BooleanColumn()
 
@@ -133,3 +135,4 @@ class table_violations(tables.Table):
 
     class Meta:
         attrs = {'class': 'table table-striped'}
+
