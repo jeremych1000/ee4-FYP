@@ -65,9 +65,13 @@
                 <td>{{ violations.distance }}</td>
                 <td>{{ violations.speed }}</td>
                 <td>{{ violations.unit }}</td>
-                <td>report link here</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm">
+                        <a style="color: #FFFFFF" href="/violations?p={{ violations.plate }}">Post to Twitter</a>
+                    </button>
+                </td>
                 <td><img src="{{ violations.gmaps }}"></td>
-                <td><a href="/alpr{{ violations.img_path }}"><img src="/alpr{{ violations.img_path }}" height="400" width="711"></a></td>
+                <td><a href="{{ violations.img_path }}"><img src="{{ violations.img_path }}" height="400" width="711"></a></td>
             </tr>
         {% endfor %}
     </table>

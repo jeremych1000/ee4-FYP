@@ -1,3 +1,5 @@
+from __future__ import unicode_literals
+
 from django.shortcuts import render
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -12,7 +14,7 @@ import requests, os, subprocess, json
 
 import googlemaps
 
-from client import models, serializers
+from client import models, serializers, social
 from alpr import models as models_alpr
 
 
@@ -54,11 +56,10 @@ def peers(request):
     # ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
     # ['Maroubra Beach', -33.950198, 151.259302, 1]
     for i in peer_list:
-        peer_locations.append([str(i.ip_address)+":"+str(i.port), str(i.location_lat), str(i.location_long)])
+        peer_locations.append([str(i.ip_address) + ":" + str(i.port), str(i.location_lat), str(i.location_long)])
 
-    #print(mark_safe(peer_locations), type(mark_safe(peer_locations)))
+    # print(mark_safe(peer_locations), type(mark_safe(peer_locations)))
     return render(request, "personal/peers.html", {"locations": mark_safe(peer_locations)})
-
 
 
 def violations(request):
@@ -75,8 +76,8 @@ def violations(request):
 
         static_maps_url = "https://maps.googleapis.com/maps/api/staticmap?size=400x400&zoom=13" \
                           + "&path=weight:7|color:red|enc:" + polyline \
-                        + "&markers=color:blue|" + str(origin[0]) + "," + str(origin[1])\
-                          + "|" + str(destination[0]) + "," + str(destination[1])\
+                          + "&markers=color:blue|" + str(origin[0]) + "," + str(origin[1]) \
+                          + "|" + str(destination[0]) + "," + str(destination[1]) \
                           + "&key=" + settings.GOOGLE_MAPS_API_KEY
 
         violations_list.append(
@@ -91,6 +92,22 @@ def violations(request):
                 "gmaps": static_maps_url
             }
         )
+
+    if request.method == 'GET' and 'p' in request.GET:
+        p = request.GET.get('p')
+        # print(p)
+        p_obj = models.plates.objects.filter(plate=p).first()
+        v_obj = violations_obj.filter(plate1=p_obj).first()
+
+        mes = social.post_to_twitter(
+            (v_obj.plate1.location_lat, v_obj.plate1.location_long),
+            (v_obj.plate2.location_lat, v_obj.plate2.location_long),
+            v_obj.average_speed,
+            str(v_obj.plate1.img_path),
+            str(v_obj.plate2.img_path)
+        )
+        messages.success(request, "Successfully posted at " + mes)
+
     return render(request, "personal/violations.html", {"violations": violations_list})
 
 
@@ -132,7 +149,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-            messages.success(request, "Deleted "+str(len(b))+" bootstrap object(s).")
+            messages.success(request, "Deleted " + str(len(b)) + " bootstrap object(s).")
         elif action == "clear_peers":
             b = models.peer_list.objects.all()
             if len(b) == 0:
@@ -143,7 +160,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-            messages.success(request, "Deleted "+str(len(b))+" peer_list object(s).")
+            messages.success(request, "Deleted " + str(len(b)) + " peer_list object(s).")
         elif action == "clear_videos":
             b = models_alpr.videos.objects.all()
             if len(b) == 0:
@@ -154,7 +171,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-            messages.success(request, "Deleted "+str(len(b))+" video object(s).")
+            messages.success(request, "Deleted " + str(len(b)) + " video object(s).")
         elif action == "clear_plates":
             b = models.plates.objects.all()
             if len(b) == 0:
@@ -165,7 +182,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-            messages.success(request, "Deleted "+str(len(b))+" plate object(s).")
+            messages.success(request, "Deleted " + str(len(b)) + " plate object(s).")
         elif action == "clear_violations":
             b = models.violations.objects.all()
             if len(b) == 0:
@@ -176,7 +193,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-            messages.success(request, "Deleted "+str(len(b))+" violation object(s).")
+            messages.success(request, "Deleted " + str(len(b)) + " violation object(s).")
         elif action == "reset_all":
             messages.error(request, "Are you SURE you want to delete everything? This is permanent!")
             messages.error(request, mark_safe("<a href='/dashboard?action=reset_all_conf'>Click here to delete.</a>"))
@@ -199,7 +216,7 @@ def dashboard(request):
                 except Exception as e:
                     messages.error(request, str(e))
                     raise
-            messages.success(request, "Deleted "+str(len(list_to_delete))+" object(s).")
+            messages.success(request, "Deleted " + str(len(list_to_delete)) + " object(s).")
 
         # ACTION BUTTONS
         elif action == "keep_alive_bootstrap":
@@ -249,7 +266,7 @@ def dashboard(request):
         pl_table = serializers.table_plates(pl)
         vi_table = serializers.table_violations(vi)
 
-        #RequestConfig(request).configure(bo_table)
+        # RequestConfig(request).configure(bo_table)
 
         data = {
             "bootstrap": bo_table,
