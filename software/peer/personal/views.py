@@ -101,6 +101,7 @@ def violations(request):
         v_obj = violations_obj.filter(plate1=p_obj).first()
 
         mes = social.post_to_twitter(
+            p,
             (v_obj.plate1.location_lat, v_obj.plate1.location_long),
             (v_obj.plate2.location_lat, v_obj.plate2.location_long),
             v_obj.average_speed,
