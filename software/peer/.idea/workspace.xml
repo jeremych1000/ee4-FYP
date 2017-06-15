@@ -24,14 +24,14 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/personal/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
+            <state relative-caret-position="578">
+              <caret line="91" column="47" lean-forward="false" selection-start-line="91" selection-start-column="47" selection-end-line="91" selection-end-column="47" />
               <folding>
                 <element signature="e#41#76#0" expanded="true" />
-                <marker date="1497546365000" expanded="true" signature="1820:3068" ph="..." />
-                <marker date="1497546365000" expanded="true" signature="1992:2686" ph="..." />
-                <marker date="1497546365000" expanded="true" signature="4864:5244" ph="..." />
-                <marker date="1497546365000" expanded="true" signature="7088:7110" ph="..." />
+                <marker date="1497548173000" expanded="true" signature="1820:3117" ph="..." />
+                <marker date="1497548173000" expanded="true" signature="1992:2686" ph="..." />
+                <marker date="1497548173000" expanded="true" signature="4913:5293" ph="..." />
+                <marker date="1497548173000" expanded="true" signature="7137:7159" ph="..." />
               </folding>
             </state>
           </provider>
@@ -47,7 +47,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="social.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="social.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/social.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
@@ -103,14 +103,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="violations.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="violations.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/personal/templates/personal/violations.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="493">
-              <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
+            <state relative-caret-position="616">
+              <caret line="56" column="36" lean-forward="true" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
               <folding>
-                <marker date="1497546366000" expanded="true" signature="1223:2358" ph="..." />
-                <marker date="1497546366000" expanded="true" signature="1567:2324" ph="..." />
+                <marker date="1497548275000" expanded="true" signature="1261:2686" ph="..." />
+                <marker date="1497548275000" expanded="true" signature="1695:2644" ph="..." />
               </folding>
             </state>
           </provider>
@@ -119,8 +119,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="183" column="38" lean-forward="false" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
+            <state relative-caret-position="1054">
+              <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
               <folding>
                 <marker date="1497541134000" expanded="true" signature="4845:9005" ph="..." />
                 <marker date="1497541134000" expanded="true" signature="5998:9005" ph="..." />
@@ -228,9 +228,9 @@
         <option value="$PROJECT_DIR$/alpr/cron/process_videos.py" />
         <option value="$PROJECT_DIR$/client/serializers.py" />
         <option value="$PROJECT_DIR$/client/views.py" />
-        <option value="$PROJECT_DIR$/personal/templates/personal/violations.html" />
-        <option value="$PROJECT_DIR$/personal/views.py" />
         <option value="$PROJECT_DIR$/client/social.py" />
+        <option value="$PROJECT_DIR$/personal/views.py" />
+        <option value="$PROJECT_DIR$/personal/templates/personal/violations.html" />
       </list>
     </option>
   </component>
@@ -1109,10 +1109,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/social.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="183" column="38" lean-forward="false" selection-start-line="183" selection-start-column="38" selection-end-line="183" selection-end-column="38" />
+        <state relative-caret-position="1054">
+          <caret line="129" column="0" lean-forward="true" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
           <folding>
             <marker date="1497541134000" expanded="true" signature="4845:9005" ph="..." />
             <marker date="1497541134000" expanded="true" signature="5998:9005" ph="..." />
@@ -1123,36 +1131,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/personal/templates/personal/violations.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="41" column="4" lean-forward="false" selection-start-line="41" selection-start-column="4" selection-end-line="41" selection-end-column="4" />
-          <folding>
-            <marker date="1497546366000" expanded="true" signature="1223:2358" ph="..." />
-            <marker date="1497546366000" expanded="true" signature="1567:2324" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/personal/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="85" column="23" lean-forward="false" selection-start-line="85" selection-start-column="23" selection-end-line="85" selection-end-column="23" />
+        <state relative-caret-position="578">
+          <caret line="91" column="47" lean-forward="false" selection-start-line="91" selection-start-column="47" selection-end-line="91" selection-end-column="47" />
           <folding>
             <element signature="e#41#76#0" expanded="true" />
-            <marker date="1497546365000" expanded="true" signature="1820:3068" ph="..." />
-            <marker date="1497546365000" expanded="true" signature="1992:2686" ph="..." />
-            <marker date="1497546365000" expanded="true" signature="4864:5244" ph="..." />
-            <marker date="1497546365000" expanded="true" signature="7088:7110" ph="..." />
+            <marker date="1497548173000" expanded="true" signature="1820:3117" ph="..." />
+            <marker date="1497548173000" expanded="true" signature="1992:2686" ph="..." />
+            <marker date="1497548173000" expanded="true" signature="4913:5293" ph="..." />
+            <marker date="1497548173000" expanded="true" signature="7137:7159" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/social.py">
+    <entry file="file://$PROJECT_DIR$/personal/templates/personal/violations.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="17" lean-forward="false" selection-start-line="20" selection-start-column="17" selection-end-line="20" selection-end-column="17" />
-          <folding />
+        <state relative-caret-position="616">
+          <caret line="56" column="36" lean-forward="true" selection-start-line="56" selection-start-column="36" selection-end-line="56" selection-end-column="36" />
+          <folding>
+            <marker date="1497548275000" expanded="true" signature="1261:2686" ph="..." />
+            <marker date="1497548275000" expanded="true" signature="1695:2644" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -44,36 +44,38 @@
     <h1>Detected speed violations</h1>
 
     <br />
-
-    <table class="table table-striped">
-        <tr>
-            <th>Plate</th>
-            <th>Time 1</th>
-            <th>Time 2</th>
-            <th>Distance</th>
-            <th>Speed</th>
-            <th>Unit</th>
-            <th>Report</th>
-            <th>Path of car</th>
-            <th>Evidence</th>
-        </tr>
-        {% for violations in violations %}
+    <div class="table-responsive">
+        <table class="table table-striped">
             <tr>
-                <td>{{ violations.plate }}</td>
-                <td>{{ violations.time1 }}</td>
-                <td>{{ violations.time2 }}</td>
-                <td>{{ violations.distance }}</td>
-                <td>{{ violations.speed }}</td>
-                <td>{{ violations.unit }}</td>
-                <td>
-                    <button type="button" class="btn btn-primary btn-sm">
-                        <a style="color: #FFFFFF" href="/violations?p={{ violations.plate }}">Post to Twitter</a>
-                    </button>
-                </td>
-                <td><img src="{{ violations.gmaps }}"></td>
-                <td><a href="{{ violations.img_path }}"><img src="{{ violations.img_path }}" height="400" width="711"></a></td>
+                <th>Plate</th>
+                <th>Time 1</th>
+                <th>Time 2</th>
+                <th>Distance</th>
+                <th>Speed</th>
+                <th>Unit</th>
+                <th>Report</th>
+                <th>Path of car</th>
+                <th>Evidence 1</th>
+                <th>Evidence 2</th>
             </tr>
-        {% endfor %}
-    </table>
-
+            {% for violations in violations %}
+                <tr>
+                    <td>{{ violations.plate }}</td>
+                    <td>{{ violations.time1 }}</td>
+                    <td>{{ violations.time2 }}</td>
+                    <td>{{ violations.distance }}</td>
+                    <td>{{ violations.speed }}</td>
+                    <td>{{ violations.unit }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary btn-sm">
+                            <a style="color: #FFFFFF" href="/violations?p={{ violations.plate }}">Post to Twitter</a>
+                        </button>
+                    </td>
+                    <td><img src="{{ violations.gmaps }}"></td>
+                    <td><a href="{{ violations.img_path1 }}"><img src="{{ violations.img_path1 }}" height="400" width="711"></a></td>
+                    <td><a href="{{ violations.img_path2 }}"><img src="{{ violations.img_path2 }}" height="400" width="711"></a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}

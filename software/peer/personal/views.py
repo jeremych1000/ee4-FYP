@@ -88,7 +88,8 @@ def violations(request):
                 "distance": v.distance,
                 "speed": v.average_speed,
                 "unit": v.unit,
-                "img_path": v.plate1.img_path,
+                "img_path1": v.plate1.img_path,
+                "img_path2": v.plate2.img_path,
                 "gmaps": static_maps_url
             }
         )
