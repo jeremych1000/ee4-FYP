@@ -34,6 +34,20 @@ def about(request):
     return render(request, "personal/about.html")
 
 
+def profile(request):
+    data = {
+        "bootstrap_url": settings.BOOTSTRAP_BASE_URL,
+        "ip_address": settings.PEER_HOSTNAME,
+        "port": settings.PEER_PORT,
+        "gmaps_key": settings.GOOGLE_MAPS_API_KEY,
+        "twitter_consumer_key": settings.TWITTER_CONSUMER_KEY,
+        "twitter_consumer_secret": settings.TWITTER_CONSUMER_SECRET,
+        "twitter_access_token_key": settings.TWITTER_ACCESS_TOKEN_KEY,
+        "twitter_access_token_secret": settings.TWITTER_ACCESS_TOKEN_SECRET
+    }
+    return render(request, "personal/profile.html", {"data": data})
+
+
 def download(request):
     return render(request, "personal/download.html")
 
@@ -50,11 +64,6 @@ def peers(request):
     peer_list = models.peer_list.objects.all()
     peer_locations = []
 
-    # ['Bondi Beach', -33.890542, 151.274856, 4],
-    # ['Coogee Beach', -33.923036, 151.259052, 5],
-    # ['Cronulla Beach', -34.028249, 151.157507, 3],
-    # ['Manly Beach', -33.80010128657071, 151.28747820854187, 2],
-    # ['Maroubra Beach', -33.950198, 151.259302, 1]
     for i in peer_list:
         peer_locations.append([str(i.ip_address) + ":" + str(i.port), str(i.location_lat), str(i.location_long)])
 
@@ -98,6 +107,7 @@ def violations(request):
         p = request.GET.get('p')
         # print(p)
         p_obj = models.plates.objects.filter(plate=p).first()
+        # TODO : bugged if multiple same plates, cannot use first()
         v_obj = violations_obj.filter(plate1=p_obj).first()
 
         mes = social.post_to_twitter(

@@ -1,0 +1,61 @@
+{% extends "personal/base.html" %}
+{% load bootstrap3 %}
+
+{% block head_title %}
+My Profile - EE4-FYP
+{% endblock %}
+
+{% block set_navbar_active %}
+<script>
+    $(document).ready(function () {
+        $(".nav li").removeClass("active");
+        $(".nav li#profile").addClass("active");//this will remove the active class from
+        //previously active menu item
+    });
+</script>
+{% endblock %}
+
+{% block jumbotron %}
+    <div class="jumbotron"
+         style="
+                height: 25em;
+                padding-top: 5em;
+                margin-bottom: 1em;
+                {% if registered %}
+                    background-image: url('/media/img/jumbotron_on2.jpg');
+                {% else %}
+                    background-image: url('/media/img/jumbotron_off2.jpg');
+                {% endif %}
+                background-size: cover;
+                color: #ffffff;
+                text-align: center;
+                ">
+        <div class="container">
+            <h1>My Profile</h1>
+            <p>View your settings</p>
+            <br/>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+
+    {% bootstrap_messages %}
+
+    <h1>Static Settings</h1>
+    <br/>
+
+    <p><strong>Bootstrap server address</strong>: {{ data.bootstrap_url }}</p>
+
+    <p><strong>IP address</strong>: {{ data.ip_address }}</p>
+    <p><strong>Port</strong>: {{ data.port }}</p>
+
+    <p><strong>Google Maps API key</strong>: {{ data.gmaps_key }}</p>
+
+    <p><strong>Twitter consumer key</strong>: {{ data.twitter_consumer_key }}</p>
+    <p><strong>Twitter consumer secret</strong>: {{ data.twitter_consumer_secret }}</p>
+    <p><strong>Twitter access token key</strong>: {{ data.twitter_access_token_key }}</p>
+    <p><strong>Twitter access token secret</strong>: {{ data.twitter_access_token_secret }}</p>
+
+
+{% endblock %}
