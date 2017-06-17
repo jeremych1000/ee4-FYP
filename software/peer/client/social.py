@@ -3,7 +3,7 @@ from django.conf import settings
 import twitter, json, googlemaps
 
 
-def post_to_twitter(location1, location2, speed, pic_url, pic_url2):
+def post_to_twitter(plate, location1, location2, speed, pic_url, pic_url2):
     api = twitter.Api(
         consumer_key='aUe3p3vkiih5tVoOr9NwQfklw',
         consumer_secret='hlsGz9o8ZlUtUrRM5PVUlgWXCur1Fr54KUkJ4qRoZAEqIC4kYt',
@@ -15,7 +15,7 @@ def post_to_twitter(location1, location2, speed, pic_url, pic_url2):
     # lo1 = gmaps.reverse_geocode(latlng=(51.499691, -0.179612))[0]["formatted_address"]
     # lo2 = gmaps.reverse_geocode(latlng=(51.399691, -0.179612))[0]["formatted_address"]
 
-    status = "Speeding car detected using EE4-DRTSM between (" \
+    status = "Speeding car (" + plate + ") detected between (" \
              + str(location1[0]) + "," + str(location1[1]) \
              + ") and (" + str(location2[0]) + "," + str(location2[1]) \
              + "), doing " + str(speed) + " mph, evidence attached."
