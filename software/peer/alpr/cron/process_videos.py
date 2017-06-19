@@ -6,6 +6,7 @@ from django.core.exceptions import *
 
 import requests, datetime, os, itertools, re
 from multiprocessing.dummy import Pool
+#from multiprocessing import Pool
 
 from alpr import models
 from alpr.split_video import *
@@ -30,7 +31,7 @@ class Process_Videos(CronJobBase):
     def do(self):
         main_start = datetime.datetime.now()
         del_folder_on_end = False
-        alpr_method = 2  # 1 - serial, 2 - parallel slow, 3 - parallel fast (UNSTABLE! and not really that fast lol)
+        alpr_method = 1  # 1 - serial, 2 - parallel slow, 3 - parallel fast (UNSTABLE! and not really that fast lol)
 
         try:
             filelist = models.videos.objects.all().filter(processed=False).order_by('filename')
@@ -59,7 +60,7 @@ class Process_Videos(CronJobBase):
                 os_filelist = natural_sort(os.listdir(head + video_name))
                 filelist = [head + video_name + "/" + file for file in os_filelist]
                 num_files = len(filelist)
-                print(num_files, " files detected")
+                print(num_files, " images detected")
 
                 start = datetime.datetime.now()
 

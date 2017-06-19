@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     # django facebook api
     #'django_facebook',
 
+    'django_extensions',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
