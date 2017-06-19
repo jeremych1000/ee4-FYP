@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     # bootstrap
     'bootstrap3',
     
+    'django_extensions',
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
