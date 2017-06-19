@@ -4,6 +4,7 @@ sudo apt-get -y install liblog4cplus-dev libcurl3-dev
 # If using the daemon, install beanstalkd
 sudo apt-get -y install beanstalkd
 
+cd ~
 # Clone the latest code from GitHub
 git clone https://github.com/openalpr/openalpr.git
 
