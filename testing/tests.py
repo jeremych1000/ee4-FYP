@@ -143,8 +143,8 @@ def get_plates_slow(input):
     #print("ALPR: ", prewarp, type(prewarp))
 
     alpr = Alpr(region, \
-                "/home/pi/ee4-FYP/testing/openalpr.conf", \
-                "/home/pi/ee4-FYP/testing/openalpr/runtime_data/")
+                "/home/jeremych/ee4-FYP/testing/openalpr.conf", \
+                "/home/jeremych/ee4-FYP/testing/openalpr/runtime_data/")
 
     if not alpr.is_loaded():
         print("Error loading OpenALPR")
