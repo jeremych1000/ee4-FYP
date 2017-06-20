@@ -5,7 +5,7 @@ from operator import itemgetter
 
 import sys, platform, random, os, datetime
 try:
-    #sys.path.append('/home/jeremych/openalpr/src/bindings/python')
+    sys.path.append('/home/jeremych/openalpr/src/bindings/python')
     sys.path.append('/usr/local/lib/python3.5/dist-packages/openalpr')
     from openalpr import Alpr
 except IOError:
@@ -143,8 +143,8 @@ def get_plates_slow(input):
     #print("ALPR: ", prewarp, type(prewarp))
 
     alpr = Alpr(region, \
-                "/home/jeremych/ee4-FYP/testing/openalpr.conf", \
-                "/home/jeremych/ee4-FYP/testing/openalpr/runtime_data/")
+                "/home/pi/ee4-FYP/testing/openalpr.conf", \
+                "/home/pi/ee4-FYP/testing/openalpr/runtime_data/")
 
     if not alpr.is_loaded():
         print("Error loading OpenALPR")

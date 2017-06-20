@@ -6,6 +6,7 @@ import argparse
 parser = argparse.ArgumentParser()
 parser.add_argument("filename")
 args = parser.parse_args()
+print("input is ", args.filename)
 
 if args:
     with open(args.filename) as f:

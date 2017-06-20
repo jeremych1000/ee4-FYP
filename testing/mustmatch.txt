@@ -1,0 +1,346 @@
+input is  /home/pi/ee4-FYP/testing/peer_plates.txt
+---
+['/home/pi/test_videos/highstken/VID_20170619_161250.mp4', '/home/pi/test_videos/highstken/VID_20170619_161013.mp4', '/home/pi/test_videos/highstken/VID_20170619_161129.mp4', '/home/pi/test_videos/highstken/VID_20170619_161412.mp4']
+
+---
+ 0 / 1
+Processing  /home/pi/test_videos/highstken/VID_20170619_161250.mp4
+Begin split
+Attempting to open  /home/pi/test_videos/highstken/VID_20170619_161250.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  976.0
+196  images detected
+Using parallel slow method
+....................................................................................................................................................................................................
+ 196  raw results received from ALPR
+Took  0:02:34.014695
+FPS:  1.27
+5  unique cars detected
+
+---
+Total took  0:02:35.281380
+From ALPR: 
+['LB54OSF', 'LT16OVP', 'LO16UDL', 'YP10SEY', 'RX05KCK']
+From manual extraction: 
+[ 'JK58CAB',
+  'YK58STZ',
+  'LB54OSF',
+  'LT160VP',
+  'BL16KWS',
+  'Y278HGJ',
+  'W928XJN',
+  'LO16UDL',
+  'LN66ONF',
+  'YP10SEY',
+  'Y57TLB',
+  'SN64OFL',
+  'LR65KJV',
+  'RX05KLK']
+--EXACT MATCH---
+Correct ( 3 ):  ['LB54OSF', 'LO16UDL', 'YP10SEY']
+Misesd ( 11 ):  ['JK58CAB', 'YK58STZ', 'LT160VP', 'BL16KWS', 'Y278HGJ', 'W928XJN', 'LN66ONF', 'Y57TLB', 'SN64OFL', 'LR65KJV', 'RX05KLK']
+Stats:  21.43 %
+--FUZZY MATCH---
+Correct ( 5 ):  ['LB54OSF', 'LT160VP', 'LO16UDL', 'YP10SEY', 'RX05KLK']
+Misesd ( 9 ):  ['JK58CAB', 'YK58STZ', 'BL16KWS', 'Y278HGJ', 'W928XJN', 'LN66ONF', 'Y57TLB', 'SN64OFL', 'LR65KJV']
+Stats:  35.71 %
+
+---
+ 0 / 1
+Processing  /home/pi/test_videos/highstken/VID_20170619_161013.mp4
+Begin split
+Attempting to open  /home/pi/test_videos/highstken/VID_20170619_161013.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1193.0
+239  images detected
+Using parallel slow method
+...............................................................................................................................................................................................................................................
+ 239  raw results received from ALPR
+Took  0:03:09.356560
+FPS:  1.26
+6  unique cars detected
+
+---
+Total took  0:03:10.354340
+From ALPR: 
+['RK64UWN', 'FG10RLV', 'LJ08KNU', 'CK55WCL', 'YT65NNW', 'LP60BZX']
+From manual extraction: 
+[ 'RK64UWN',
+  'KW17DPN',
+  'LJ08KNU',
+  'RO63YLK',
+  'KW65TWA',
+  'NK14XHG',
+  'KM13WZB',
+  'LC13UYS',
+  'CK55WCL',
+  'BU16UXB',
+  'YT65NNW',
+  'LP60BZX']
+--EXACT MATCH---
+Correct ( 5 ):  ['RK64UWN', 'LJ08KNU', 'CK55WCL', 'YT65NNW', 'LP60BZX']
+Misesd ( 7 ):  ['KW17DPN', 'RO63YLK', 'KW65TWA', 'NK14XHG', 'KM13WZB', 'LC13UYS', 'BU16UXB']
+Stats:  41.67 %
+--FUZZY MATCH---
+Correct ( 5 ):  ['RK64UWN', 'LJ08KNU', 'CK55WCL', 'YT65NNW', 'LP60BZX']
+Misesd ( 7 ):  ['KW17DPN', 'RO63YLK', 'KW65TWA', 'NK14XHG', 'KM13WZB', 'LC13UYS', 'BU16UXB']
+Stats:  41.67 %
+
+---
+ 0 / 1
+Processing  /home/pi/test_videos/highstken/VID_20170619_161129.mp4
+Begin split
+Attempting to open  /home/pi/test_videos/highstken/VID_20170619_161129.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1065.0
+213  images detected
+Using parallel slow method
+.....................................................................................................................................................................................................................
+ 213  raw results received from ALPR
+Took  0:03:18.578889
+FPS:  1.07
+9  unique cars detected
+
+---
+Total took  0:03:19.704305
+From ALPR: 
+[ 'KR16TDD',
+  'OU05SYF',
+  'YX12AEU',
+  'LM61BVZ',
+  'KD06PZB',
+  'MF52CVE',
+  'BU16UXH',
+  'LC63FPP',
+  'AK55NKN']
+From manual extraction: 
+[ 'KR16TDO',
+  'OU05SYF',
+  'YX12AEU',
+  'LM61BVZ',
+  'KN11MLL',
+  'KD16PZB',
+  'MF52CVE',
+  'BU16UXH',
+  'LL63VOF',
+  'LC63FPP',
+  'AK55NKN']
+--EXACT MATCH---
+Correct ( 7 ):  ['OU05SYF', 'YX12AEU', 'LM61BVZ', 'MF52CVE', 'BU16UXH', 'LC63FPP', 'AK55NKN']
+Misesd ( 4 ):  ['KR16TDO', 'KN11MLL', 'KD16PZB', 'LL63VOF']
+Stats:  63.64 %
+--FUZZY MATCH---
+Correct ( 9 ):  ['KR16TDO', 'OU05SYF', 'YX12AEU', 'LM61BVZ', 'KD16PZB', 'MF52CVE', 'BU16UXH', 'LC63FPP', 'AK55NKN']
+Misesd ( 2 ):  ['KN11MLL', 'LL63VOF']
+Stats:  81.82 %
+
+---
+ 0 / 1
+Processing  /home/pi/test_videos/highstken/VID_20170619_161412.mp4
+Begin split
+Attempting to open  /home/pi/test_videos/highstken/VID_20170619_161412.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1157.0
+232  images detected
+Using parallel slow method
+........................................................................................................................................................................................................................................
+ 232  raw results received from ALPR
+Took  0:05:33.804993
+FPS:  0.7
+15  unique cars detected
+
+---
+Total took  0:05:36.525657
+From ALPR: 
+[ 'LT56XEN',
+  'LR12BWN',
+  'DX64TXH',
+  'LN04ZVA',
+  'KM14TYY',
+  'LP61LKV',
+  'WV16ZCJ',
+  'LT15NYX',
+  'YG58HFU',
+  'MX63XAE',
+  'BC16UXE',
+  'LM13ZPX',
+  'KY09JOV',
+  'EJ16HXX',
+  'LTZ1077']
+From manual extraction: 
+[ 'OY62OTH',
+  'LT56XEN',
+  'BX66HHO',
+  'LR12BWN',
+  'DX64TXW',
+  'LN14ZVA',
+  'KM14TYY',
+  'LP61LKV',
+  'WV16ZCJ',
+  'LT15NTX',
+  'YG58HFU',
+  'MX63XAE',
+  'BC16UXE',
+  'LM13ZPX',
+  'KY09JOV',
+  'EJ16HXX',
+  'LTZ1077']
+--EXACT MATCH---
+Correct ( 12 ):  ['LT56XEN', 'LR12BWN', 'KM14TYY', 'LP61LKV', 'WV16ZCJ', 'YG58HFU', 'MX63XAE', 'BC16UXE', 'LM13ZPX', 'KY09JOV', 'EJ16HXX', 'LTZ1077']
+Misesd ( 5 ):  ['OY62OTH', 'BX66HHO', 'DX64TXW', 'LN14ZVA', 'LT15NTX']
+Stats:  70.59 %
+--FUZZY MATCH---
+Correct ( 15 ):  ['LT56XEN', 'LR12BWN', 'DX64TXW', 'LN14ZVA', 'KM14TYY', 'LP61LKV', 'WV16ZCJ', 'LT15NTX', 'YG58HFU', 'MX63XAE', 'BC16UXE', 'LM13ZPX', 'KY09JOV', 'EJ16HXX', 'LTZ1077']
+Misesd ( 2 ):  ['OY62OTH', 'BX66HHO']
+Stats:  88.24 %
+
+ ------- 
+
+Overall Stats
+exact:  49.33
+fuzzy:  61.86
+fps:  1.08
+
+ ------- 
+
+for debug: 
+[ [ ( 'LB54OSF',
+      84.602287,
+      datetime.datetime(2017, 6, 19, 16, 12, 55, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161250/20170619_161255_600000.png'),
+    ( 'LT16OVP',
+      85.716087,
+      datetime.datetime(2017, 6, 19, 16, 12, 57, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161250/20170619_161257_200000.png'),
+    ( 'LO16UDL',
+      86.718185,
+      datetime.datetime(2017, 6, 19, 16, 13, 8),
+      '/home/pi/test_videos/highstken/VID_20170619_161250/20170619_161308_000000.png'),
+    ( 'YP10SEY',
+      85.212212,
+      datetime.datetime(2017, 6, 19, 16, 13, 12, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161250/20170619_161312_200000.png'),
+    ( 'RX05KCK',
+      86.798935,
+      datetime.datetime(2017, 6, 19, 16, 13, 26, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161250/20170619_161326_400000.png')],
+  [ ( 'RK64UWN',
+      81.53096,
+      datetime.datetime(2017, 6, 19, 16, 10, 13, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161013/20170619_161013_200000.png'),
+    ( 'FG10RLV',
+      79.815933,
+      datetime.datetime(2017, 6, 19, 16, 10, 19, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161013/20170619_161019_600000.png'),
+    ( 'LJ08KNU',
+      83.008598,
+      datetime.datetime(2017, 6, 19, 16, 10, 22, 400000),
+      '/home/pi/test_videos/highstken/VID_20170619_161013/20170619_161022_400000.png'),
+    ( 'CK55WCL',
+      87.88295,
+      datetime.datetime(2017, 6, 19, 16, 10, 44, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161013/20170619_161044_600000.png'),
+    ( 'YT65NNW',
+      82.192795,
+      datetime.datetime(2017, 6, 19, 16, 10, 55, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161013/20170619_161055_200000.png'),
+    ( 'LP60BZX',
+      82.932388,
+      datetime.datetime(2017, 6, 19, 16, 11, 0, 400000),
+      '/home/pi/test_videos/highstken/VID_20170619_161013/20170619_161100_800000.png')],
+  [ ( 'KR16TDD',
+      80.4403,
+      datetime.datetime(2017, 6, 19, 16, 11, 33, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161133_600000.png'),
+    ( 'OU05SYF',
+      83.818886,
+      datetime.datetime(2017, 6, 19, 16, 11, 37, 800000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161137_800000.png'),
+    ( 'YX12AEU',
+      86.248062,
+      datetime.datetime(2017, 6, 19, 16, 11, 41, 400000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161141_400000.png'),
+    ( 'LM61BVZ',
+      85.455956,
+      datetime.datetime(2017, 6, 19, 16, 11, 44, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161144_600000.png'),
+    ( 'KD06PZB',
+      85.730446,
+      datetime.datetime(2017, 6, 19, 16, 11, 50, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161150_200000.png'),
+    ( 'MF52CVE',
+      88.104027,
+      datetime.datetime(2017, 6, 19, 16, 11, 52, 400000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161152_600000.png'),
+    ( 'BU16UXH',
+      85.431206,
+      datetime.datetime(2017, 6, 19, 16, 11, 56, 800000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161156_800000.png'),
+    ( 'LC63FPP',
+      87.990738,
+      datetime.datetime(2017, 6, 19, 16, 11, 59),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161208_200000.png'),
+    ( 'AK55NKN',
+      87.862617,
+      datetime.datetime(2017, 6, 19, 16, 12, 10, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161129/20170619_161210_600000.png')],
+  [ ( 'LT56XEN',
+      88.160034,
+      datetime.datetime(2017, 6, 19, 16, 14, 16, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161416_600000.png'),
+    ( 'LR12BWN',
+      85.979721,
+      datetime.datetime(2017, 6, 19, 16, 14, 21, 800000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161422_000000.png'),
+    ( 'DX64TXH',
+      85.944839,
+      datetime.datetime(2017, 6, 19, 16, 14, 24, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161425_400000.png'),
+    ( 'LN04ZVA',
+      84.160606,
+      datetime.datetime(2017, 6, 19, 16, 14, 27, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161428_000000.png'),
+    ( 'KM14TYY',
+      83.663536,
+      datetime.datetime(2017, 6, 19, 16, 14, 29, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161429_600000.png'),
+    ( 'LP61LKV',
+      85.842949,
+      datetime.datetime(2017, 6, 19, 16, 14, 31, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161431_600000.png'),
+    ( 'WV16ZCJ',
+      84.15181,
+      datetime.datetime(2017, 6, 19, 16, 14, 33, 400000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161433_800000.png'),
+    ( 'LT15NYX',
+      86.849739,
+      datetime.datetime(2017, 6, 19, 16, 14, 35, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161436_600000.png'),
+    ( 'YG58HFU',
+      87.104179,
+      datetime.datetime(2017, 6, 19, 16, 14, 39, 800000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161441_000000.png'),
+    ( 'MX63XAE',
+      86.937988,
+      datetime.datetime(2017, 6, 19, 16, 14, 42, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161442_800000.png'),
+    ( 'BC16UXE',
+      88.127441,
+      datetime.datetime(2017, 6, 19, 16, 14, 44, 200000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161444_600000.png'),
+    ( 'LM13ZPX',
+      85.481087,
+      datetime.datetime(2017, 6, 19, 16, 14, 47, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161448_600000.png'),
+    ( 'KY09JOV',
+      89.430786,
+      datetime.datetime(2017, 6, 19, 16, 14, 51),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161451_000000.png'),
+    ( 'EJ16HXX',
+      88.543465,
+      datetime.datetime(2017, 6, 19, 16, 14, 53, 600000),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161454_400000.png'),
+    ( 'LTZ1077',
+      85.456795,
+      datetime.datetime(2017, 6, 19, 16, 14, 57),
+      '/home/pi/test_videos/highstken/VID_20170619_161412/20170619_161458_000000.png')]]
