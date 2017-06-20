@@ -59,7 +59,7 @@ def get_plates_slow(input):
                     "C:/Users/Jeremy/Documents/GitHub/openalpr/windows/build/dist/2.2.0/v120/Release/x64/runtime_data")
     else:  # raspian
         # print("Not Windows")
-        alpr = Alpr(region, "/home/pi/ee4-FYP/software/peer/alpr/openalpr/openalpr.conf", "/usr/share/openalpr/runtime_data/")
+        alpr = Alpr(region, "/home/pi/ee4-FYP/software/peer/alpr/openalpr/openalpr.conf", "/home/pi/ee4-FYP/software/peer/alpr/openalpr/runtime_data/")
 
     if not alpr.is_loaded():
         print("Error loading OpenALPR")

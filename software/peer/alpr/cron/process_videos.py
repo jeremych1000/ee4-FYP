@@ -31,7 +31,7 @@ class Process_Videos(CronJobBase):
     def do(self):
         main_start = datetime.datetime.now()
         del_folder_on_end = False
-        alpr_method = 1  # 1 - serial, 2 - parallel slow, 3 - parallel fast (UNSTABLE! and not really that fast lol)
+        alpr_method = 2  # 1 - serial, 2 - parallel slow, 3 - parallel fast (UNSTABLE! and not really that fast lol)
 
         try:
             filelist = models.videos.objects.all().filter(processed=False).order_by('filename')

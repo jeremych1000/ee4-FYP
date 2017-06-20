@@ -37,24 +37,23 @@
         <entry file="file://$PROJECT_DIR$/peer/settings.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1037">
-              <caret line="265" column="49" lean-forward="false" selection-start-line="265" selection-start-column="49" selection-end-line="265" selection-end-column="49" />
+              <caret line="265" column="50" lean-forward="false" selection-start-line="265" selection-start-column="50" selection-end-line="265" selection-end-column="50" />
               <folding>
-                <marker date="1497907172000" expanded="true" signature="1013:1509" ph="..." />
-                <marker date="1497907172000" expanded="true" signature="2257:2720" ph="..." />
-                <marker date="1497907172000" expanded="true" signature="4807:4906" ph="..." />
+                <marker date="1497925599000" expanded="true" signature="2257:2720" ph="..." />
+                <marker date="1497925599000" expanded="true" signature="4807:4906" ph="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="process_videos.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="process_videos.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/alpr/cron/process_videos.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="37" column="23" lean-forward="false" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
+            <state relative-caret-position="306">
+              <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
               <folding>
-                <marker date="1497907172000" expanded="true" signature="832:5992" ph="..." />
-                <marker date="1497907172000" expanded="true" signature="965:5992" ph="..." />
+                <marker date="1497925826000" expanded="true" signature="832:5992" ph="..." />
+                <marker date="1497925826000" expanded="true" signature="965:5992" ph="..." />
               </folding>
             </state>
           </provider>
@@ -83,21 +82,11 @@
       <file leaf-file-name="get_alpr.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/alpr/get_alpr.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-225">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="775">
+              <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
               <folding>
-                <marker date="1497215827000" expanded="true" signature="1800:2708" ph="..." />
+                <marker date="1497925760000" expanded="true" signature="1800:2733" ph="..." />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/client/views.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="333">
-              <caret line="182" column="28" lean-forward="false" selection-start-line="182" selection-start-column="28" selection-end-line="182" selection-end-column="28" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -122,11 +111,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="base.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/personal/templates/personal/base.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="854">
-              <caret line="225" column="0" lean-forward="true" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+              <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="import_videos.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/alpr/cron/import_videos.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -155,12 +154,14 @@
       <find>Sleepify</find>
       <find>&quot;http://&quot;+str(peer_obj.ip_address)+&quot;/&quot;+str(peer_obj.port)+&quot;/alpr&quot;+j[&quot;img_path&quot;]</find>
       <find>+str(len(b))+&quot;</find>
+      <find>ALPR_VIDEO_PATH</find>
     </findStrings>
     <replaceStrings>
       <replace>status</replace>
       <replace>request.body</replace>
       <replace>tables.Column()</replace>
       <replace>jeremych</replace>
+      <replace>+str(len(b))+&quot;</replace>
       <replace>+str(len(b))+&quot;</replace>
     </replaceStrings>
   </component>
@@ -184,7 +185,6 @@
         <option value="$PROJECT_DIR$/alpr/cron/process_videops.py" />
         <option value="$PROJECT_DIR$/alpr/cron/import_videos.py" />
         <option value="$PROJECT_DIR$/client/cron/violations_test.py" />
-        <option value="$PROJECT_DIR$/alpr/get_alpr.py" />
         <option value="$PROJECT_DIR$/alpr/process_results.py" />
         <option value="$PROJECT_DIR$/client/cron/modify_trust.py" />
         <option value="$PROJECT_DIR$/client/encrypt.py" />
@@ -215,10 +215,11 @@
         <option value="$PROJECT_DIR$/personal/templates/personal/about.html" />
         <option value="$PROJECT_DIR$/personal/templates/personal/home.html" />
         <option value="$PROJECT_DIR$/alpr/models.py" />
-        <option value="$PROJECT_DIR$/peer/settings.py" />
         <option value="$PROJECT_DIR$/alpr/openalpr/openalpr.conf" />
-        <option value="$PROJECT_DIR$/alpr/cron/process_videos.py" />
         <option value="$PROJECT_DIR$/personal/templates/personal/base.html" />
+        <option value="$PROJECT_DIR$/peer/settings.py" />
+        <option value="$PROJECT_DIR$/alpr/get_alpr.py" />
+        <option value="$PROJECT_DIR$/alpr/cron/process_videos.py" />
       </list>
     </option>
   </component>
@@ -724,7 +725,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="2552" y="-287" width="1216" height="1896" extended-state="1" />
+    <frame x="2552" y="-287" width="1216" height="1896" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2025" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -854,13 +855,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="9" lean-forward="false" selection-start-line="2" selection-start-column="9" selection-end-line="2" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alpr/cron/import_videos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="29" column="34" lean-forward="true" selection-start-line="29" selection-start-column="34" selection-end-line="29" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -1120,44 +1114,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/alpr/get_alpr.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-225">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1497215827000" expanded="true" signature="1800:2708" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/peer/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="265" column="49" lean-forward="false" selection-start-line="265" selection-start-column="49" selection-end-line="265" selection-end-column="49" />
-          <folding>
-            <marker date="1497907172000" expanded="true" signature="1013:1509" ph="..." />
-            <marker date="1497907172000" expanded="true" signature="2257:2720" ph="..." />
-            <marker date="1497907172000" expanded="true" signature="4807:4906" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/alpr/openalpr/openalpr.conf">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/alpr/cron/process_videos.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="37" column="23" lean-forward="false" selection-start-line="37" selection-start-column="23" selection-end-line="37" selection-end-column="23" />
-          <folding>
-            <marker date="1497907172000" expanded="true" signature="832:5992" ph="..." />
-            <marker date="1497907172000" expanded="true" signature="965:5992" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1172,8 +1133,48 @@
     <entry file="file://$PROJECT_DIR$/personal/templates/personal/base.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="854">
-          <caret line="225" column="0" lean-forward="true" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpr/cron/import_videos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="17" column="42" lean-forward="false" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/peer/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1037">
+          <caret line="265" column="50" lean-forward="false" selection-start-line="265" selection-start-column="50" selection-end-line="265" selection-end-column="50" />
+          <folding>
+            <marker date="1497925599000" expanded="true" signature="2257:2720" ph="..." />
+            <marker date="1497925599000" expanded="true" signature="4807:4906" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpr/get_alpr.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="775">
+          <caret line="58" column="40" lean-forward="false" selection-start-line="58" selection-start-column="40" selection-end-line="58" selection-end-column="40" />
+          <folding>
+            <marker date="1497925760000" expanded="true" signature="1800:2733" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/alpr/cron/process_videos.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="33" column="23" lean-forward="false" selection-start-line="33" selection-start-column="23" selection-end-line="33" selection-end-column="23" />
+          <folding>
+            <marker date="1497925826000" expanded="true" signature="832:5992" ph="..." />
+            <marker date="1497925826000" expanded="true" signature="965:5992" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
