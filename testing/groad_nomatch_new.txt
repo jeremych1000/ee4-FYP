@@ -1,0 +1,1277 @@
+input is  /home/jeremych/ee4-FYP/testing/plates.txt
+---
+['/mnt/hgfs/test_videos/highstken/VID_20170619_161250.mp4', '/mnt/hgfs/test_videos/highstken/VID_20170619_161013.mp4', '/mnt/hgfs/test_videos/highstken/VID_20170619_161129.mp4', '/mnt/hgfs/test_videos/highstken/VID_20170619_161412.mp4', '/mnt/hgfs/test_videos/groad/jVID_20170620_141200.mp4', '/mnt/hgfs/test_videos/groad/VID_20170620_141149.mp4', '/mnt/hgfs/test_videos/groad/VID_20170620_141256.mp4', '/mnt/hgfs/test_videos/groad/jVID_20170620_142400.mp4', '/mnt/hgfs/test_videos/groad/VID_20170620_142434.mp4']
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161250.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161250.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  976.0
+163  images detected
+Using parallel slow method
+...................................................................................................................................................................
+ 163  raw results received from ALPR
+Took  0:00:12.482391
+FPS:  13.06
+12  unique cars detected
+
+---
+Total took  0:00:12.530093
+From ALPR: 
+[ 'YK58STZ',
+  'L8540',
+  'LT160VP',
+  'BL16S',
+  'Y278HGJ',
+  'W928XJN',
+  'L016UDL',
+  'LN660NF',
+  'YP10SE',
+  'Y5TL8',
+  'SN640FL',
+  'RX05KCK']
+From manual extraction: 
+[ 'JK58CAB',
+  'YK58STZ',
+  'LB54OSF',
+  'LT160VP',
+  'BL16KWS',
+  'Y278HGJ',
+  'W928XJN',
+  'LO16UDL',
+  'LN66ONF',
+  'YP10SEY',
+  'Y57TLB',
+  'SN64OFL',
+  'LR65KJV',
+  'RX05KLK']
+--EXACT MATCH---
+Correct ( 4 ):  ['YK58STZ', 'LT160VP', 'Y278HGJ', 'W928XJN']
+Misesd ( 10 ):  ['JK58CAB', 'LB54OSF', 'BL16KWS', 'LO16UDL', 'LN66ONF', 'YP10SEY', 'Y57TLB', 'SN64OFL', 'LR65KJV', 'RX05KLK']
+Extra ( 0 ):  []
+Stats:  28.57 %
+--FUZZY MATCH---
+Correct ( 9 ):  ['YK58STZ', 'LT160VP', 'Y278HGJ', 'W928XJN', 'LO16UDL', 'LN66ONF', 'YP10SEY', 'SN64OFL', 'RX05KLK']
+Misesd ( 5 ):  ['JK58CAB', 'LB54OSF', 'BL16KWS', 'Y57TLB', 'LR65KJV']
+Extra ( 8 ):  ['SN640FL', 'LN660NF', 'BL16S', 'Y5TL8', 'YP10SE', 'L8540', 'L016UDL', 'RX05KCK']
+Stats:  64.29 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161013.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161013.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1193.0
+239  images detected
+Using parallel slow method
+...............................................................................................................................................................................................................................................
+ 239  raw results received from ALPR
+Took  0:00:15.645218
+FPS:  15.28
+17  unique cars detected
+
+---
+Total took  0:00:15.703682
+From ALPR: 
+[ 'RK6UWN',
+  'K7DPN',
+  'FG1RLV',
+  'LJ08K0',
+  'R063CK',
+  'KW65TWA',
+  'NKXHG',
+  'HH13ELC',
+  'LF650NC',
+  'CK55WCL',
+  '6U16UXB',
+  'USSHU',
+  'YT65NNW',
+  'PU55HU',
+  '5HUTTLE',
+  'YT65NN',
+  'LP60BZX']
+From manual extraction: 
+[ 'RK64UWN',
+  'KW17DPN',
+  'LJ08KNU',
+  'RO63YLK',
+  'KW65TWA',
+  'NK14XHG',
+  'KM13WZB',
+  'LC13UYS',
+  'CK55WCL',
+  'BU16UXB',
+  'YT65NNW',
+  'LP60BZX']
+--EXACT MATCH---
+Correct ( 4 ):  ['KW65TWA', 'CK55WCL', 'YT65NNW', 'LP60BZX']
+Misesd ( 8 ):  ['RK64UWN', 'KW17DPN', 'LJ08KNU', 'RO63YLK', 'NK14XHG', 'KM13WZB', 'LC13UYS', 'BU16UXB']
+Extra ( 0 ):  []
+Stats:  33.33 %
+--FUZZY MATCH---
+Correct ( 6 ):  ['RK64UWN', 'KW65TWA', 'CK55WCL', 'BU16UXB', 'YT65NNW', 'LP60BZX']
+Misesd ( 6 ):  ['KW17DPN', 'LJ08KNU', 'RO63YLK', 'NK14XHG', 'KM13WZB', 'LC13UYS']
+Extra ( 13 ):  ['FG1RLV', 'USSHU', '5HUTTLE', 'YT65NN', 'PU55HU', '6U16UXB', 'R063CK', 'HH13ELC', 'K7DPN', 'LJ08K0', 'RK6UWN', 'LF650NC', 'NKXHG']
+Stats:  50.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161129.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161129.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1065.0
+178  images detected
+Using parallel slow method
+..................................................................................................................................................................................
+ 178  raw results received from ALPR
+Took  0:00:12.278675
+FPS:  14.5
+17  unique cars detected
+
+---
+Total took  0:00:12.327665
+From ALPR: 
+[ 'KR16TD0',
+  'OU05SYF',
+  'YX12AEU',
+  'LM61BVZ',
+  'KD6PZB',
+  'MF52CVE',
+  'BU16UXH',
+  'LL63V0F',
+  '190U9',
+  'LERAF02',
+  '10498',
+  '1S910',
+  'LERAF02',
+  '049800',
+  'LERA02',
+  'LC63FPP',
+  'AK55NKN']
+From manual extraction: 
+[ 'KR16TDO',
+  'OU05SYF',
+  'YX12AEU',
+  'LM61BVZ',
+  'KN11MLL',
+  'KD16PZB',
+  'MF52CVE',
+  'BU16UXH',
+  'LL63VOF',
+  'LC63FPP',
+  'AK55NKN']
+--EXACT MATCH---
+Correct ( 7 ):  ['OU05SYF', 'YX12AEU', 'LM61BVZ', 'MF52CVE', 'BU16UXH', 'LC63FPP', 'AK55NKN']
+Misesd ( 4 ):  ['KR16TDO', 'KN11MLL', 'KD16PZB', 'LL63VOF']
+Extra ( 0 ):  []
+Stats:  63.64 %
+--FUZZY MATCH---
+Correct ( 10 ):  ['KR16TDO', 'OU05SYF', 'YX12AEU', 'LM61BVZ', 'KD16PZB', 'MF52CVE', 'BU16UXH', 'LL63VOF', 'LC63FPP', 'AK55NKN']
+Misesd ( 1 ):  ['KN11MLL']
+Extra ( 9 ):  ['KD6PZB', 'LL63V0F', 'KR16TD0', 'LERAF02', '049800', '190U9', '1S910', 'LERA02', '10498']
+Stats:  90.91 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161412.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161412.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1157.0
+232  images detected
+Using parallel slow method
+........................................................................................................................................................................................................................................
+ 232  raw results received from ALPR
+Took  0:00:25.452950
+FPS:  9.11
+17  unique cars detected
+
+---
+Total took  0:00:25.543200
+From ALPR: 
+[ '0Y620TH',
+  'LT56XEN',
+  'BX66HH0',
+  'LR12BWN',
+  'DX64TXW',
+  'LN04ZVA',
+  'KM4TYY',
+  'LP61LKV',
+  'WV6ZCJ',
+  'LT15NYX',
+  'YG58HF',
+  'HX63XAE',
+  'BC16UXE',
+  'LM13ZPX',
+  'KY09J0V',
+  'EJ16HXX',
+  'LTZ1077']
+From manual extraction: 
+[ 'OY62OTH',
+  'LT56XEN',
+  'BX66HHO',
+  'LR12BWN',
+  'DX64TXW',
+  'LN14ZVA',
+  'KM14TYY',
+  'LP61LKV',
+  'WV16ZCJ',
+  'LT15NTX',
+  'YG58HFU',
+  'MX63XAE',
+  'BC16UXE',
+  'LM13ZPX',
+  'KY09JOV',
+  'EJ16HXX',
+  'LTZ1077']
+--EXACT MATCH---
+Correct ( 8 ):  ['LT56XEN', 'LR12BWN', 'DX64TXW', 'LP61LKV', 'BC16UXE', 'LM13ZPX', 'EJ16HXX', 'LTZ1077']
+Misesd ( 9 ):  ['OY62OTH', 'BX66HHO', 'LN14ZVA', 'KM14TYY', 'WV16ZCJ', 'LT15NTX', 'YG58HFU', 'MX63XAE', 'KY09JOV']
+Extra ( 0 ):  []
+Stats:  47.06 %
+--FUZZY MATCH---
+Correct ( 16 ):  ['LT56XEN', 'BX66HHO', 'LR12BWN', 'DX64TXW', 'LN14ZVA', 'KM14TYY', 'LP61LKV', 'WV16ZCJ', 'LT15NTX', 'YG58HFU', 'MX63XAE', 'BC16UXE', 'LM13ZPX', 'KY09JOV', 'EJ16HXX', 'LTZ1077']
+Misesd ( 1 ):  ['OY62OTH']
+Extra ( 9 ):  ['WV6ZCJ', 'LN04ZVA', 'HX63XAE', 'KY09J0V', 'LT15NYX', 'BX66HH0', 'KM4TYY', 'YG58HF', '0Y620TH']
+Stats:  94.12 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/jVID_20170620_141200.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/jVID_20170620_141200.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  5073.0
+846  images detected
+Using parallel slow method
+..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ 846  raw results received from ALPR
+Took  0:01:15.929321
+FPS:  11.14
+55  unique cars detected
+
+---
+Total took  0:01:16.190695
+From ALPR: 
+[ 'KR03PV',
+  'YR62G8U',
+  'Y0O9AWF',
+  'YR62G9U',
+  'YD09AWF',
+  'YR62G9U',
+  'GL105K0',
+  'YR62G8U',
+  'GL10SKD',
+  'YR62G8U',
+  'L860JFU',
+  'YR62G8U',
+  'LB60JFU',
+  'YR62G8U',
+  '20OD7',
+  'YR62G8U',
+  'LR17UAT',
+  'YR62G9U',
+  'LR7UA',
+  'YR62GU',
+  'LR17UAT',
+  'YR62G9U',
+  '23D45',
+  'YR62GBU',
+  '23D46',
+  'YR62GU',
+  '23D46',
+  'Y62GU',
+  '123D16',
+  'YR62G8U',
+  'LA03OPZ',
+  'YR62G8U',
+  'LA030PZ',
+  'YR62GU',
+  'LA030PZ',
+  'T889MUD',
+  'YR62G9U',
+  'GJ66XWD',
+  'YR62G9U',
+  'CE63CGX',
+  'YR62G8U',
+  '0GU9EY',
+  'Y62G6U',
+  '0NGPU9EY',
+  'WR66GZU',
+  '0NGPU9EY',
+  'WR66GZU',
+  'GONGU',
+  'R66GZU',
+  'LC13P0',
+  'YR62G9U',
+  'LR55HR0',
+  'YR62G9U',
+  'KD16VLH',
+  'YR62G8U']
+From manual extraction: 
+[ 'KR13PVW',
+  'YD09AWF',
+  'GL10SKD',
+  'LB60JFU',
+  'LR17UAT',
+  'LA03OPZ',
+  'GJ66XWD',
+  'CE63CGX',
+  'WR66GZU',
+  'LC13TPO',
+  'LR55HRO',
+  'KD16VLM']
+--EXACT MATCH---
+Correct ( 8 ):  ['YD09AWF', 'GL10SKD', 'LB60JFU', 'LR17UAT', 'LA03OPZ', 'GJ66XWD', 'CE63CGX', 'WR66GZU']
+Misesd ( 4 ):  ['KR13PVW', 'LC13TPO', 'LR55HRO', 'KD16VLM']
+Extra ( 0 ):  []
+Stats:  66.67 %
+--FUZZY MATCH---
+Correct ( 10 ):  ['YD09AWF', 'GL10SKD', 'LB60JFU', 'LR17UAT', 'LA03OPZ', 'GJ66XWD', 'CE63CGX', 'WR66GZU', 'LR55HRO', 'KD16VLM']
+Misesd ( 2 ):  ['KR13PVW', 'LC13TPO']
+Extra ( 24 ):  ['L860JFU', 'YR62GBU', '23D46', 'KD16VLH', 'YR62G8U', 'R66GZU', '23D45', 'LR7UA', '123D16', 'LA030PZ', 'GL105K0', 'GONGU', 'T889MUD', 'LC13P0', '0NGPU9EY', 'KR03PV', 'Y62G6U', 'YR62GU', 'Y62GU', 'YR62G9U', '0GU9EY', '20OD7', 'LR55HR0', 'Y0O9AWF']
+Stats:  83.33 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/VID_20170620_141149.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/VID_20170620_141149.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  5965.0
+498  images detected
+Using parallel slow method
+..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ 498  raw results received from ALPR
+Took  0:01:09.545355
+FPS:  7.16
+25  unique cars detected
+
+---
+Total took  0:01:09.751346
+From ALPR: 
+[ 'BX560MA',
+  'BX560',
+  'LC6KK0',
+  'LT06ZKH',
+  'KU580DK',
+  'LX6HXT',
+  'GF1MFV',
+  'LM08LX',
+  'GU08N',
+  'LP14GF',
+  'KR13PV',
+  'Y009AF',
+  'L1O5K',
+  'GL10SKD',
+  'LB60JFU',
+  '20007',
+  'LR17UA',
+  '88H00',
+  'B19H0',
+  'DK60YUX',
+  'LOKVA',
+  'LA030PZ',
+  'TH9MJD',
+  '989MUD',
+  'GJ66X0']
+From manual extraction: 
+[ 'BX56OMA',
+  'LC16KKO',
+  'LT06ZKH',
+  'KU58ODK',
+  'LX64HXT',
+  'GF14MFV',
+  'LM08LWX',
+  'GU08NVX',
+  'LP14GPK',
+  'KR13PVW',
+  'YD09AWF',
+  'GL10SKD',
+  'LB60JFU',
+  'LR17UAT',
+  'DK60YUX',
+  'LO14KVA',
+  'LA03OPZ',
+  'GJ66XWD']
+--EXACT MATCH---
+Correct ( 4 ):  ['LT06ZKH', 'GL10SKD', 'LB60JFU', 'DK60YUX']
+Misesd ( 14 ):  ['BX56OMA', 'LC16KKO', 'KU58ODK', 'LX64HXT', 'GF14MFV', 'LM08LWX', 'GU08NVX', 'LP14GPK', 'KR13PVW', 'YD09AWF', 'LR17UAT', 'LO14KVA', 'LA03OPZ', 'GJ66XWD']
+Extra ( 0 ):  []
+Stats:  22.22 %
+--FUZZY MATCH---
+Correct ( 12 ):  ['BX56OMA', 'LT06ZKH', 'KU58ODK', 'LX64HXT', 'GF14MFV', 'LM08LWX', 'KR13PVW', 'GL10SKD', 'LB60JFU', 'LR17UAT', 'DK60YUX', 'LA03OPZ']
+Misesd ( 6 ):  ['LC16KKO', 'GU08NVX', 'LP14GPK', 'YD09AWF', 'LO14KVA', 'GJ66XWD']
+Extra ( 21 ):  ['88H00', 'L1O5K', 'BX560', 'GU08N', 'B19H0', 'LR17UA', '989MUD', 'GF1MFV', 'LM08LX', 'LC6KK0', '20007', 'LX6HXT', 'KR13PV', 'LA030PZ', 'Y009AF', 'TH9MJD', 'KU580DK', 'LP14GF', 'BX560MA', 'LOKVA', 'GJ66X0']
+Stats:  66.67 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/VID_20170620_141256.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/VID_20170620_141256.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  3383.0
+282  images detected
+Using parallel slow method
+..........................................................................................................................................................................................................................................................................................
+ 282  raw results received from ALPR
+Took  0:00:30.356394
+FPS:  9.29
+10  unique cars detected
+
+---
+Total took  0:00:30.506410
+From ALPR: 
+[ 'LM55BCK',
+  'CE63CGX',
+  'G0GPU',
+  'R66ZU',
+  'GUSEY',
+  'WR66GZU',
+  'O1GU6',
+  'LC13TP0',
+  'LR55HR0',
+  'KD6VL']
+From manual extraction: 
+['LM55BCK', 'CE63CGX', 'WR66GZU', 'LC13TPO', 'LR55HRO', 'KD16VLM']
+--EXACT MATCH---
+Correct ( 3 ):  ['LM55BCK', 'CE63CGX', 'WR66GZU']
+Misesd ( 3 ):  ['LC13TPO', 'LR55HRO', 'KD16VLM']
+Extra ( 0 ):  []
+Stats:  50.0 %
+--FUZZY MATCH---
+Correct ( 5 ):  ['LM55BCK', 'CE63CGX', 'WR66GZU', 'LC13TPO', 'LR55HRO']
+Misesd ( 1 ):  ['KD16VLM']
+Extra ( 7 ):  ['GUSEY', 'R66ZU', 'O1GU6', 'LC13TP0', 'G0GPU', 'KD6VL', 'LR55HR0']
+Stats:  83.33 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/jVID_20170620_142400.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/jVID_20170620_142400.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1502.0
+251  images detected
+Using parallel slow method
+...........................................................................................................................................................................................................................................................
+ 251  raw results received from ALPR
+Took  0:00:19.408309
+FPS:  12.93
+8  unique cars detected
+
+---
+Total took  0:00:19.451425
+From ALPR: 
+[ 'P10L0',
+  '65K5X',
+  'LL2EFH',
+  'LK1VJV',
+  'LX04CZ',
+  'LX55EAF',
+  'RF66BEU',
+  '0V64LML']
+From manual extraction: 
+['LL12EFH', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'RF66BEU', 'OV64LML']
+--EXACT MATCH---
+Correct ( 2 ):  ['LX55EAF', 'RF66BEU']
+Misesd ( 4 ):  ['LL12EFH', 'LK14VJV', 'LX04CZT', 'OV64LML']
+Extra ( 0 ):  []
+Stats:  33.33 %
+--FUZZY MATCH---
+Correct ( 6 ):  ['LL12EFH', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'RF66BEU', 'OV64LML']
+Misesd ( 0 ):  []
+Extra ( 6 ):  ['LX04CZ', '65K5X', 'LL2EFH', 'LK1VJV', '0V64LML', 'P10L0']
+Stats:  100.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/VID_20170620_142434.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/VID_20170620_142434.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  6543.0
+546  images detected
+Using parallel slow method
+..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ 546  raw results received from ALPR
+Took  0:01:00.342137
+FPS:  9.05
+17  unique cars detected
+
+---
+Total took  0:01:00.518808
+From ALPR: 
+[ 'MK59UJ',
+  '65K5XC',
+  'WA6C0',
+  'KN0BVY',
+  'LR00JCU',
+  'LG60SJX',
+  'LR17YVK',
+  'SH14PVZ',
+  'LP15HP0',
+  'P10L0',
+  'LL12EFH',
+  'LK0VJV',
+  'LX0CZT',
+  'V62HV',
+  'RF66BEU',
+  '0V6LL',
+  'KS3EAJ']
+From manual extraction: 
+[ 'WA16CTO',
+  'KN14BVY',
+  'LR10JCU',
+  'LG60SJX',
+  'LR17YVK',
+  'SH14PVZ',
+  'LP15HPO',
+  'LL12EFH',
+  'LK14VJV',
+  'LX04CZT',
+  'LX55EAF',
+  'RF66BEU',
+  'OV64LML',
+  'KS13EAJ']
+--EXACT MATCH---
+Correct ( 5 ):  ['LG60SJX', 'LR17YVK', 'SH14PVZ', 'LL12EFH', 'RF66BEU']
+Misesd ( 9 ):  ['WA16CTO', 'KN14BVY', 'LR10JCU', 'LP15HPO', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'OV64LML', 'KS13EAJ']
+Extra ( 0 ):  []
+Stats:  35.71 %
+--FUZZY MATCH---
+Correct ( 9 ):  ['LR10JCU', 'LG60SJX', 'LR17YVK', 'SH14PVZ', 'LP15HPO', 'LL12EFH', 'LX04CZT', 'RF66BEU', 'KS13EAJ']
+Misesd ( 5 ):  ['WA16CTO', 'KN14BVY', 'LK14VJV', 'LX55EAF', 'OV64LML']
+Extra ( 12 ):  ['0V6LL', 'MK59UJ', 'LK0VJV', 'V62HV', 'P10L0', 'WA6C0', 'KN0BVY', 'LX0CZT', 'KS3EAJ', '65K5XC', 'LP15HP0', 'LR00JCU']
+Stats:  64.29 %
+
+ ------- 
+
+Overall Stats
+exact:  22.22  -  42.28  -  66.67
+fuzzy:  100  -  77.44  -  100.0
+fps:  11.28
+
+ ------- 
+ ------- 
+ ------- 
+ ------- 
+
+for debug: 
+[ [ ( 'YK58STZ',
+      82.444527,
+      datetime.datetime(2017, 6, 19, 16, 12, 51, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161251_600000.png'),
+    ( 'L8540',
+      85.415115,
+      datetime.datetime(2017, 6, 19, 16, 12, 54, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161255_000000.png'),
+    ( 'LT160VP',
+      86.02021,
+      datetime.datetime(2017, 6, 19, 16, 12, 56),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161256_000000.png'),
+    ( 'BL16S',
+      81.115837,
+      datetime.datetime(2017, 6, 19, 16, 12, 58, 400000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161258_400000.png'),
+    ( 'Y278HGJ',
+      87.272026,
+      datetime.datetime(2017, 6, 19, 16, 13),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161300_000000.png'),
+    ( 'W928XJN',
+      86.144295,
+      datetime.datetime(2017, 6, 19, 16, 13, 1, 400000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161301_800000.png'),
+    ( 'L016UDL',
+      86.478401,
+      datetime.datetime(2017, 6, 19, 16, 13, 5),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161305_200000.png'),
+    ( 'LN660NF',
+      86.419617,
+      datetime.datetime(2017, 6, 19, 16, 13, 7, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161307_200000.png'),
+    ( 'YP10SE',
+      81.731171,
+      datetime.datetime(2017, 6, 19, 16, 13, 8, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161309_000000.png'),
+    ( 'Y5TL8',
+      81.49678,
+      datetime.datetime(2017, 6, 19, 16, 13, 11, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161311_800000.png'),
+    ( 'SN640FL',
+      86.334702,
+      datetime.datetime(2017, 6, 19, 16, 13, 16, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161316_400000.png'),
+    ( 'RX05KCK',
+      86.873466,
+      datetime.datetime(2017, 6, 19, 16, 13, 20, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161250/20170619_161320_200000.png')],
+  [ ( 'RK6UWN',
+      82.975327,
+      datetime.datetime(2017, 6, 19, 16, 10, 13, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161013_800000.png'),
+    ( 'K7DPN',
+      79.884506,
+      datetime.datetime(2017, 6, 19, 16, 10, 16, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161016_600000.png'),
+    ( 'FG1RLV',
+      81.308533,
+      datetime.datetime(2017, 6, 19, 16, 10, 19, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161019_800000.png'),
+    ( 'LJ08K0',
+      80.944748,
+      datetime.datetime(2017, 6, 19, 16, 10, 22, 400000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161022_400000.png'),
+    ( 'R063CK',
+      82.228912,
+      datetime.datetime(2017, 6, 19, 16, 10, 25),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161025_000000.png'),
+    ( 'KW65TWA',
+      80.901413,
+      datetime.datetime(2017, 6, 19, 16, 10, 26, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161027_200000.png'),
+    ( 'NKXHG',
+      84.091972,
+      datetime.datetime(2017, 6, 19, 16, 10, 29, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161029_600000.png'),
+    ( 'HH13ELC',
+      81.097725,
+      datetime.datetime(2017, 6, 19, 16, 10, 32, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161032_600000.png'),
+    ( 'LF650NC',
+      84.23867,
+      datetime.datetime(2017, 6, 19, 16, 10, 38, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161038_800000.png'),
+    ( 'CK55WCL',
+      88.559647,
+      datetime.datetime(2017, 6, 19, 16, 10, 44, 400000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161044_600000.png'),
+    ( '6U16UXB',
+      85.136971,
+      datetime.datetime(2017, 6, 19, 16, 10, 48, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161049_800000.png'),
+    ( 'USSHU',
+      87.230339,
+      datetime.datetime(2017, 6, 19, 16, 10, 55),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161055_000000.png'),
+    ( 'YT65NNW',
+      81.97596,
+      datetime.datetime(2017, 6, 19, 16, 10, 55, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161055_400000.png'),
+    ( 'PU55HU',
+      83.943886,
+      datetime.datetime(2017, 6, 19, 16, 10, 55, 400000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161055_400000.png'),
+    ( '5HUTTLE',
+      84.138855,
+      datetime.datetime(2017, 6, 19, 16, 10, 55, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161055_600000.png'),
+    ( 'YT65NN',
+      81.279434,
+      datetime.datetime(2017, 6, 19, 16, 10, 55, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161056_200000.png'),
+    ( 'LP60BZX',
+      82.976021,
+      datetime.datetime(2017, 6, 19, 16, 11),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161013/20170619_161100_400000.png')],
+  [ ( 'KR16TD0',
+      87.011787,
+      datetime.datetime(2017, 6, 19, 16, 11, 31, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161132_000000.png'),
+    ( 'OU05SYF',
+      85.614746,
+      datetime.datetime(2017, 6, 19, 16, 11, 36),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161136_400000.png'),
+    ( 'YX12AEU',
+      85.719093,
+      datetime.datetime(2017, 6, 19, 16, 11, 39, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161139_800000.png'),
+    ( 'LM61BVZ',
+      86.857849,
+      datetime.datetime(2017, 6, 19, 16, 11, 42),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161142_000000.png'),
+    ( 'KD6PZB',
+      85.5224,
+      datetime.datetime(2017, 6, 19, 16, 11, 46, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161147_000000.png'),
+    ( 'MF52CVE',
+      87.313194,
+      datetime.datetime(2017, 6, 19, 16, 11, 48, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161148_600000.png'),
+    ( 'BU16UXH',
+      87.566544,
+      datetime.datetime(2017, 6, 19, 16, 11, 52),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161152_400000.png'),
+    ( 'LL63V0F',
+      87.755371,
+      datetime.datetime(2017, 6, 19, 16, 11, 54, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161154_200000.png'),
+    ( '190U9',
+      78.80407,
+      datetime.datetime(2017, 6, 19, 16, 11, 58, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161158_800000.png'),
+    ( 'LERAF02',
+      80.826729,
+      datetime.datetime(2017, 6, 19, 16, 11, 58, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161158_800000.png'),
+    ( '10498',
+      80.174362,
+      datetime.datetime(2017, 6, 19, 16, 11, 58, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161158_800000.png'),
+    ( '1S910',
+      80.546585,
+      datetime.datetime(2017, 6, 19, 16, 11, 58, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161158_800000.png'),
+    ( 'LERAF02',
+      81.437088,
+      datetime.datetime(2017, 6, 19, 16, 11, 59),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161159_000000.png'),
+    ( '049800',
+      82.17614,
+      datetime.datetime(2017, 6, 19, 16, 11, 59),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161159_000000.png'),
+    ( 'LERA02',
+      81.596031,
+      datetime.datetime(2017, 6, 19, 16, 11, 59, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161159_400000.png'),
+    ( 'LC63FPP',
+      87.949821,
+      datetime.datetime(2017, 6, 19, 16, 12, 1),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161201_200000.png'),
+    ( 'AK55NKN',
+      87.560913,
+      datetime.datetime(2017, 6, 19, 16, 12, 3, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161129/20170619_161204_400000.png')],
+  [ ( '0Y620TH',
+      90.269638,
+      datetime.datetime(2017, 6, 19, 16, 14, 12, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161414_000000.png'),
+    ( 'LT56XEN',
+      87.015396,
+      datetime.datetime(2017, 6, 19, 16, 14, 16, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161416_800000.png'),
+    ( 'BX66HH0',
+      89.261414,
+      datetime.datetime(2017, 6, 19, 16, 14, 19, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161420_400000.png'),
+    ( 'LR12BWN',
+      85.95079,
+      datetime.datetime(2017, 6, 19, 16, 14, 21, 600000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161422_600000.png'),
+    ( 'DX64TXW',
+      85.711494,
+      datetime.datetime(2017, 6, 19, 16, 14, 24, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161425_800000.png'),
+    ( 'LN04ZVA',
+      84.766068,
+      datetime.datetime(2017, 6, 19, 16, 14, 26, 400000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161428_000000.png'),
+    ( 'KM4TYY',
+      83.676277,
+      datetime.datetime(2017, 6, 19, 16, 14, 29),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161429_600000.png'),
+    ( 'LP61LKV',
+      86.802231,
+      datetime.datetime(2017, 6, 19, 16, 14, 30, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161431_600000.png'),
+    ( 'WV6ZCJ',
+      83.980278,
+      datetime.datetime(2017, 6, 19, 16, 14, 33),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161433_600000.png'),
+    ( 'LT15NYX',
+      86.20945,
+      datetime.datetime(2017, 6, 19, 16, 14, 35, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161436_400000.png'),
+    ( 'YG58HF',
+      88.672249,
+      datetime.datetime(2017, 6, 19, 16, 14, 39, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161441_200000.png'),
+    ( 'HX63XAE',
+      87.327827,
+      datetime.datetime(2017, 6, 19, 16, 14, 42, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161443_000000.png'),
+    ( 'BC16UXE',
+      88.007385,
+      datetime.datetime(2017, 6, 19, 16, 14, 44, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161444_600000.png'),
+    ( 'LM13ZPX',
+      84.725143,
+      datetime.datetime(2017, 6, 19, 16, 14, 47, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161448_000000.png'),
+    ( 'KY09J0V',
+      89.811119,
+      datetime.datetime(2017, 6, 19, 16, 14, 49, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161451_400000.png'),
+    ( 'EJ16HXX',
+      88.355782,
+      datetime.datetime(2017, 6, 19, 16, 14, 52, 200000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161454_000000.png'),
+    ( 'LTZ1077',
+      85.951408,
+      datetime.datetime(2017, 6, 19, 16, 14, 56, 800000),
+      '/mnt/hgfs/test_videos/highstken/VID_20170619_161412/20170619_161458_000000.png')],
+  [ ( 'KR03PV',
+      82.337563,
+      datetime.datetime(2017, 6, 20, 14, 12, 1),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141201_400000.png'),
+    ( 'YR62G8U',
+      83.446541,
+      datetime.datetime(2017, 6, 20, 14, 12, 2, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141212_000000.png'),
+    ( 'Y0O9AWF',
+      81.885635,
+      datetime.datetime(2017, 6, 20, 14, 12, 16),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141216_000000.png'),
+    ( 'YR62G9U',
+      81.652779,
+      datetime.datetime(2017, 6, 20, 14, 12, 16, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141216_200000.png'),
+    ( 'YD09AWF',
+      85.281761,
+      datetime.datetime(2017, 6, 20, 14, 12, 16, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141216_200000.png'),
+    ( 'YR62G9U',
+      83.525215,
+      datetime.datetime(2017, 6, 20, 14, 12, 17),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141219_400000.png'),
+    ( 'GL105K0',
+      83.688881,
+      datetime.datetime(2017, 6, 20, 14, 12, 22, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141222_200000.png'),
+    ( 'YR62G8U',
+      82.183228,
+      datetime.datetime(2017, 6, 20, 14, 12, 22, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141222_200000.png'),
+    ( 'GL10SKD',
+      86.329895,
+      datetime.datetime(2017, 6, 20, 14, 12, 22, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141222_600000.png'),
+    ( 'YR62G8U',
+      82.488426,
+      datetime.datetime(2017, 6, 20, 14, 12, 23, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141225_600000.png'),
+    ( 'L860JFU',
+      86.60215,
+      datetime.datetime(2017, 6, 20, 14, 12, 28, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141228_200000.png'),
+    ( 'YR62G8U',
+      82.540375,
+      datetime.datetime(2017, 6, 20, 14, 12, 28, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141228_200000.png'),
+    ( 'LB60JFU',
+      87.412086,
+      datetime.datetime(2017, 6, 20, 14, 12, 28, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141228_600000.png'),
+    ( 'YR62G8U',
+      84.008064,
+      datetime.datetime(2017, 6, 20, 14, 12, 29, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141234_200000.png'),
+    ( '20OD7',
+      81.213547,
+      datetime.datetime(2017, 6, 20, 14, 12, 34, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141234_800000.png'),
+    ( 'YR62G8U',
+      84.58242,
+      datetime.datetime(2017, 6, 20, 14, 12, 36, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141256_000000.png'),
+    ( 'LR17UAT',
+      80.5186,
+      datetime.datetime(2017, 6, 20, 14, 13, 0, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141300_600000.png'),
+    ( 'YR62G9U',
+      83.302063,
+      datetime.datetime(2017, 6, 20, 14, 13, 0, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141300_600000.png'),
+    ( 'LR7UA',
+      83.588341,
+      datetime.datetime(2017, 6, 20, 14, 13, 0, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141301_000000.png'),
+    ( 'YR62GU',
+      80.08696,
+      datetime.datetime(2017, 6, 20, 14, 13, 1, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141301_200000.png'),
+    ( 'LR17UAT',
+      86.16803,
+      datetime.datetime(2017, 6, 20, 14, 13, 1, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141301_200000.png'),
+    ( 'YR62G9U',
+      83.891304,
+      datetime.datetime(2017, 6, 20, 14, 13, 2),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141307_000000.png'),
+    ( '23D45',
+      78.378197,
+      datetime.datetime(2017, 6, 20, 14, 13, 7, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141307_400000.png'),
+    ( 'YR62GBU',
+      81.185471,
+      datetime.datetime(2017, 6, 20, 14, 13, 7, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141307_400000.png'),
+    ( '23D46',
+      79.449234,
+      datetime.datetime(2017, 6, 20, 14, 13, 7, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141307_600000.png'),
+    ( 'YR62GU',
+      79.891426,
+      datetime.datetime(2017, 6, 20, 14, 13, 7, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141307_800000.png'),
+    ( '23D46',
+      78.809692,
+      datetime.datetime(2017, 6, 20, 14, 13, 7, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141307_800000.png'),
+    ( 'Y62GU',
+      80.384193,
+      datetime.datetime(2017, 6, 20, 14, 13, 8),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141308_000000.png'),
+    ( '123D16',
+      82.460403,
+      datetime.datetime(2017, 6, 20, 14, 13, 8, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141308_200000.png'),
+    ( 'YR62G8U',
+      82.644852,
+      datetime.datetime(2017, 6, 20, 14, 13, 11, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141315_800000.png'),
+    ( 'LA03OPZ',
+      83.03923,
+      datetime.datetime(2017, 6, 20, 14, 13, 23),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141323_000000.png'),
+    ( 'YR62G8U',
+      82.561989,
+      datetime.datetime(2017, 6, 20, 14, 13, 23),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141323_200000.png'),
+    ( 'LA030PZ',
+      85.472786,
+      datetime.datetime(2017, 6, 20, 14, 13, 23, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141323_200000.png'),
+    ( 'YR62GU',
+      79.734306,
+      datetime.datetime(2017, 6, 20, 14, 13, 23, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141323_400000.png'),
+    ( 'LA030PZ',
+      85.778488,
+      datetime.datetime(2017, 6, 20, 14, 13, 23, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141323_400000.png'),
+    ( 'T889MUD',
+      86.126869,
+      datetime.datetime(2017, 6, 20, 14, 13, 24, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141324_600000.png'),
+    ( 'YR62G9U',
+      82.677666,
+      datetime.datetime(2017, 6, 20, 14, 13, 25, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141325_800000.png'),
+    ( 'GJ66XWD',
+      87.122749,
+      datetime.datetime(2017, 6, 20, 14, 13, 33, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141334_000000.png'),
+    ( 'YR62G9U',
+      83.937065,
+      datetime.datetime(2017, 6, 20, 14, 13, 34, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141339_800000.png'),
+    ( 'CE63CGX',
+      88.462593,
+      datetime.datetime(2017, 6, 20, 14, 14, 12, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141413_200000.png'),
+    ( 'YR62G8U',
+      83.640785,
+      datetime.datetime(2017, 6, 20, 14, 14, 14),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141414_400000.png'),
+    ( '0GU9EY',
+      79.703201,
+      datetime.datetime(2017, 6, 20, 14, 14, 26, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141426_600000.png'),
+    ( 'Y62G6U',
+      81.513916,
+      datetime.datetime(2017, 6, 20, 14, 14, 26, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141426_800000.png'),
+    ( '0NGPU9EY',
+      81.010895,
+      datetime.datetime(2017, 6, 20, 14, 14, 26, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141426_800000.png'),
+    ( 'WR66GZU',
+      85.360664,
+      datetime.datetime(2017, 6, 20, 14, 14, 27, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141427_200000.png'),
+    ( '0NGPU9EY',
+      79.1175,
+      datetime.datetime(2017, 6, 20, 14, 14, 27, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141427_200000.png'),
+    ( 'WR66GZU',
+      87.053406,
+      datetime.datetime(2017, 6, 20, 14, 14, 27, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141427_400000.png'),
+    ( 'GONGU',
+      81.123375,
+      datetime.datetime(2017, 6, 20, 14, 14, 27, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141427_400000.png'),
+    ( 'R66GZU',
+      84.867126,
+      datetime.datetime(2017, 6, 20, 14, 14, 27, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141427_600000.png'),
+    ( 'LC13P0',
+      84.561996,
+      datetime.datetime(2017, 6, 20, 14, 14, 30, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141430_400000.png'),
+    ( 'YR62G9U',
+      83.88707,
+      datetime.datetime(2017, 6, 20, 14, 14, 31, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141433_000000.png'),
+    ( 'LR55HR0',
+      89.113609,
+      datetime.datetime(2017, 6, 20, 14, 14, 35),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141435_400000.png'),
+    ( 'YR62G9U',
+      81.051079,
+      datetime.datetime(2017, 6, 20, 14, 14, 36),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141436_000000.png'),
+    ( 'KD16VLH',
+      83.98037,
+      datetime.datetime(2017, 6, 20, 14, 14, 36, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141436_400000.png'),
+    ( 'YR62G8U',
+      83.002495,
+      datetime.datetime(2017, 6, 20, 14, 14, 37, 800000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_141200/20170620_141441_600000.png')],
+  [ ( 'BX560MA',
+      85.207069,
+      datetime.datetime(2017, 6, 20, 14, 11, 52, 200000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141152_800000.png'),
+    ( 'BX560',
+      85.439545,
+      datetime.datetime(2017, 6, 20, 14, 11, 53),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141153_000000.png'),
+    ( 'LC6KK0',
+      83.878502,
+      datetime.datetime(2017, 6, 20, 14, 11, 58, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141159_200000.png'),
+    ( 'LT06ZKH',
+      87.001892,
+      datetime.datetime(2017, 6, 20, 14, 12, 5),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141205_600000.png'),
+    ( 'KU580DK',
+      86.463684,
+      datetime.datetime(2017, 6, 20, 14, 12, 6, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141207_400000.png'),
+    ( 'LX6HXT',
+      82.200516,
+      datetime.datetime(2017, 6, 20, 14, 12, 18, 200000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141218_200000.png'),
+    ( 'GF1MFV',
+      78.046501,
+      datetime.datetime(2017, 6, 20, 14, 12, 21, 200000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141221_400000.png'),
+    ( 'LM08LX',
+      81.616478,
+      datetime.datetime(2017, 6, 20, 14, 12, 22, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141222_800000.png'),
+    ( 'GU08N',
+      87.154236,
+      datetime.datetime(2017, 6, 20, 14, 12, 41, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141242_200000.png'),
+    ( 'LP14GF',
+      81.360626,
+      datetime.datetime(2017, 6, 20, 14, 12, 43, 400000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141244_000000.png'),
+    ( 'KR13PV',
+      79.164467,
+      datetime.datetime(2017, 6, 20, 14, 12, 49, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141249_800000.png'),
+    ( 'Y009AF',
+      84.19236,
+      datetime.datetime(2017, 6, 20, 14, 12, 52),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141252_600000.png'),
+    ( 'L1O5K',
+      79.313797,
+      datetime.datetime(2017, 6, 20, 14, 12, 56),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141256_000000.png'),
+    ( 'GL10SKD',
+      87.081238,
+      datetime.datetime(2017, 6, 20, 14, 12, 56, 200000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141256_800000.png'),
+    ( 'LB60JFU',
+      86.462296,
+      datetime.datetime(2017, 6, 20, 14, 13, 1),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141301_600000.png'),
+    ( '20007',
+      82.040878,
+      datetime.datetime(2017, 6, 20, 14, 13, 4, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141304_800000.png'),
+    ( 'LR17UA',
+      81.780968,
+      datetime.datetime(2017, 6, 20, 14, 13, 7, 200000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141308_000000.png'),
+    ( '88H00',
+      82.794685,
+      datetime.datetime(2017, 6, 20, 14, 13, 13, 400000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141313_600000.png'),
+    ( 'B19H0',
+      82.989738,
+      datetime.datetime(2017, 6, 20, 14, 13, 14),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141314_200000.png'),
+    ( 'DK60YUX',
+      86.067978,
+      datetime.datetime(2017, 6, 20, 14, 13, 16, 400000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141316_600000.png'),
+    ( 'LOKVA',
+      79.337654,
+      datetime.datetime(2017, 6, 20, 14, 13, 20),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141320_200000.png'),
+    ( 'LA030PZ',
+      85.783226,
+      datetime.datetime(2017, 6, 20, 14, 13, 22),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141322_600000.png'),
+    ( 'TH9MJD',
+      77.692856,
+      datetime.datetime(2017, 6, 20, 14, 13, 23, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141323_800000.png'),
+    ( '989MUD',
+      84.929512,
+      datetime.datetime(2017, 6, 20, 14, 13, 24),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141324_400000.png'),
+    ( 'GJ66X0',
+      83.338509,
+      datetime.datetime(2017, 6, 20, 14, 13, 26),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141149/20170620_141326_400000.png')],
+  [ ( 'LM55BCK',
+      86.564842,
+      datetime.datetime(2017, 6, 20, 14, 13, 3, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141304_400000.png'),
+    ( 'CE63CGX',
+      85.448769,
+      datetime.datetime(2017, 6, 20, 14, 13, 17),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141317_200000.png'),
+    ( 'G0GPU',
+      80.995087,
+      datetime.datetime(2017, 6, 20, 14, 13, 33, 400000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141333_400000.png'),
+    ( 'R66ZU',
+      77.241356,
+      datetime.datetime(2017, 6, 20, 14, 13, 33, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141333_800000.png'),
+    ( 'GUSEY',
+      80.433754,
+      datetime.datetime(2017, 6, 20, 14, 13, 33, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141333_800000.png'),
+    ( 'WR66GZU',
+      84.252945,
+      datetime.datetime(2017, 6, 20, 14, 13, 34),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141334_000000.png'),
+    ( 'O1GU6',
+      81.24498,
+      datetime.datetime(2017, 6, 20, 14, 13, 34),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141334_000000.png'),
+    ( 'LC13TP0',
+      85.247925,
+      datetime.datetime(2017, 6, 20, 14, 13, 44, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141345_200000.png'),
+    ( 'LR55HR0',
+      87.242416,
+      datetime.datetime(2017, 6, 20, 14, 13, 46, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141347_000000.png'),
+    ( 'KD6VL',
+      82.493004,
+      datetime.datetime(2017, 6, 20, 14, 13, 48, 400000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_141256/20170620_141348_600000.png')],
+  [ ( 'P10L0',
+      83.38105,
+      datetime.datetime(2017, 6, 20, 14, 24, 8, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142408_600000.png'),
+    ( '65K5X',
+      83.801483,
+      datetime.datetime(2017, 6, 20, 14, 24, 10, 200000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142410_200000.png'),
+    ( 'LL2EFH',
+      86.112122,
+      datetime.datetime(2017, 6, 20, 14, 24, 23),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142423_600000.png'),
+    ( 'LK1VJV',
+      83.741684,
+      datetime.datetime(2017, 6, 20, 14, 24, 25),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142425_200000.png'),
+    ( 'LX04CZ',
+      84.293861,
+      datetime.datetime(2017, 6, 20, 14, 24, 26, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142427_000000.png'),
+    ( 'LX55EAF',
+      87.740524,
+      datetime.datetime(2017, 6, 20, 14, 24, 33),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142434_200000.png'),
+    ( 'RF66BEU',
+      86.851341,
+      datetime.datetime(2017, 6, 20, 14, 24, 38, 400000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142439_600000.png'),
+    ( '0V64LML',
+      83.480896,
+      datetime.datetime(2017, 6, 20, 14, 24, 41, 600000),
+      '/mnt/hgfs/test_videos/groad/jVID_20170620_142400/20170620_142442_000000.png')],
+  [ ( 'MK59UJ',
+      84.921455,
+      datetime.datetime(2017, 6, 20, 14, 24, 34, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142434_800000.png'),
+    ( '65K5XC',
+      80.043312,
+      datetime.datetime(2017, 6, 20, 14, 24, 48),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142448_000000.png'),
+    ( 'WA6C0',
+      80.761093,
+      datetime.datetime(2017, 6, 20, 14, 24, 53, 200000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142453_600000.png'),
+    ( 'KN0BVY',
+      83.007515,
+      datetime.datetime(2017, 6, 20, 14, 24, 55, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142456_000000.png'),
+    ( 'LR00JCU',
+      84.513069,
+      datetime.datetime(2017, 6, 20, 14, 25, 2, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142502_800000.png'),
+    ( 'LG60SJX',
+      86.766167,
+      datetime.datetime(2017, 6, 20, 14, 25, 7),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142507_400000.png'),
+    ( 'LR17YVK',
+      84.538185,
+      datetime.datetime(2017, 6, 20, 14, 25, 12),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142512_400000.png'),
+    ( 'SH14PVZ',
+      84.635818,
+      datetime.datetime(2017, 6, 20, 14, 25, 14, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142515_200000.png'),
+    ( 'LP15HP0',
+      84.293648,
+      datetime.datetime(2017, 6, 20, 14, 25, 20),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142520_000000.png'),
+    ( 'P10L0',
+      82.559669,
+      datetime.datetime(2017, 6, 20, 14, 25, 29, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142529_800000.png'),
+    ( 'LL12EFH',
+      84.859116,
+      datetime.datetime(2017, 6, 20, 14, 25, 51, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142552_000000.png'),
+    ( 'LK0VJV',
+      82.766182,
+      datetime.datetime(2017, 6, 20, 14, 25, 54),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142554_400000.png'),
+    ( 'LX0CZT',
+      83.014488,
+      datetime.datetime(2017, 6, 20, 14, 25, 56, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142556_800000.png'),
+    ( 'V62HV',
+      77.780983,
+      datetime.datetime(2017, 6, 20, 14, 26, 7, 600000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142607_600000.png'),
+    ( 'RF66BEU',
+      85.580811,
+      datetime.datetime(2017, 6, 20, 14, 26, 14, 800000),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142615_200000.png'),
+    ( '0V6LL',
+      81.652428,
+      datetime.datetime(2017, 6, 20, 14, 26, 17),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142617_000000.png'),
+    ( 'KS3EAJ',
+      84.270256,
+      datetime.datetime(2017, 6, 20, 14, 26, 21),
+      '/mnt/hgfs/test_videos/groad/VID_20170620_142434/20170620_142621_400000.png')]]
