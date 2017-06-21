@@ -83,7 +83,7 @@ def violations(request):
 
         polyline = ret[0]["overview_polyline"]["points"]
 
-        static_maps_url = "https://maps.googleapis.com/maps/api/staticmap?size=400x400&zoom=13" \
+        static_maps_url = "https://maps.googleapis.com/maps/api/staticmap?size=400x400&zoom=14" \
                           + "&path=weight:7|color:red|enc:" + polyline \
                           + "&markers=color:blue|" + str(origin[0]) + "," + str(origin[1]) \
                           + "|" + str(destination[0]) + "," + str(destination[1]) \
@@ -95,7 +95,7 @@ def violations(request):
                 "time1": v.time1,
                 "time2": v.time2,
                 "distance": v.distance,
-                "speed": v.average_speed,
+                "speed": round(v.average_speed, 2),
                 "unit": v.unit,
                 "img_path1": v.plate1.img_path,
                 "img_path2": v.plate2.img_path,
@@ -114,7 +114,7 @@ def violations(request):
             p,
             (v_obj.plate1.location_lat, v_obj.plate1.location_long),
             (v_obj.plate2.location_lat, v_obj.plate2.location_long),
-            v_obj.average_speed,
+            round(v_obj.average_speed, 2),
             str(v_obj.plate1.img_path),
             str(v_obj.plate2.img_path)
         )
