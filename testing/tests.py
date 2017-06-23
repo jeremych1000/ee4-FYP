@@ -207,8 +207,8 @@ def do(videos_path=None, exact_path=None, prewarp=None):
         if alpr_method == 1:
             print("Using serial method")
             results = []
-            for file in filelist:
-                results.append(get_plates_slow(file))
+            for z in range(0, len(filelist)):
+                results.append(get_plates_slow((filelist[z], prewarp)))
                 # print(results)
         else:  # parallel
             pool_size = 3

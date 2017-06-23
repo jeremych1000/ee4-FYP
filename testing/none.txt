@@ -1,0 +1,406 @@
+input is  /home/jeremych/ee4-FYP/testing/plates.txt
+---
+['/mnt/hgfs/test_videos/highstken/VID_20170619_161250.mp4', '/mnt/hgfs/test_videos/highstken/VID_20170619_161013.mp4', '/mnt/hgfs/test_videos/highstken/VID_20170619_161129.mp4', '/mnt/hgfs/test_videos/highstken/VID_20170619_161412.mp4', '/mnt/hgfs/test_videos/groad/jVID_20170620_141200.mp4', '/mnt/hgfs/test_videos/groad/VID_20170620_141149.mp4', '/mnt/hgfs/test_videos/groad/VID_20170620_141256.mp4', '/mnt/hgfs/test_videos/groad/jVID_20170620_142400.mp4', '/mnt/hgfs/test_videos/groad/VID_20170620_142434.mp4']
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161250.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161250.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  976.0
+163  images detected
+Using parallel slow method
+...................................................................................................................................................................
+ 163  raw results received from ALPR
+Took  0:00:07.852152
+FPS:  20.76
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:07.899080
+From ALPR: 
+[]
+From manual extraction: 
+[ 'JK58CAB',
+  'YK58STZ',
+  'LB54OSF',
+  'LT160VP',
+  'BL16KWS',
+  'Y278HGJ',
+  'W928XJN',
+  'LO16UDL',
+  'LN66ONF',
+  'YP10SEY',
+  'Y57TLB',
+  'SN64OFL',
+  'LR65KJV',
+  'RX05KLK']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 14 ):  ['JK58CAB', 'YK58STZ', 'LB54OSF', 'LT160VP', 'BL16KWS', 'Y278HGJ', 'W928XJN', 'LO16UDL', 'LN66ONF', 'YP10SEY', 'Y57TLB', 'SN64OFL', 'LR65KJV', 'RX05KLK']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 14 ):  ['JK58CAB', 'YK58STZ', 'LB54OSF', 'LT160VP', 'BL16KWS', 'Y278HGJ', 'W928XJN', 'LO16UDL', 'LN66ONF', 'YP10SEY', 'Y57TLB', 'SN64OFL', 'LR65KJV', 'RX05KLK']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161013.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161013.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1193.0
+239  images detected
+Using parallel slow method
+...............................................................................................................................................................................................................................................
+ 239  raw results received from ALPR
+Took  0:00:11.264382
+FPS:  21.22
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:11.322681
+From ALPR: 
+[]
+From manual extraction: 
+[ 'RK64UWN',
+  'KW17DPN',
+  'LJ08KNU',
+  'RO63YLK',
+  'KW65TWA',
+  'NK14XHG',
+  'KM13WZB',
+  'LC13UYS',
+  'CK55WCL',
+  'BU16UXB',
+  'YT65NNW',
+  'LP60BZX']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 12 ):  ['RK64UWN', 'KW17DPN', 'LJ08KNU', 'RO63YLK', 'KW65TWA', 'NK14XHG', 'KM13WZB', 'LC13UYS', 'CK55WCL', 'BU16UXB', 'YT65NNW', 'LP60BZX']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 12 ):  ['RK64UWN', 'KW17DPN', 'LJ08KNU', 'RO63YLK', 'KW65TWA', 'NK14XHG', 'KM13WZB', 'LC13UYS', 'CK55WCL', 'BU16UXB', 'YT65NNW', 'LP60BZX']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161129.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161129.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1065.0
+178  images detected
+Using parallel slow method
+..................................................................................................................................................................................
+ 178  raw results received from ALPR
+Took  0:00:08.275180
+FPS:  21.51
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:08.361454
+From ALPR: 
+[]
+From manual extraction: 
+[ 'KR16TDO',
+  'OU05SYF',
+  'YX12AEU',
+  'LM61BVZ',
+  'KN11MLL',
+  'KD16PZB',
+  'MF52CVE',
+  'BU16UXH',
+  'LL63VOF',
+  'LC63FPP',
+  'AK55NKN']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 11 ):  ['KR16TDO', 'OU05SYF', 'YX12AEU', 'LM61BVZ', 'KN11MLL', 'KD16PZB', 'MF52CVE', 'BU16UXH', 'LL63VOF', 'LC63FPP', 'AK55NKN']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 11 ):  ['KR16TDO', 'OU05SYF', 'YX12AEU', 'LM61BVZ', 'KN11MLL', 'KD16PZB', 'MF52CVE', 'BU16UXH', 'LL63VOF', 'LC63FPP', 'AK55NKN']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/highstken/VID_20170619_161412.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/highstken/VID_20170619_161412.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1157.0
+232  images detected
+Using parallel slow method
+........................................................................................................................................................................................................................................
+ 232  raw results received from ALPR
+Took  0:00:16.629234
+FPS:  13.95
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:16.766067
+From ALPR: 
+[]
+From manual extraction: 
+[ 'OY62OTH',
+  'LT56XEN',
+  'BX66HHO',
+  'LR12BWN',
+  'DX64TXW',
+  'LN14ZVA',
+  'KM14TYY',
+  'LP61LKV',
+  'WV16ZCJ',
+  'LT15NTX',
+  'YG58HFU',
+  'MX63XAE',
+  'BC16UXE',
+  'LM13ZPX',
+  'KY09JOV',
+  'EJ16HXX',
+  'LTZ1077']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 17 ):  ['OY62OTH', 'LT56XEN', 'BX66HHO', 'LR12BWN', 'DX64TXW', 'LN14ZVA', 'KM14TYY', 'LP61LKV', 'WV16ZCJ', 'LT15NTX', 'YG58HFU', 'MX63XAE', 'BC16UXE', 'LM13ZPX', 'KY09JOV', 'EJ16HXX', 'LTZ1077']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 17 ):  ['OY62OTH', 'LT56XEN', 'BX66HHO', 'LR12BWN', 'DX64TXW', 'LN14ZVA', 'KM14TYY', 'LP61LKV', 'WV16ZCJ', 'LT15NTX', 'YG58HFU', 'MX63XAE', 'BC16UXE', 'LM13ZPX', 'KY09JOV', 'EJ16HXX', 'LTZ1077']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/jVID_20170620_141200.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/jVID_20170620_141200.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  5073.0
+846  images detected
+Using parallel slow method
+..............................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ 846  raw results received from ALPR
+Took  0:00:39.339156
+FPS:  21.51
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:39.423717
+From ALPR: 
+[]
+From manual extraction: 
+[ 'KR13PVW',
+  'YD09AWF',
+  'GL10SKD',
+  'LB60JFU',
+  'LR17UAT',
+  'LA03OPZ',
+  'GJ66XWD',
+  'CE63CGX',
+  'WR66GZU',
+  'LC13TPO',
+  'LR55HRO',
+  'KD16VLM']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 12 ):  ['KR13PVW', 'YD09AWF', 'GL10SKD', 'LB60JFU', 'LR17UAT', 'LA03OPZ', 'GJ66XWD', 'CE63CGX', 'WR66GZU', 'LC13TPO', 'LR55HRO', 'KD16VLM']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 12 ):  ['KR13PVW', 'YD09AWF', 'GL10SKD', 'LB60JFU', 'LR17UAT', 'LA03OPZ', 'GJ66XWD', 'CE63CGX', 'WR66GZU', 'LC13TPO', 'LR55HRO', 'KD16VLM']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/VID_20170620_141149.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/VID_20170620_141149.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  5965.0
+498  images detected
+Using parallel slow method
+..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ 498  raw results received from ALPR
+Took  0:00:35.025544
+FPS:  14.22
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:35.227384
+From ALPR: 
+[]
+From manual extraction: 
+[ 'BX56OMA',
+  'LC16KKO',
+  'LT06ZKH',
+  'KU58ODK',
+  'LX64HXT',
+  'GF14MFV',
+  'LM08LWX',
+  'GU08NVX',
+  'LP14GPK',
+  'KR13PVW',
+  'YD09AWF',
+  'GL10SKD',
+  'LB60JFU',
+  'LR17UAT',
+  'DK60YUX',
+  'LO14KVA',
+  'LA03OPZ',
+  'GJ66XWD']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 18 ):  ['BX56OMA', 'LC16KKO', 'LT06ZKH', 'KU58ODK', 'LX64HXT', 'GF14MFV', 'LM08LWX', 'GU08NVX', 'LP14GPK', 'KR13PVW', 'YD09AWF', 'GL10SKD', 'LB60JFU', 'LR17UAT', 'DK60YUX', 'LO14KVA', 'LA03OPZ', 'GJ66XWD']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 18 ):  ['BX56OMA', 'LC16KKO', 'LT06ZKH', 'KU58ODK', 'LX64HXT', 'GF14MFV', 'LM08LWX', 'GU08NVX', 'LP14GPK', 'KR13PVW', 'YD09AWF', 'GL10SKD', 'LB60JFU', 'LR17UAT', 'DK60YUX', 'LO14KVA', 'LA03OPZ', 'GJ66XWD']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/VID_20170620_141256.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/VID_20170620_141256.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  3383.0
+282  images detected
+Using parallel slow method
+..........................................................................................................................................................................................................................................................................................
+ 282  raw results received from ALPR
+Took  0:00:18.905393
+FPS:  14.92
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:19.062038
+From ALPR: 
+[]
+From manual extraction: 
+['LM55BCK', 'CE63CGX', 'WR66GZU', 'LC13TPO', 'LR55HRO', 'KD16VLM']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 6 ):  ['LM55BCK', 'CE63CGX', 'WR66GZU', 'LC13TPO', 'LR55HRO', 'KD16VLM']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 6 ):  ['LM55BCK', 'CE63CGX', 'WR66GZU', 'LC13TPO', 'LR55HRO', 'KD16VLM']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/jVID_20170620_142400.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/jVID_20170620_142400.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  1502.0
+251  images detected
+Using parallel slow method
+...........................................................................................................................................................................................................................................................
+ 251  raw results received from ALPR
+Took  0:00:12.076389
+FPS:  20.78
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:12.116536
+From ALPR: 
+[]
+From manual extraction: 
+['LL12EFH', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'RF66BEU', 'OV64LML']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 6 ):  ['LL12EFH', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'RF66BEU', 'OV64LML']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 6 ):  ['LL12EFH', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'RF66BEU', 'OV64LML']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+---
+ 0 / 1
+Processing  /mnt/hgfs/test_videos/groad/VID_20170620_142434.mp4
+Begin split
+Attempting to open  /mnt/hgfs/test_videos/groad/VID_20170620_142434.mp4
+Folder detected, assuming already split, skipping split. Delete the folder otherwise.
+End split with total no of frames -  6543.0
+546  images detected
+Using parallel slow method
+..................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................................
+ 546  raw results received from ALPR
+Took  0:00:37.962076
+FPS:  14.38
+No plates detected at all, returning empty list.
+0  unique cars detected
+
+---
+Total took  0:00:38.176013
+From ALPR: 
+[]
+From manual extraction: 
+[ 'WA16CTO',
+  'KN14BVY',
+  'LR10JCU',
+  'LG60SJX',
+  'LR17YVK',
+  'SH14PVZ',
+  'LP15HPO',
+  'LL12EFH',
+  'LK14VJV',
+  'LX04CZT',
+  'LX55EAF',
+  'RF66BEU',
+  'OV64LML',
+  'KS13EAJ']
+--EXACT MATCH---
+Correct ( 0 ):  []
+Misesd ( 14 ):  ['WA16CTO', 'KN14BVY', 'LR10JCU', 'LG60SJX', 'LR17YVK', 'SH14PVZ', 'LP15HPO', 'LL12EFH', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'RF66BEU', 'OV64LML', 'KS13EAJ']
+Extra ( 0 ):  []
+Stats:  0.0 %
+--FUZZY MATCH---
+Correct ( 0 ):  []
+Misesd ( 14 ):  ['WA16CTO', 'KN14BVY', 'LR10JCU', 'LG60SJX', 'LR17YVK', 'SH14PVZ', 'LP15HPO', 'LL12EFH', 'LK14VJV', 'LX04CZT', 'LX55EAF', 'RF66BEU', 'OV64LML', 'KS13EAJ']
+Extra ( 0 ):  []
+Stats:  0.0 %
+
+ ------- 
+
+Overall Stats
+exact:  0.0  -  0.0  -  0
+fuzzy:  0.0  -  0.0  -  0
+fps:  18.14
+
+ ------- 
+ ------- 
+ ------- 
+ ------- 
+
+for debug: 
+[[], [], [], [], [], [], [], [], []]
