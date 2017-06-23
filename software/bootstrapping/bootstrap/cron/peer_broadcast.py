@@ -7,6 +7,7 @@ from django.db.utils import *
 from django_cron import CronJobBase, Schedule
 
 from bootstrap import models, serializers
+from bootstrap.encrypt import encrypt, decrypt
 
 import requests, json
 
@@ -16,7 +17,6 @@ class Update_Tokens(CronJobBase):
     code = 'bootstrap.update_tokens'
 
     def do(self):
-        need_broadcasting = True
 
         peers = models.peer.objects.all()
         try:
@@ -25,10 +25,8 @@ class Update_Tokens(CronJobBase):
         except ObjectDoesNotExist:
             need_broadcasting = False
             print("No peers require broadcasting")
-        if len(peer_objects_require_broadcasting) == 0:
-            need_broadcasting = False
 
-        if need_broadcasting:
+        if len(peer_objects_require_broadcasting) > 0:
             serializer = serializers.get_peers(peer_objects_require_broadcasting,  many=True)
             print(serializer)
 
@@ -70,4 +68,7 @@ class Update_Tokens(CronJobBase):
                         i.save()
                     except Exception as e:
                         print("Exception occured while saving - ", str(e))
+            else:
+                print("raised...")
+                raise
 

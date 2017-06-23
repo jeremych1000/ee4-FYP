@@ -18,7 +18,7 @@ def post_to_twitter(plate, location1, location2, speed, pic_url, pic_url2):
     status = "Speeding car (" + plate + ") detected between (" \
              + str(location1[0]) + "," + str(location1[1]) \
              + ") and (" + str(location2[0]) + "," + str(location2[1]) \
-             + "), doing " + str(speed) + " mph, evidence attached."
+             + "), doing " + str(round(speed, 2)) + " mph, evidence attached."
 
     # print(status, type(status))
     # print(pic_url, type(pic_url))

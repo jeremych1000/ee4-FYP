@@ -41,6 +41,7 @@ class state(APIView):
         json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
         json_ret = {}
 
+        self_token=None
         try:
             self_token = str(models.peer_list.objects.all().filter(is_self=True).first().token)
         except Exception as e:

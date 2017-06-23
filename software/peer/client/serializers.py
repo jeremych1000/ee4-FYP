@@ -32,7 +32,10 @@ class dashboard_bootstrap(serializers.ModelSerializer):
     class Meta:
         model = models.bootstrap
         fields = (
-            'token_update', 'token_peer', 'time_accepted', 'last_updated',
+            'token_update',
+            #'token_peer',
+            'time_accepted',
+            'last_updated',
         )
 
 class dashboard_peer(serializers.ModelSerializer):
@@ -48,7 +51,7 @@ class dashboard_peer(serializers.ModelSerializer):
             'location_country',
             'time_accepted',
             'last_updated',
-            'token',
+            #'token',
             'active',
             'no_plates',
             'no_matching_plates',
@@ -81,7 +84,7 @@ class dashboard_violations(serializers.ModelSerializer):
         )
 
 class table_bootstrap(tables.Table):
-    token_peer = tables.Column()
+    #token_peer = tables.Column()
     token_update = tables.Column()
     time_accepted = tables.Column()
     last_updated = tables.Column()
@@ -99,7 +102,7 @@ class table_peers(tables.Table):
     location_country = tables.Column()
     time_accepted = tables.Column()
     last_updated = tables.Column()
-    token = tables.Column()
+    #token = tables.Column()
     active = tables.BooleanColumn()
     no_plates = tables.Column()
     no_matching_plates = tables.Column()

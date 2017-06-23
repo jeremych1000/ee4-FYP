@@ -12,7 +12,7 @@ def encrypt(payload, key=b'a0SThzUK3EFVlxbZ5_3ru1ou2vWShkGR6Ca_RV7kvWQ='):
 
 def decrypt(payload, key=b'a0SThzUK3EFVlxbZ5_3ru1ou2vWShkGR6Ca_RV7kvWQ='):
     f = Fernet(key)
-    print("decryupt payload is ", payload, type(payload), "\n")
+    #print("decryupt payload is ", payload, type(payload), "\n")
     ret = f.decrypt(payload)
     ret_payload = base64.b64decode(ret)
     ret_json = ret_payload.decode('utf-8')

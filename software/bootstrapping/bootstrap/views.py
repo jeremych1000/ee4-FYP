@@ -52,7 +52,8 @@ class register(APIView):
         :return: HTTP 200 if successful
         '''
         json_data = json.loads(decrypt(request.body, settings.FERNET_KEY))
-        print("json data is _____", json_data, type(json_data))
+        print("encrypted ", request.body)
+        print("decrypted json data is ", json_data, type(json_data))
         json_ret = {}
         json_ret_fail = {}  # use this dictionary for return fail
 
