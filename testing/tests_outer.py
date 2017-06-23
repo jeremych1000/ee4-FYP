@@ -100,7 +100,7 @@ if args:
         if fgot < all_got_f_min:
             all_got_f_min = fgot
         if fgot > all_got_f_max:
-            all_got_f_max = fgot
+            all_got_f_max = fgot 
 
         print("From ALPR: ")
         pp.pprint(ret_plates)
