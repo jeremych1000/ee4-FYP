@@ -262,8 +262,8 @@ SPEEDING_LIMIT_PERCENT = 10
 RESIDENTIAL_SPEED_LIMIT = 30
 
 ALPR_FPS = 5
-ALPR_VIDEO_PATH = '/home/pi/test_videos/highstken/'
-ALPR_IMAGES_PATH = '/home/pi/test_videos/highstken'
+ALPR_VIDEO_PATH = '/home/pi/test_videos/demo/'
+ALPR_IMAGES_PATH = '/home/pi/test_videos/demo'
 ALPR_URL = '/alpr/'
 
 # api keys + other keys
