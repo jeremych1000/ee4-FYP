@@ -104,6 +104,7 @@ class register(APIView):
                 json_ret["location_long"] = location_long
                 json_ret["location_method"] = "geolocation"
         else:
+            address_type = "External(e)"
             location_lat = json_data["location_lat"]
             location_long = json_data["location_long"]
             json_ret["location_method"] = "explicit"
