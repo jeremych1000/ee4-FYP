@@ -253,6 +253,12 @@ PEER_PORT = 34571 # peer port
 PEER_LAT = 51.499691
 PEER_LONG = -0.179612
 
+#51.499691
+#-0.179612
+#
+#51.500072
+#-0.174612
+
 TRUST_THRESHOLD = 10 # what trust needed before sending
 
 NO_PLATES_BATCH_BEFORE_SEND = 1 # howm
