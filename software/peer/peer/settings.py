@@ -246,10 +246,18 @@ SHORT_DATETIME_FORMAT = '%Y-%m-%d %H:%M:%S.%f'
 
 DJANGO_CRON_DELETE_LOGS_OLDER_THAN = 1
 
-BOOTSTRAP_BASE_URL = 'http://bootstrap:34568/' # must include http or No connection adapters were found for ...
+BOOTSTRAP_BASE_URL = 'http://jeremych.zapto.org:34568/' # must include http or No connection adapters were found for ...
 
-PEER_HOSTNAME = '86.177.166.34' # peer IP
+PEER_HOSTNAME = 'jeremych.zapto.org' # peer IP
 PEER_PORT = 34571 # peer port
+PEER_LAT = 51.499691
+PEER_LONG = -0.179612
+
+#51.499691
+#-0.179612
+#
+#51.500072
+#-0.174612
 
 TRUST_THRESHOLD = 10 # what trust needed before sending
 
@@ -262,8 +270,8 @@ SPEEDING_LIMIT_PERCENT = 10
 RESIDENTIAL_SPEED_LIMIT = 30
 
 ALPR_FPS = 5
-ALPR_VIDEO_PATH = '/home/pi/test_videos/highstken/'
-ALPR_IMAGES_PATH = '/home/pi/test_videos/highstken'
+ALPR_VIDEO_PATH = '/home/pi/test_videos/demo/'
+ALPR_IMAGES_PATH = '/home/pi/test_videos/demo'
 ALPR_URL = '/alpr/'
 
 # api keys + other keys

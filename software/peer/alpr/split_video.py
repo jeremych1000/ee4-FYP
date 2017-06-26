@@ -2,28 +2,27 @@ import cv2, os, math, shutil, datetime
 
 
 def split(video_path, video_name, video_ext, wanted_fps=5, verbose=False):
-    print("Attempting to open ", video_path + video_name + video_ext)
-    try:
-        video_capture = cv2.VideoCapture(video_path + video_name + video_ext)
-    except Exception as e:
-        print("Exception occured - ", str(e))
-        return False
-
-    if not video_capture.isOpened():
-        print("Video does not exist")
-        return False
-
-    video_fps = video_capture.get(cv2.CAP_PROP_FPS)
-    video_total_frames = video_capture.get(cv2.CAP_PROP_FRAME_COUNT)
-    skip_frames_fps = math.floor(video_fps / wanted_fps)
-    microseconds_per_frame = math.floor(1000000/wanted_fps)
-
-    # make video dir if not exist
     os.makedirs(video_path + video_name, exist_ok=True)
     if len(os.listdir(video_path + video_name)) > 0:
         print("Folder detected, assuming already split, skipping split. Delete the folder otherwise.")
         return False
     else:
+        print("Attempting to open ", video_path + video_name + video_ext)
+        try:
+            video_capture = cv2.VideoCapture(video_path + video_name + video_ext)
+        except Exception as e:
+            print("Exception occured - ", str(e))
+            return False
+
+        if not video_capture.isOpened():
+            print("Video does not exist")
+            return False
+
+        video_fps = video_capture.get(cv2.CAP_PROP_FPS)
+        video_total_frames = video_capture.get(cv2.CAP_PROP_FRAME_COUNT)
+        skip_frames_fps = math.floor(video_fps / wanted_fps)
+        microseconds_per_frame = math.floor(1000000/wanted_fps)
+
         foo, date, time = video_name.split("_")
         time.replace(".mp4", "")
         datetime_obj = datetime.datetime.strptime(date+time, "%Y%m%d%H%M%S")

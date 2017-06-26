@@ -23,6 +23,9 @@ class Register(CronJobBase):
         payload = {
             "ip_address": settings.PEER_HOSTNAME,
             "port": settings.PEER_PORT,
+            "location_lat": settings.PEER_LAT,
+            "location_long": settings.PEER_LONG
+
         }
 
         if models.bootstrap.objects.count() == 0:
